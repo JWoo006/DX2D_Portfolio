@@ -13,5 +13,13 @@
     <ClCompile Include="DX2D_03_05-17.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="DX2D_04_05-18.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="렌더링 파이프라인.pdf">
+      <Filter>소스 파일</Filter>
+    </None>
   </ItemGroup>
 </Project>
