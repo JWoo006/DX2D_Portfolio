@@ -16,6 +16,9 @@
     <ClCompile Include="DX2D_04_05-18.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
+    <ClCompile Include="DX2D_05_05-19.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="렌더링 파이프라인.pdf">
