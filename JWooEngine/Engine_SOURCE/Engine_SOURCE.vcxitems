@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup Label="Globals">
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <ItemsProjectGuid>{7d9c45d3-9c2f-4f32-ae44-3c6f1d7a3548}</ItemsProjectGuid>
+  </PropertyGroup>
+  <ItemDefinitionGroup>
+    <ClCompile>
+      <AdditionalIncludeDirectories>%(AdditionalIncludeDirectories);$(MSBuildThisFileDirectory)</AdditionalIncludeDirectories>
+    </ClCompile>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ProjectCapability Include="SourceItemsFromImports" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwEntity.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwEnums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphics.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)JWooEngine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwTime.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwResource.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwTime.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwResource.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="$(MSBuildThisFileDirectory)jwMath.inl" />
+  </ItemGroup>
+</Project>

@@ -3,7 +3,28 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Note", "Note\Note.vcxproj", "{E2BF8E0E-7E2A-4E2C-B318-82B83CE19190}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor_Window", "Editor_Window\Editor_Window.vcxproj", "{37A000D2-F0B2-4072-9002-29827759C763}"
+	ProjectSection(ProjectDependencies) = postProject
+		{FA790077-AD82-4948-BF47-1CF717358B8B} = {FA790077-AD82-4948-BF47-1CF717358B8B}
+	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JWooEngine", "JWooEngine\JWooEngine.vcxproj", "{FA790077-AD82-4948-BF47-1CF717358B8B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor_SOURCE", "Editor_SOURCE\Editor_SOURCE.vcxitems", "{E8507B22-AE7C-4237-9A97-D88BDF9C049C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine_SOURCE", "Engine_SOURCE\Engine_SOURCE.vcxitems", "{7D9C45D3-9C2F-4F32-AE44-3C6F1D7A3548}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shader_SOURCE", "Shader_SOURCE\Shader_SOURCE.vcxitems", "{44F23C3C-3770-4A67-9483-BC04557D8C1C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "노트", "노트", "{BC02345E-7EAF-4544-BECC-61C57EE30152}"
+	ProjectSection(SolutionItems) = preProject
+		DX2D_day02_05-16.txt = DX2D_day02_05-16.txt
+		DX2D_day03_05-17.txt = DX2D_day03_05-17.txt
+		DX2D_day04_05-18.txt = DX2D_day04_05-18.txt
+		DX2D_day05_05-19.txt = DX2D_day05_05-19.txt
+		렌더링 파이프라인.pdf = 렌더링 파이프라인.pdf
+		버그.txt = 버그.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,19 +34,35 @@ Global
 		Release|x86 = Release|x86
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{E2BF8E0E-7E2A-4E2C-B318-82B83CE19190}.Debug|x64.ActiveCfg = Debug|x64
-		{E2BF8E0E-7E2A-4E2C-B318-82B83CE19190}.Debug|x64.Build.0 = Debug|x64
-		{E2BF8E0E-7E2A-4E2C-B318-82B83CE19190}.Debug|x86.ActiveCfg = Debug|Win32
-		{E2BF8E0E-7E2A-4E2C-B318-82B83CE19190}.Debug|x86.Build.0 = Debug|Win32
-		{E2BF8E0E-7E2A-4E2C-B318-82B83CE19190}.Release|x64.ActiveCfg = Release|x64
-		{E2BF8E0E-7E2A-4E2C-B318-82B83CE19190}.Release|x64.Build.0 = Release|x64
-		{E2BF8E0E-7E2A-4E2C-B318-82B83CE19190}.Release|x86.ActiveCfg = Release|Win32
-		{E2BF8E0E-7E2A-4E2C-B318-82B83CE19190}.Release|x86.Build.0 = Release|Win32
+		{37A000D2-F0B2-4072-9002-29827759C763}.Debug|x64.ActiveCfg = Debug|x64
+		{37A000D2-F0B2-4072-9002-29827759C763}.Debug|x64.Build.0 = Debug|x64
+		{37A000D2-F0B2-4072-9002-29827759C763}.Debug|x86.ActiveCfg = Debug|Win32
+		{37A000D2-F0B2-4072-9002-29827759C763}.Debug|x86.Build.0 = Debug|Win32
+		{37A000D2-F0B2-4072-9002-29827759C763}.Release|x64.ActiveCfg = Release|x64
+		{37A000D2-F0B2-4072-9002-29827759C763}.Release|x64.Build.0 = Release|x64
+		{37A000D2-F0B2-4072-9002-29827759C763}.Release|x86.ActiveCfg = Release|Win32
+		{37A000D2-F0B2-4072-9002-29827759C763}.Release|x86.Build.0 = Release|Win32
+		{FA790077-AD82-4948-BF47-1CF717358B8B}.Debug|x64.ActiveCfg = Debug|x64
+		{FA790077-AD82-4948-BF47-1CF717358B8B}.Debug|x64.Build.0 = Debug|x64
+		{FA790077-AD82-4948-BF47-1CF717358B8B}.Debug|x86.ActiveCfg = Debug|Win32
+		{FA790077-AD82-4948-BF47-1CF717358B8B}.Debug|x86.Build.0 = Debug|Win32
+		{FA790077-AD82-4948-BF47-1CF717358B8B}.Release|x64.ActiveCfg = Release|x64
+		{FA790077-AD82-4948-BF47-1CF717358B8B}.Release|x64.Build.0 = Release|x64
+		{FA790077-AD82-4948-BF47-1CF717358B8B}.Release|x86.ActiveCfg = Release|Win32
+		{FA790077-AD82-4948-BF47-1CF717358B8B}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {32245AE7-CD66-4D7F-91DE-C868D9FCCDB7}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		Editor_SOURCE\Editor_SOURCE.vcxitems*{37a000d2-f0b2-4072-9002-29827759c763}*SharedItemsImports = 4
+		Engine_SOURCE\Engine_SOURCE.vcxitems*{37a000d2-f0b2-4072-9002-29827759c763}*SharedItemsImports = 4
+		Shader_SOURCE\Shader_SOURCE.vcxitems*{44f23c3c-3770-4a67-9483-bc04557d8c1c}*SharedItemsImports = 9
+		Engine_SOURCE\Engine_SOURCE.vcxitems*{7d9c45d3-9c2f-4f32-ae44-3c6f1d7a3548}*SharedItemsImports = 9
+		Editor_SOURCE\Editor_SOURCE.vcxitems*{e8507b22-ae7c-4237-9a97-d88bdf9c049c}*SharedItemsImports = 9
+		Engine_SOURCE\Engine_SOURCE.vcxitems*{fa790077-ad82-4948-bf47-1cf717358b8b}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal
