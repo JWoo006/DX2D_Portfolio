@@ -5,6 +5,7 @@
 #include "Editor_Window.h"
 #include "jwApplication.h"
 
+// 어플리케이션 선언
 jw::Application application;
 
 #define MAX_LOADSTRING 100
@@ -43,6 +44,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_EDITORWINDOW));
 
+
+    // 픽메시지 방식
     MSG msg;
     while (true)
     {

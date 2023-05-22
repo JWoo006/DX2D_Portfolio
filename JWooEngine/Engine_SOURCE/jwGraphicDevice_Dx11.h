@@ -27,7 +27,7 @@ namespace jw::graphics
 		// 최종적으로 그려질 텍스처(도화지)
 		Microsoft::WRL::ComPtr<ID3D11Texture2D> mRenderTarget;
 
-		// 렌더타겟에 직접접근하지 않고 레더타겟뷰를 통해서 접근한다.
+		// 렌더타겟에 직접접근하지 않고 렌더타겟뷰를 통해서 접근한다.
 		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> mRenderTargetView;
 
 		// 깊이버퍼
@@ -40,7 +40,3 @@ namespace jw::graphics
 		Microsoft::WRL::ComPtr<IDXGISwapChain> mSwapChain;
 	};
 }
-
-// 당신의 인생에 만족하십니까?
-// are you satisfied all your life?
-// are you haapy?

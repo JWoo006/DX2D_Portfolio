@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="DX2D_dat06_05-22.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="DX2D_day02_05-16.txt" />
+    <Text Include="DX2D_day03_05-17.txt" />
+    <Text Include="DX2D_day04_05-18.txt" />
+    <Text Include="DX2D_day05_05-19.txt" />
+    <Text Include="DX2D_day06_05-22.txt" />
+    <Text Include="버그.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="렌더링 파이프라인.pdf" />
+  </ItemGroup>
+</Project>

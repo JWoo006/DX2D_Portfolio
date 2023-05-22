@@ -64,7 +64,7 @@
       <Filter>Resource\Resources</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwResource.h">
-      <Filter>Resource\Resources</Filter>
+      <Filter>Resource</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -90,7 +90,7 @@
       <Filter>Resource\Resources</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwResource.cpp">
-      <Filter>Resource\Resources</Filter>
+      <Filter>Resource</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
