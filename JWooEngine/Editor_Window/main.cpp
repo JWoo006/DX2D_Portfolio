@@ -124,6 +124,9 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     ShowWindow(hWnd, nCmdShow);
     UpdateWindow(hWnd);
 
+    // 어플리케이션 초기화
+    application.Initialize();
+
     return TRUE;
 }
 
