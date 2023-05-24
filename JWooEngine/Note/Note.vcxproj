@@ -127,14 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="DX2D_dat06_05-22.cpp" />
+    <ClCompile Include="DX2D_day06_05-22.cpp" />
+    <ClCompile Include="DX2D_day07_05-24.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="DX2D_day02_05-16.txt" />
     <Text Include="DX2D_day03_05-17.txt" />
     <Text Include="DX2D_day04_05-18.txt" />
     <Text Include="DX2D_day05_05-19.txt" />
-    <Text Include="DX2D_day06_05-22.txt" />
     <Text Include="버그.txt" />
   </ItemGroup>
   <ItemGroup>
