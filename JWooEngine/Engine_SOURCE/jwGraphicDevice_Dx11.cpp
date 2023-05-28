@@ -173,7 +173,6 @@ namespace jw::graphics
 			, jw::renderer::trianglePSBlob->GetBufferSize()
 			, nullptr, &jw::renderer::trianglePSShader);
 
-
 		// Input layout 정점 구조 정보를 넘겨줘야한다.
 		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {};
 
@@ -197,6 +196,65 @@ namespace jw::graphics
 			, &renderer::triangleLayout);
 
 
+		//원
+		ID3DBlob* circlevsBlob = nullptr;
+		std::filesystem::path circleshaderPath
+			= std::filesystem::current_path().parent_path();
+		circleshaderPath += L"\\Shader_SOURCE\\";
+
+		std::filesystem::path circlevsPath(circleshaderPath.c_str());
+		circlevsPath += L"CircleVS.hlsl";
+
+		D3DCompileFromFile(circlevsPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+			, "main", "vs_5_0", 0, 0, &jw::renderer::circleVSBlob, &jw::renderer::circleerrorBlob);
+
+		if (jw::renderer::circleerrorBlob)
+		{
+			OutputDebugStringA((char*)jw::renderer::circleerrorBlob->GetBufferPointer());
+			jw::renderer::circleerrorBlob->Release();
+		}
+
+		mDevice->CreateVertexShader(jw::renderer::circleVSBlob->GetBufferPointer()
+			, jw::renderer::circleVSBlob->GetBufferSize()
+			, nullptr, &jw::renderer::circleVSShader);
+
+		std::filesystem::path circlepsPath(circleshaderPath.c_str());
+		circlepsPath += L"CirclePS.hlsl";
+
+		D3DCompileFromFile(circlepsPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+			, "main", "ps_5_0", 0, 0, &jw::renderer::circlePSBlob, &jw::renderer::circleerrorBlob);
+
+		if (jw::renderer::circleerrorBlob)
+		{
+			OutputDebugStringA((char*)jw::renderer::circleerrorBlob->GetBufferPointer());
+			jw::renderer::circleerrorBlob->Release();
+		}
+
+		mDevice->CreatePixelShader(jw::renderer::circlePSBlob->GetBufferPointer()
+			, jw::renderer::circlePSBlob->GetBufferSize()
+			, nullptr, &jw::renderer::circlePSShader);
+
+		// Input layout 정점 구조 정보를 넘겨줘야한다.
+		D3D11_INPUT_ELEMENT_DESC circlearrLayout[2] = {};
+
+		circlearrLayout[0].AlignedByteOffset = 0;
+		circlearrLayout[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
+		circlearrLayout[0].InputSlot = 0;
+		circlearrLayout[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		circlearrLayout[0].SemanticName = "POSITION";
+		circlearrLayout[0].SemanticIndex = 0;
+
+		circlearrLayout[1].AlignedByteOffset = 12;
+		circlearrLayout[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
+		circlearrLayout[1].InputSlot = 0;
+		circlearrLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
+		circlearrLayout[1].SemanticName = "COLOR";
+		circlearrLayout[1].SemanticIndex = 0;
+
+		mDevice->CreateInputLayout(circlearrLayout, 2
+			, renderer::circleVSBlob->GetBufferPointer()
+			, renderer::circleVSBlob->GetBufferSize()
+			, &renderer::circleLayout);
 
 		return true;
 	}
@@ -240,6 +298,12 @@ namespace jw::graphics
 		mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
 		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
 
+		//Bind VS, PS 
+		mContext->VSSetShader(renderer::triangleVSShader, 0, 0);
+		mContext->PSSetShader(renderer::trianglePSShader, 0, 0);
+
+		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+
 		// viewport update
 		HWND hWnd = application.GetHwnd();
 		RECT winRect = {};
@@ -251,10 +315,9 @@ namespace jw::graphics
 			, (float)(winRect.bottom - winRect.top)
 			, 0.0f, 1.0f
 		};
-
 		BindViewPort(&mViewPort);
-		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
 
+		// 삼각형
 		// input assembler 정점데이터 정보 지정
 		UINT vertexsize = sizeof(renderer::Vertex);
 		UINT offset = 0;
@@ -262,14 +325,80 @@ namespace jw::graphics
 		mContext->IASetVertexBuffers(0, 1, &renderer::triangleBuffer, &vertexsize, &offset);
 		mContext->IASetInputLayout(renderer::triangleLayout);
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		//mContext->Draw(3, 0);
+
+		// 사각형 1
+		// change viewport
+		mViewPort =
+		{
+			0.0f, 0.0f
+			, 100
+			, 100
+			, 0.0f, 1.0f
+		};
+		BindViewPort(&mViewPort);
+		UINT squarevertexsize = sizeof(renderer::Vertex);
+		UINT squareoffset = 0;
+		mContext->IASetVertexBuffers(0, 1, &renderer::squareBuffer, &squarevertexsize, &squareoffset);
+		//mContext->IASetInputLayout(renderer::squareLayout);
+		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		// Draw Render Target
+		mContext->Draw(6, 0);
+
+		// 사각형 2
+		// change viewport
+		/*mViewPort =
+		{
+			1100.0f, 0.0f
+			, 500
+			, 500
+			, 0.0f, 1.0f
+		};
+		BindViewPort(&mViewPort);
+		UINT squarevertexsize2 = sizeof(renderer::Vertex);
+		UINT squareoffset2 = 0;
+		mContext->IASetVertexBuffers(0, 1, &renderer::squareBuffer2, &squarevertexsize2, &squareoffset2);
+		mContext->IASetIndexBuffer(renderer::indexBuffer, DXGI_FORMAT_R16_UINT, 0);
+		mContext->IASetInputLayout(renderer::squareLayout2);
+		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		mContext->DrawIndexed(6, 0, 0);*/
+
+		// 마름모
+		mViewPort =
+		{
+			100.0f, 600.0f
+			, 300
+			, 300
+			, 0.0f, 1.0f
+		};
+		BindViewPort(&mViewPort);
+		UINT diamondvertexsize = sizeof(renderer::Vertex);
+		UINT diamondoffset = 0;
+		mContext->IASetVertexBuffers(0, 1, &renderer::diamondBuffer, &diamondvertexsize, &diamondoffset);
+		mContext->IASetInputLayout(renderer::diamondLayout);
+		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		mContext->Draw(6, 0);
+
+		// 원
 
 		//Bind VS, PS 
-
-		mContext->VSSetShader(renderer::triangleVSShader, 0, 0);
-		mContext->PSSetShader(renderer::trianglePSShader, 0, 0);
-
-		// Draw Render Target
-		mContext->Draw(3, 0);
+		mContext->VSSetShader(renderer::circleVSShader, 0, 0);
+		mContext->PSSetShader(renderer::circlePSShader, 0, 0);
+		mViewPort =
+		{
+			1100.0f, 100.0f
+			, 300
+			, 300
+			, 0.0f, 1.0f
+		};
+		
+		BindViewPort(&mViewPort);
+		UINT circlesize = sizeof(renderer::Vertex);
+		UINT circleoffset = 0;
+		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+		mContext->IASetInputLayout(renderer::circleLayout);
+		mContext->IASetVertexBuffers(0, 1, &renderer::circleBuffer, &circlesize, &circleoffset);
+		mContext->Draw(32, 0); // 원의 정점 개수로 구성됨
 
 		// 레더타겟에 있는 이미지를 화면에 그려준다
 		mSwapChain->Present(0, 0);
