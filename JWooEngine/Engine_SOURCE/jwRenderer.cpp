@@ -130,7 +130,7 @@ namespace jw::renderer
 		const int circleResolution = 32; // 원의 해상도 (정점 개수)
 		Vertex circleVertices[circleResolution];
 
-		const float radius = 1.0f; // 원의 반지름
+		const float radius = 0.5f; // 원의 반지름
 		const float angleIncrement = XM_2PI / circleResolution; // 원을 그리기 위한 각도 간격
 
 		for (int i = 0; i < circleResolution; ++i)
