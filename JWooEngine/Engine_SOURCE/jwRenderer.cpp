@@ -175,22 +175,22 @@ namespace jw::renderer
 
 		//square
 		squareVertexes[0].pos = Vector3(-0.5f, -0.5f, 0.0f);
-		squareVertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		squareVertexes[0].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 					  
 		squareVertexes[1].pos = Vector3(-0.5f, 0.5f, 0.0f);
 		squareVertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 					  
 		squareVertexes[2].pos = Vector3(0.5f, -0.5f, 0.0f);
-		squareVertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		squareVertexes[2].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 
 		squareVertexes[3].pos = Vector3(-0.5f, 0.5f, 0.0f);
-		squareVertexes[3].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		squareVertexes[3].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 
 		squareVertexes[4].pos = Vector3(0.5f, 0.5f, 0.0f);
-		squareVertexes[4].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		squareVertexes[4].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 
 		squareVertexes[5].pos = Vector3(0.5f, -0.5f, 0.0f);
-		squareVertexes[5].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
+		squareVertexes[5].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 
 		//square2
 		squareVertexes2[0].pos = Vector3(-0.5f, 0.5f, 0.0f);
@@ -216,10 +216,10 @@ namespace jw::renderer
 		diamondVertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 
 		diamondVertexes[1].pos = Vector3(0.0f, 0.5f, 0.0f);
-		diamondVertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
+		diamondVertexes[1].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 
 		diamondVertexes[2].pos = Vector3(0.0f, -0.5f, 0.0f);
-		diamondVertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
+		diamondVertexes[2].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 
 		diamondVertexes[3].pos = Vector3(0.0f, 0.5f, 0.0f);
 		diamondVertexes[3].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);

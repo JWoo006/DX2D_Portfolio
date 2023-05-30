@@ -325,7 +325,7 @@ namespace jw::graphics
 		mContext->IASetVertexBuffers(0, 1, &renderer::triangleBuffer, &vertexsize, &offset);
 		mContext->IASetInputLayout(renderer::triangleLayout);
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		//mContext->Draw(3, 0);
+		mContext->Draw(3, 0);
 
 		// 사각형 1
 		// change viewport
@@ -347,7 +347,7 @@ namespace jw::graphics
 
 		// 사각형 2
 		// change viewport
-		/*mViewPort =
+		mViewPort =
 		{
 			1100.0f, 0.0f
 			, 500
@@ -361,7 +361,7 @@ namespace jw::graphics
 		mContext->IASetIndexBuffer(renderer::indexBuffer, DXGI_FORMAT_R16_UINT, 0);
 		mContext->IASetInputLayout(renderer::squareLayout2);
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		mContext->DrawIndexed(6, 0, 0);*/
+		mContext->DrawIndexed(6, 0, 0);
 
 		// 마름모
 		mViewPort =
