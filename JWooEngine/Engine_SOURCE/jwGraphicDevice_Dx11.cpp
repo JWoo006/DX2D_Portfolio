@@ -1,6 +1,8 @@
 #include "jwGraphicDevice_Dx11.h"
 #include "jwApplication.h"
 #include "jwRenderer.h"
+#include "jwInput.h"
+#include "jwTime.h"
 
 extern jw::Application application;
 
@@ -8,6 +10,18 @@ namespace jw::graphics
 {
 	GraphicDevice_Dx11::GraphicDevice_Dx11()
 	{
+		// 1. graphic device, context 생성
+
+		// 2. 화면에 렌더링 할수 있게 도와주는
+		// swapchain 생성
+
+		// 3. rendertarget,view 생성하고 
+		// 4. 깊이버퍼와 깊이버퍼 뷰 생성해주고
+
+		// 5. 렌더타겟 클리어 ( 화면 지우기 )
+		// 6. present 함수로 렌더타겟에 있는 텍스쳐를
+		//    모니터에 그려준다.
+
 		// Device, Context 생성
 		HWND hWnd = application.GetHwnd();
 		UINT deviceFlag = D3D11_CREATE_DEVICE_DEBUG; // 열거형 찾아보자
@@ -196,66 +210,7 @@ namespace jw::graphics
 			, &renderer::triangleLayout);
 
 
-		//원
-		ID3DBlob* circlevsBlob = nullptr;
-		std::filesystem::path circleshaderPath
-			= std::filesystem::current_path().parent_path();
-		circleshaderPath += L"\\Shader_SOURCE\\";
-
-		std::filesystem::path circlevsPath(circleshaderPath.c_str());
-		circlevsPath += L"CircleVS.hlsl";
-
-		D3DCompileFromFile(circlevsPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
-			, "main", "vs_5_0", 0, 0, &jw::renderer::circleVSBlob, &jw::renderer::circleerrorBlob);
-
-		if (jw::renderer::circleerrorBlob)
-		{
-			OutputDebugStringA((char*)jw::renderer::circleerrorBlob->GetBufferPointer());
-			jw::renderer::circleerrorBlob->Release();
-		}
-
-		mDevice->CreateVertexShader(jw::renderer::circleVSBlob->GetBufferPointer()
-			, jw::renderer::circleVSBlob->GetBufferSize()
-			, nullptr, &jw::renderer::circleVSShader);
-
-		std::filesystem::path circlepsPath(circleshaderPath.c_str());
-		circlepsPath += L"CirclePS.hlsl";
-
-		D3DCompileFromFile(circlepsPath.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
-			, "main", "ps_5_0", 0, 0, &jw::renderer::circlePSBlob, &jw::renderer::circleerrorBlob);
-
-		if (jw::renderer::circleerrorBlob)
-		{
-			OutputDebugStringA((char*)jw::renderer::circleerrorBlob->GetBufferPointer());
-			jw::renderer::circleerrorBlob->Release();
-		}
-
-		mDevice->CreatePixelShader(jw::renderer::circlePSBlob->GetBufferPointer()
-			, jw::renderer::circlePSBlob->GetBufferSize()
-			, nullptr, &jw::renderer::circlePSShader);
-
-		// Input layout 정점 구조 정보를 넘겨줘야한다.
-		D3D11_INPUT_ELEMENT_DESC circlearrLayout[2] = {};
-
-		circlearrLayout[0].AlignedByteOffset = 0;
-		circlearrLayout[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
-		circlearrLayout[0].InputSlot = 0;
-		circlearrLayout[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-		circlearrLayout[0].SemanticName = "POSITION";
-		circlearrLayout[0].SemanticIndex = 0;
-
-		circlearrLayout[1].AlignedByteOffset = 12;
-		circlearrLayout[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-		circlearrLayout[1].InputSlot = 0;
-		circlearrLayout[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-		circlearrLayout[1].SemanticName = "COLOR";
-		circlearrLayout[1].SemanticIndex = 0;
-
-		mDevice->CreateInputLayout(circlearrLayout, 2
-			, renderer::circleVSBlob->GetBufferPointer()
-			, renderer::circleVSBlob->GetBufferSize()
-			, &renderer::circleLayout);
-
+		
 		return true;
 	}
 
@@ -291,12 +246,80 @@ namespace jw::graphics
 		mContext->RSSetViewports(1, viewPort);
 	}
 
+	void GraphicDevice_Dx11::SetConstantBuffer(ID3D11Buffer* buffer, void* data, UINT size)
+	{
+		D3D11_MAPPED_SUBRESOURCE subRes = {};
+		mContext->Map(buffer, 0, D3D11_MAP_WRITE_DISCARD, 0, &subRes); // 상수 버버와 SubRes와 맵핑
+		memcpy(subRes.pData, data, size); // 데이터 카피
+		mContext->Unmap(buffer, 0);// 지역 변수 subRes의 이후 접근에 문제가 없도록 UnMap
+	}
+
+	void GraphicDevice_Dx11::BindConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer)
+	{
+		switch (stage)
+		{
+		case eShaderStage::VS:
+			mContext->VSSetConstantBuffers((UINT)type, 1, &buffer);
+			break;
+		case eShaderStage::HS:
+			mContext->HSSetConstantBuffers((UINT)type, 1, &buffer);
+			break;
+		case eShaderStage::DS:
+			mContext->DSSetConstantBuffers((UINT)type, 1, &buffer);
+			break;
+		case eShaderStage::GS:
+			mContext->GSSetConstantBuffers((UINT)type, 1, &buffer);
+			break;
+		case eShaderStage::PS:
+			mContext->PSSetConstantBuffers((UINT)type, 1, &buffer);
+			break;
+		case eShaderStage::CS:
+			mContext->CSSetConstantBuffers((UINT)type, 1, &buffer);
+			break;
+		case eShaderStage::End:
+			break;
+		default:
+			break;
+		}
+	}
+
+	void GraphicDevice_Dx11::BindsConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer)
+	{
+		mContext->VSSetConstantBuffers((UINT)type, 1, &buffer);
+		mContext->HSSetConstantBuffers((UINT)type, 1, &buffer);
+		mContext->DSSetConstantBuffers((UINT)type, 1, &buffer);
+		mContext->GSSetConstantBuffers((UINT)type, 1, &buffer);
+		mContext->PSSetConstantBuffers((UINT)type, 1, &buffer);
+		mContext->CSSetConstantBuffers((UINT)type, 1, &buffer);
+	}
+
 	void GraphicDevice_Dx11::Draw()
 	{
 		// render target clear
 		FLOAT bgColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
 		mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
 		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
+
+		// 조작
+		if (Input::GetKeyDown(eKeyCode::LEFT) || Input::GetKey(eKeyCode::LEFT))
+		{
+			renderer::pos.x -= 0.1f * Time::DeltaTime();
+		}
+		if (Input::GetKeyDown(eKeyCode::RIGHT) || Input::GetKey(eKeyCode::RIGHT))
+		{
+			renderer::pos.x += 0.1f * Time::DeltaTime();
+		}
+		if (Input::GetKeyDown(eKeyCode::UP) || Input::GetKey(eKeyCode::UP))
+		{
+			renderer::pos.y += 0.1f * Time::DeltaTime();
+		}
+		if (Input::GetKeyDown(eKeyCode::DOWN) || Input::GetKey(eKeyCode::DOWN))
+		{
+			renderer::pos.y -= 0.1f * Time::DeltaTime();
+		}
+
+		SetConstantBuffer(renderer::triangleConstantBuffer, &renderer::pos, sizeof(Vector4));
+		BindConstantBuffer(eShaderStage::VS, eCBType::Transform, renderer::triangleConstantBuffer);
 
 		//Bind VS, PS 
 		mContext->VSSetShader(renderer::triangleVSShader, 0, 0);
@@ -327,7 +350,6 @@ namespace jw::graphics
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		mContext->Draw(3, 0);
 
-		// 사각형 1
 		// change viewport
 		mViewPort =
 		{
@@ -336,65 +358,7 @@ namespace jw::graphics
 			, 100
 			, 0.0f, 1.0f
 		};
-		BindViewPort(&mViewPort);
-		UINT squarevertexsize = sizeof(renderer::Vertex);
-		UINT squareoffset = 0;
-		mContext->IASetVertexBuffers(0, 1, &renderer::squareBuffer, &squarevertexsize, &squareoffset);
-		//mContext->IASetInputLayout(renderer::squareLayout);
-		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		// Draw Render Target
-		mContext->Draw(6, 0);
-
-		// 사각형 2
-		// change viewport
-		mViewPort =
-		{
-			1100.0f, 0.0f
-			, 500
-			, 500
-			, 0.0f, 1.0f
-		};
-		BindViewPort(&mViewPort);
-		UINT squarevertexsize2 = sizeof(renderer::Vertex);
-		UINT squareoffset2 = 0;
-		mContext->IASetVertexBuffers(0, 1, &renderer::squareBuffer2, &squarevertexsize2, &squareoffset2);
-		mContext->IASetIndexBuffer(renderer::indexBuffer, DXGI_FORMAT_R16_UINT, 0);
-		//mContext->IASetInputLayout(renderer::squareLayout2);
-		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		mContext->DrawIndexed(6, 0, 0);
-
-		// 마름모
-		mViewPort =
-		{
-			100.0f, 600.0f
-			, 300
-			, 300
-			, 0.0f, 1.0f
-		};
-		BindViewPort(&mViewPort);
-		UINT diamondvertexsize = sizeof(renderer::Vertex);
-		UINT diamondoffset = 0;
-		mContext->IASetVertexBuffers(0, 1, &renderer::diamondBuffer, &diamondvertexsize, &diamondoffset);
-		//mContext->IASetInputLayout(renderer::diamondLayout);
-		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		mContext->Draw(6, 0);
-
-		// 원
-		mViewPort =
-		{
-			00.0f, 100.0f
-			, 300
-			, 300
-			, 0.0f, 1.0f
-		};
-		
-		BindViewPort(&mViewPort);
-		UINT circlesize = sizeof(renderer::Vertex);
-		UINT circleoffset = 0;
-		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		//mContext->IASetInputLayout(renderer::circleLayout);
-		mContext->IASetVertexBuffers(0, 1, &renderer::circleBuffer, &circlesize, &circleoffset);
-		mContext->Draw(32, 0); // 원의 정점 개수로 구성됨
+		//BindViewPort(&mViewPort);
 
 		// 레더타겟에 있는 이미지를 화면에 그려준다
 		mSwapChain->Present(0, 0);
