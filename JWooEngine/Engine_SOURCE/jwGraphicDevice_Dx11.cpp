@@ -359,7 +359,7 @@ namespace jw::graphics
 		UINT squareoffset2 = 0;
 		mContext->IASetVertexBuffers(0, 1, &renderer::squareBuffer2, &squarevertexsize2, &squareoffset2);
 		mContext->IASetIndexBuffer(renderer::indexBuffer, DXGI_FORMAT_R16_UINT, 0);
-		mContext->IASetInputLayout(renderer::squareLayout2);
+		//mContext->IASetInputLayout(renderer::squareLayout2);
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		mContext->DrawIndexed(6, 0, 0);
 
@@ -375,18 +375,14 @@ namespace jw::graphics
 		UINT diamondvertexsize = sizeof(renderer::Vertex);
 		UINT diamondoffset = 0;
 		mContext->IASetVertexBuffers(0, 1, &renderer::diamondBuffer, &diamondvertexsize, &diamondoffset);
-		mContext->IASetInputLayout(renderer::diamondLayout);
+		//mContext->IASetInputLayout(renderer::diamondLayout);
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 		mContext->Draw(6, 0);
 
 		// 원
-
-		//Bind VS, PS 
-		mContext->VSSetShader(renderer::circleVSShader, 0, 0);
-		mContext->PSSetShader(renderer::circlePSShader, 0, 0);
 		mViewPort =
 		{
-			1100.0f, 100.0f
+			00.0f, 100.0f
 			, 300
 			, 300
 			, 0.0f, 1.0f
@@ -396,7 +392,7 @@ namespace jw::graphics
 		UINT circlesize = sizeof(renderer::Vertex);
 		UINT circleoffset = 0;
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		mContext->IASetInputLayout(renderer::circleLayout);
+		//mContext->IASetInputLayout(renderer::circleLayout);
 		mContext->IASetVertexBuffers(0, 1, &renderer::circleBuffer, &circlesize, &circleoffset);
 		mContext->Draw(32, 0); // 원의 정점 개수로 구성됨
 
