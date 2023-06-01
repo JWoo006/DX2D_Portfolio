@@ -4,7 +4,7 @@
 
 using namespace jw::math;
 
-namespace jw::renderer
+namespace renderer
 {
 	struct Vertex
 	{
@@ -25,5 +25,5 @@ namespace jw::renderer
 	extern ID3D11PixelShader* trianglePSShader;
 
 	void Initialize();
+	void Release();
 }
-

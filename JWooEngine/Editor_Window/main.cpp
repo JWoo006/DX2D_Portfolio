@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "Editor_Window.h"
 #include "jwApplication.h"
+#include "jwRenderer.h"
 
 // 어플리케이션 선언
 jw::Application application;
@@ -66,6 +67,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
             application.Run();
         }
     }
+
+    // 렌더러 release
+    renderer::Release();
 
     return (int)msg.wParam;
 }

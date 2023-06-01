@@ -1,6 +1,6 @@
 #include "jwRenderer.h"
 
-namespace jw::renderer
+namespace renderer
 {
 	Vertex vertexes[3] = {};
 	Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
@@ -22,7 +22,7 @@ namespace jw::renderer
 	// Vertex Shader
 	ID3D11PixelShader* trianglePSShader = nullptr;
 
-	
+
 	void SetupState()
 	{
 
@@ -79,7 +79,6 @@ namespace jw::renderer
 
 	void Initialize()
 	{
-		//triangle
 		vertexes[0].pos = Vector3(0.0f, 0.5f, 0.0f);
 		vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 
@@ -89,9 +88,39 @@ namespace jw::renderer
 		vertexes[2].pos = Vector3(-0.5f, -0.5f, 0.0f);
 		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
 
-		
 		SetupState();
 		LoadBuffer();
 		LoadShader();
 	}
+
+	void Release()
+	{
+		if (triangleLayout != nullptr)
+			triangleLayout->Release();
+
+		if (triangleBuffer != nullptr)
+			triangleBuffer->Release();
+
+		if (triangleIdxBuffer != nullptr)
+			triangleIdxBuffer->Release();
+
+		if (triangleConstantBuffer != nullptr)
+			triangleConstantBuffer->Release();
+
+		if (errorBlob != nullptr)
+			errorBlob->Release();
+
+		if (triangleVSBlob != nullptr)
+			triangleVSBlob->Release();
+
+		if (triangleVSShader != nullptr)
+			triangleVSShader->Release();
+
+		if (trianglePSBlob != nullptr)
+			trianglePSBlob->Release();
+
+		if (trianglePSShader != nullptr)
+			trianglePSShader->Release();
+	}
+
 }
