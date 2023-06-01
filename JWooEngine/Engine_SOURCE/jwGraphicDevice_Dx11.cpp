@@ -303,19 +303,19 @@ namespace jw::graphics
 		// 조작
 		if (Input::GetKeyDown(eKeyCode::LEFT) || Input::GetKey(eKeyCode::LEFT))
 		{
-			renderer::pos.x -= 0.1f * Time::DeltaTime();
+			renderer::pos.x -= 0.5f * Time::DeltaTime();
 		}
 		if (Input::GetKeyDown(eKeyCode::RIGHT) || Input::GetKey(eKeyCode::RIGHT))
 		{
-			renderer::pos.x += 0.1f * Time::DeltaTime();
+			renderer::pos.x += 0.5f * Time::DeltaTime();
 		}
 		if (Input::GetKeyDown(eKeyCode::UP) || Input::GetKey(eKeyCode::UP))
 		{
-			renderer::pos.y += 0.1f * Time::DeltaTime();
+			renderer::pos.y += 0.5f * Time::DeltaTime();
 		}
 		if (Input::GetKeyDown(eKeyCode::DOWN) || Input::GetKey(eKeyCode::DOWN))
 		{
-			renderer::pos.y -= 0.1f * Time::DeltaTime();
+			renderer::pos.y -= 0.5f * Time::DeltaTime();
 		}
 
 		SetConstantBuffer(renderer::triangleConstantBuffer, &renderer::pos, sizeof(Vector4));
@@ -358,7 +358,7 @@ namespace jw::graphics
 			, 100
 			, 0.0f, 1.0f
 		};
-		//BindViewPort(&mViewPort);
+		BindViewPort(&mViewPort);
 
 		// 레더타겟에 있는 이미지를 화면에 그려준다
 		mSwapChain->Present(0, 0);
