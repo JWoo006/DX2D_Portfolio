@@ -405,6 +405,7 @@ namespace jw::graphics
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 		//Bind VS, PS 
+		renderer::shader->Binds();
 		//mContext->VSSetShader(renderer::triangleVSShader, 0, 0);
 		//mContext->PSSetShader(renderer::trianglePSShader, 0, 0);
 
