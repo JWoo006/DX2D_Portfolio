@@ -246,6 +246,21 @@ namespace jw::graphics
 		mContext->RSSetViewports(1, viewPort);
 	}
 
+	void GraphicDevice_Dx11::BindVertexBuffer(UINT StartSlot
+		, ID3D11Buffer* const* ppVertexBuffers
+		, const UINT* pStrides
+		, const UINT* pOffsets)
+	{
+		mContext->IASetVertexBuffers(StartSlot, 1, ppVertexBuffers, pStrides, pOffsets);
+	}
+
+	void GraphicDevice_Dx11::BindIndexBuffer(ID3D11Buffer* pIndexBuffer
+		, DXGI_FORMAT Format
+		, UINT Offset)
+	{
+		mContext->IASetIndexBuffer(pIndexBuffer, Format, Offset);
+	}
+
 	void GraphicDevice_Dx11::SetConstantBuffer(ID3D11Buffer* buffer, void* data, UINT size)
 	{
 		D3D11_MAPPED_SUBRESOURCE subRes = {};
@@ -340,8 +355,11 @@ namespace jw::graphics
 		UINT vertexsize = sizeof(renderer::Vertex);
 		UINT offset = 0;
 
-		mContext->IASetVertexBuffers(0, 1, &renderer::triangleBuffer, &vertexsize, &offset);
-		mContext->IASetIndexBuffer(renderer::triangleIdxBuffer, DXGI_FORMAT_R32_UINT, 0);
+		// ¸Þ½¬ ·»´õ·¯
+		renderer::mesh->BindBuffer();
+
+		//mContext->IASetVertexBuffers(0, 1, &renderer::triangleBuffer, &vertexsize, &offset);
+		//mContext->IASetIndexBuffer(renderer::triangleIdxBuffer, DXGI_FORMAT_R32_UINT, 0);
 
 		mContext->IASetInputLayout(renderer::triangleLayout);
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
@@ -352,7 +370,7 @@ namespace jw::graphics
 
 		// Draw Render Target
 		//mContext->Draw(3, 0);
-		mContext->DrawIndexed(6, 0, 0);
+		mContext->DrawIndexed(renderer::mesh->GetIndexCount(), 0, 0);
 
 		// change viewport
 		mViewPort =

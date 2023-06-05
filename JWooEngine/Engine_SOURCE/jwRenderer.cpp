@@ -8,8 +8,9 @@ namespace renderer
 	// Input Layout (정점 정보)
 	ID3D11InputLayout* triangleLayout = nullptr;
 	// Vertex Buffer
-	ID3D11Buffer* triangleBuffer = nullptr;
-	ID3D11Buffer* triangleIdxBuffer = nullptr; // 인덱스 버퍼
+	jw::Mesh* mesh = nullptr;
+	//ID3D11Buffer* triangleBuffer = nullptr;
+	//ID3D11Buffer* triangleIdxBuffer = nullptr; // 인덱스 버퍼
 	ID3D11Buffer* triangleConstantBuffer = nullptr; // 상수 버퍼
 	// error blob
 	ID3DBlob* errorBlob = nullptr;
@@ -31,15 +32,8 @@ namespace renderer
 	void LoadBuffer()
 	{
 		// Vertex Buffer
-		D3D11_BUFFER_DESC triangleDesc = {};
-		triangleDesc.Usage = D3D11_USAGE::D3D11_USAGE_DYNAMIC;
-		triangleDesc.ByteWidth = sizeof(Vertex) * 4;
-		triangleDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_VERTEX_BUFFER;
-		triangleDesc.CPUAccessFlags = D3D11_CPU_ACCESS_FLAG::D3D11_CPU_ACCESS_WRITE;
-
-		D3D11_SUBRESOURCE_DATA triangleData = {};
-		triangleData.pSysMem = vertexes;
-		jw::graphics::GetDevice()->CreateBuffer(&triangleBuffer, &triangleDesc, &triangleData);
+		mesh = new jw::Mesh();
+		mesh->CreateVertexBuffer(vertexes, 4);
 
 		// Index Buffer
 		std::vector<UINT> indexes = {};
@@ -51,16 +45,8 @@ namespace renderer
 		indexes.push_back(2);
 		indexes.push_back(3);
 
-		D3D11_BUFFER_DESC triangleIdxDesc = {};
-		triangleIdxDesc.ByteWidth = sizeof(UINT) * indexes.size();
-		triangleIdxDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER;
-		triangleIdxDesc.Usage = D3D11_USAGE_DEFAULT;
-		triangleIdxDesc.CPUAccessFlags = 0;
-
-		D3D11_SUBRESOURCE_DATA triangleIdxData = {};
-		triangleIdxData.pSysMem = indexes.data();
-		jw::graphics::GetDevice()->CreateBuffer(&triangleIdxBuffer, &triangleIdxDesc, &triangleIdxData);
-
+		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
+		
 		// Constant Buffer
 		D3D11_BUFFER_DESC triangleCSDesc = {};
 		triangleCSDesc.ByteWidth = sizeof(Vector4);
@@ -104,12 +90,6 @@ namespace renderer
 	{
 		if (triangleLayout != nullptr)
 			triangleLayout->Release();
-
-		if (triangleBuffer != nullptr)
-			triangleBuffer->Release();
-
-		if (triangleIdxBuffer != nullptr)
-			triangleIdxBuffer->Release();
 
 		if (triangleConstantBuffer != nullptr)
 			triangleConstantBuffer->Release();

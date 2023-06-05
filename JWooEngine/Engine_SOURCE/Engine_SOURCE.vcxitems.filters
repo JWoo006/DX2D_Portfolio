@@ -69,6 +69,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwRenderer.h">
       <Filter>Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwMesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp">
@@ -98,6 +100,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwRenderer.cpp">
       <Filter>Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwMesh.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)jwMath.inl">

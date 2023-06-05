@@ -22,8 +22,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)JWooEngine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwResource.h" />
@@ -34,7 +36,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwResource.cpp" />
