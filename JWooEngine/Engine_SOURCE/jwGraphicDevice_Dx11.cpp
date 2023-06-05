@@ -317,13 +317,8 @@ namespace jw::graphics
 		{
 			renderer::pos.y -= 0.5f * Time::DeltaTime();
 		}
-
 		SetConstantBuffer(renderer::triangleConstantBuffer, &renderer::pos, sizeof(Vector4));
 		BindConstantBuffer(eShaderStage::VS, eCBType::Transform, renderer::triangleConstantBuffer);
-
-		//Bind VS, PS 
-		mContext->VSSetShader(renderer::triangleVSShader, 0, 0);
-		mContext->PSSetShader(renderer::trianglePSShader, 0, 0);
 
 		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
 
@@ -346,9 +341,18 @@ namespace jw::graphics
 		UINT offset = 0;
 
 		mContext->IASetVertexBuffers(0, 1, &renderer::triangleBuffer, &vertexsize, &offset);
+		mContext->IASetIndexBuffer(renderer::triangleIdxBuffer, DXGI_FORMAT_R32_UINT, 0);
+
 		mContext->IASetInputLayout(renderer::triangleLayout);
-		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D10_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
-		mContext->Draw(3, 0);
+		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
+
+		//Bind VS, PS 
+		mContext->VSSetShader(renderer::triangleVSShader, 0, 0);
+		mContext->PSSetShader(renderer::trianglePSShader, 0, 0);
+
+		// Draw Render Target
+		//mContext->Draw(3, 0);
+		mContext->DrawIndexed(6, 0, 0);
 
 		// change viewport
 		mViewPort =
