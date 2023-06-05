@@ -8,19 +8,25 @@ namespace renderer
 	// Input Layout (정점 정보)
 	ID3D11InputLayout* triangleLayout = nullptr;
 	// Vertex Buffer
-	jw::Mesh* mesh = nullptr;
 	//ID3D11Buffer* triangleBuffer = nullptr;
 	//ID3D11Buffer* triangleIdxBuffer = nullptr; // 인덱스 버퍼
+
+	jw::Mesh* mesh = nullptr;
+
 	ID3D11Buffer* triangleConstantBuffer = nullptr; // 상수 버퍼
+
 	// error blob
-	ID3DBlob* errorBlob = nullptr;
+	//ID3DBlob* errorBlob = nullptr;
 	// Vertex Shader code -> Binary Code
-	ID3DBlob* triangleVSBlob = nullptr;
+	//ID3DBlob* triangleVSBlob = nullptr;
 	// Vertex Shader
-	ID3D11VertexShader* triangleVSShader = nullptr;
+	//ID3D11VertexShader* triangleVSShader = nullptr;
 	// Pixel Shader code -> Binary Code
-	ID3DBlob* trianglePSBlob = nullptr;
+	//ID3DBlob* trianglePSBlob = nullptr;
 	// Vertex Shader
+
+	jw::Shader* shader = nullptr;
+
 	ID3D11PixelShader* trianglePSShader = nullptr;
 
 
@@ -64,7 +70,11 @@ namespace renderer
 
 	void LoadShader()
 	{
-		jw::graphics::GetDevice()->CreateShader();
+		//jw::graphics::GetDevice()->CreateShader();
+
+		shader = new jw::Shader();
+		shader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "main");
+		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
 	}
 
 	void Initialize()
@@ -93,18 +103,6 @@ namespace renderer
 
 		if (triangleConstantBuffer != nullptr)
 			triangleConstantBuffer->Release();
-
-		if (errorBlob != nullptr)
-			errorBlob->Release();
-
-		if (triangleVSBlob != nullptr)
-			triangleVSBlob->Release();
-
-		if (triangleVSShader != nullptr)
-			triangleVSShader->Release();
-
-		if (trianglePSBlob != nullptr)
-			trianglePSBlob->Release();
 
 		if (trianglePSShader != nullptr)
 			trianglePSShader->Release();

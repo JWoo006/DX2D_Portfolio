@@ -4,6 +4,7 @@
 
 namespace jw
 {
+	using namespace graphics;
 	class Shader : public Resource
 	{
 	public:
@@ -11,6 +12,10 @@ namespace jw
 		~Shader();
 
 		virtual HRESULT Load(const std::wstring& path) override;
+
+		bool Create(const eShaderStage stage, const std::wstring& fileName, const std::string& funcName);
+
+		void Binds();
 
 	private:
 

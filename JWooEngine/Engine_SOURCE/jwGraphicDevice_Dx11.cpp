@@ -150,7 +150,7 @@ namespace jw::graphics
 
 	bool GraphicDevice_Dx11::CreateShader()
 	{
-		ID3DBlob* vsBlob = nullptr;
+		/*ID3DBlob* vsBlob = nullptr;
 		std::filesystem::path shaderPath
 			= std::filesystem::current_path().parent_path();
 		shaderPath += L"\\Shader_SOURCE\\";
@@ -185,12 +185,12 @@ namespace jw::graphics
 
 		mDevice->CreatePixelShader(renderer::trianglePSBlob->GetBufferPointer()
 			, renderer::trianglePSBlob->GetBufferSize()
-			, nullptr, &renderer::trianglePSShader);
+			, nullptr, &renderer::trianglePSShader);*/
 
 		// Input layout 정점 구조 정보를 넘겨줘야한다.
 		D3D11_INPUT_ELEMENT_DESC arrLayout[2] = {};
 
-		arrLayout[0].AlignedByteOffset = 0;
+		/*arrLayout[0].AlignedByteOffset = 0;
 		arrLayout[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
 		arrLayout[0].InputSlot = 0;
 		arrLayout[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
@@ -207,10 +207,47 @@ namespace jw::graphics
 		mDevice->CreateInputLayout(arrLayout, 2
 			, renderer::triangleVSBlob->GetBufferPointer()
 			, renderer::triangleVSBlob->GetBufferSize()
-			, &renderer::triangleLayout);
+			, &renderer::triangleLayout);*/
 
 
 		
+		return true;
+	}
+
+	bool GraphicDevice_Dx11::CompileFromfile(const std::wstring& fileName
+		, const std::string& funcName
+		, const std::string& version, ID3DBlob** ppCode)
+	{
+		ID3DBlob* errorBlob = nullptr;
+		D3DCompileFromFile(fileName.c_str(), nullptr, D3D_COMPILE_STANDARD_FILE_INCLUDE
+			, funcName.c_str(), version.c_str(), 0, 0, ppCode, &errorBlob);
+
+		if (errorBlob)
+		{
+			OutputDebugStringA((char*)(errorBlob->GetBufferPointer()));
+			errorBlob->Release();
+			errorBlob = nullptr;
+		}
+
+		return false;
+	}
+
+	bool GraphicDevice_Dx11::CreateVertexShader(const void* pShaderBytecode
+		, SIZE_T BytecodeLength
+		, ID3D11VertexShader** ppVertexShader)
+	{
+		if (FAILED(mDevice->CreateVertexShader(pShaderBytecode, BytecodeLength, nullptr, ppVertexShader)))
+			return false;
+
+		return true;
+	}
+	bool GraphicDevice_Dx11::CreatePixelShader(const void* pShaderBytecode
+		, SIZE_T BytecodeLength
+		, ID3D11PixelShader** ppPixelShader)
+	{
+		if (FAILED(mDevice->CreatePixelShader(pShaderBytecode, BytecodeLength, nullptr, ppPixelShader)))
+			return false;
+
 		return true;
 	}
 
@@ -260,6 +297,17 @@ namespace jw::graphics
 	{
 		mContext->IASetIndexBuffer(pIndexBuffer, Format, Offset);
 	}
+
+	void GraphicDevice_Dx11::BindVertexShader(ID3D11VertexShader* pVetexShader)
+	{
+		mContext->VSSetShader(pVetexShader, 0, 0);
+	}
+
+	void GraphicDevice_Dx11::BindPixelShader(ID3D11PixelShader* pPixelShader)
+	{
+		mContext->PSSetShader(pPixelShader, 0, 0);
+	}
+
 
 	void GraphicDevice_Dx11::SetConstantBuffer(ID3D11Buffer* buffer, void* data, UINT size)
 	{
@@ -350,23 +398,15 @@ namespace jw::graphics
 		};
 		BindViewPort(&mViewPort);
 
-		// 삼각형
-		// input assembler 정점데이터 정보 지정
-		UINT vertexsize = sizeof(renderer::Vertex);
-		UINT offset = 0;
-
 		// 메쉬 렌더러
 		renderer::mesh->BindBuffer();
-
-		//mContext->IASetVertexBuffers(0, 1, &renderer::triangleBuffer, &vertexsize, &offset);
-		//mContext->IASetIndexBuffer(renderer::triangleIdxBuffer, DXGI_FORMAT_R32_UINT, 0);
 
 		mContext->IASetInputLayout(renderer::triangleLayout);
 		mContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
 		//Bind VS, PS 
-		mContext->VSSetShader(renderer::triangleVSShader, 0, 0);
-		mContext->PSSetShader(renderer::trianglePSShader, 0, 0);
+		//mContext->VSSetShader(renderer::triangleVSShader, 0, 0);
+		//mContext->PSSetShader(renderer::trianglePSShader, 0, 0);
 
 		// Draw Render Target
 		//mContext->Draw(3, 0);
@@ -386,4 +426,5 @@ namespace jw::graphics
 		mSwapChain->Present(0, 0);
 	}
 
+	
 }
