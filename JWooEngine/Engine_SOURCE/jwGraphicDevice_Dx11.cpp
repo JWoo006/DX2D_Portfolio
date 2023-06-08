@@ -378,6 +378,4 @@ namespace jw::graphics
 	{
 		mSwapChain->Present(0, 0);
 	}
-
-	
 }
