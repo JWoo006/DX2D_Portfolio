@@ -2,6 +2,9 @@
 
 namespace renderer
 {
+	using namespace jw;
+	using namespace jw::graphics;
+
 	Vertex vertexes[4] = {};
 	Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
 
@@ -53,7 +56,7 @@ namespace renderer
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 		
 		// Constant Buffer
-		constantBuffer = new jw::graphics::ConstantBuffer(eCBType::Transform);
+		constantBuffer = new ConstantBuffer(eCBType::Transform);
 		constantBuffer->Create(sizeof(Vector4));
 
 		Vector4 pos(0.2f, 0.0f, 0.0f, 1.0f);

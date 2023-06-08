@@ -1,6 +1,7 @@
 #pragma once
 #include "JWooEngine.h"
 #include "jwGraphicDevice_Dx11.h"
+#include "jwScene.h"
 
 namespace jw
 {
@@ -32,5 +33,7 @@ namespace jw
 		HWND mHwnd;
 		UINT mWidth;
 		UINT mHeight;
+
+		Scene* mScene;
 	};
 }

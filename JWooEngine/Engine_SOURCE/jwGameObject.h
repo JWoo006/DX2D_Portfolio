@@ -1,5 +1,32 @@
 #pragma once
-class GameObject
+#include "jwEntity.h"
+#include "jwComponent.h"
+
+namespace jw
 {
-};
+	class GameObject : public Entity
+	{
+	public:
+		enum eState
+		{
+			Active,
+			Paused,
+			Dead,
+		};
+
+		GameObject();
+		virtual ~GameObject();
+
+		virtual void Initialize();
+		virtual void Update();
+		virtual void LateUpdate();
+		virtual void Render();
+
+	private:
+		eState mState;
+		//std::vector<Component*> mComponents;
+	};
+
+}
+
 
