@@ -16,15 +16,22 @@
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEnums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)JWooEngine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwScene.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwSceneManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwResources.h" />
@@ -32,12 +39,19 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwRenderer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwScene.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwSceneManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwResources.cpp" />

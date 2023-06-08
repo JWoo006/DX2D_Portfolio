@@ -3,6 +3,7 @@
 #include "jwGraphicDevice_Dx11.h"
 #include "jwMesh.h"
 #include "jwShader.h"
+#include "jwConstantBuffer.h"
 
 using namespace jw::math;
 
@@ -16,11 +17,9 @@ namespace renderer
 
 	extern Vertex vertexes[];
 	extern Vector4 pos;
-	extern ID3D11InputLayout* triangleLayout;
 	extern jw::Mesh* mesh;
-	extern ID3D11Buffer* triangleConstantBuffer;
 	extern jw::Shader* shader;
-	extern ID3D11PixelShader* trianglePSShader;
+	extern jw::graphics::ConstantBuffer* constantBuffer;
 
 	void Initialize();
 	void Release();
