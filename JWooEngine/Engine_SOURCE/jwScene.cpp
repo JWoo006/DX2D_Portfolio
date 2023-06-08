@@ -20,6 +20,8 @@ namespace jw
 		for (GameObject* gameObj : mGameObjects)
 		{
 			gameObj->Update();
+
+			int a = 0;
 		}
 	}
 
