@@ -1,5 +1,4 @@
 #include "jwGameObject.h"
-#include "jwRenderer.h"
 #include "jwGraphicDevice_Dx11.h"
 #include "jwTime.h"
 #include "jwInput.h"

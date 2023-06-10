@@ -9,10 +9,11 @@ namespace jw
 		SetName(L"Player");
 		UINT64 a = GetID();
 
+		this->SetState(GameObject::Active);
+
 		mPlayerInfo.pos = Vector4(0.0f, 0.0f, 0.0f, 1.0f);
 		mPlayerInfo.color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
 		mPlayerInfo.scale = Vector4(0.5f, 0.5f, 0.0f, 0.0f);
-
 	}
 	Player::~Player()
 	{
