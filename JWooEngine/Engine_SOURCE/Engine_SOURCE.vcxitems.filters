@@ -111,6 +111,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwScript.h">
       <Filter>GameObject\Component\Script</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwPlayer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwMonster.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp">
@@ -167,6 +169,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwScript.cpp">
       <Filter>GameObject\Component\Script</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwPlayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwMonster.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)jwMath.inl">

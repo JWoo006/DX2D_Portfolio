@@ -15,6 +15,13 @@ namespace renderer
 		Vector4 color;
 	};
 
+	struct Info
+	{
+		Vector4 pos;
+		Vector4 color;
+		Vector4 scale;
+	};
+
 	extern Vertex vertexes[];
 	extern Vector4 pos;
 	extern jw::Mesh* mesh;

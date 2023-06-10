@@ -1,6 +1,8 @@
 #include "jwGameObject.h"
 #include "jwRenderer.h"
 #include "jwGraphicDevice_Dx11.h"
+#include "jwTime.h"
+#include "jwInput.h"
 
 namespace jw
 {
@@ -20,7 +22,6 @@ namespace jw
 	void GameObject::Update()
 	{
 		// 공 움직임 구현
-
 
 
 		// 렌더

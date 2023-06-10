@@ -27,7 +27,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMesh.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwMonster.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)JWooEngine.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwPlayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwSceneManager.h" />
@@ -48,6 +50,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMesh.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwMonster.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwPlayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwSceneManager.cpp" />

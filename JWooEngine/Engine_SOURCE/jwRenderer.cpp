@@ -57,10 +57,12 @@ namespace renderer
 		
 		// Constant Buffer
 		constantBuffer = new ConstantBuffer(eCBType::Transform);
-		constantBuffer->Create(sizeof(Vector4));
+		constantBuffer->Create(sizeof(Info));
 
-		Vector4 pos(0.2f, 0.0f, 0.0f, 1.0f);
-		constantBuffer->SetData(&pos);
+		//Info infoinit = {};
+		Info infoinit =
+		Info{ Vector4(0.0f, 0.0f, 0.0f, 1.0f), Vector4(0.0f, 0.0f, 1.0f, 1.0f) ,Vector4(1.0f, 1.0f, 0.0f, 0.0f)	};
+		constantBuffer->SetData(&infoinit);
 		constantBuffer->Bind(eShaderStage::VS);
 	}
 
@@ -75,16 +77,16 @@ namespace renderer
 
 	void Initialize()
 	{
-		vertexes[0].pos = Vector3(-0.5f, 0.5f, 0.0f);
+		vertexes[0].pos = Vector3(-0.05f, 0.1f, 0.0f);
 		vertexes[0].color = Vector4(1.0f, 0.0f, 0.0f, 1.0f);
 
-		vertexes[1].pos = Vector3(0.5f, 0.5f, 0.0f);
+		vertexes[1].pos = Vector3(0.05f, 0.1f, 0.0f);
 		vertexes[1].color = Vector4(0.0f, 1.0f, 0.0f, 1.0f);
 
-		vertexes[2].pos = Vector3(0.5f, -0.5f, 0.0f);
+		vertexes[2].pos = Vector3(0.05f, -0.1f, 0.0f);
 		vertexes[2].color = Vector4(0.0f, 0.0f, 1.0f, 1.0f);
 
-		vertexes[3].pos = Vector3(-0.5f, -0.5f, 0.0f);
+		vertexes[3].pos = Vector3(-0.05f, -0.1f, 0.0f);
 		vertexes[3].color = Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
 		LoadBuffer();

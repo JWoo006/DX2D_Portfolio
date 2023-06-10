@@ -1,6 +1,8 @@
 #pragma once
 #include "jwEntity.h"
 #include "jwGameObject.h"
+#include "jwPlayer.h"
+#include "jwMonster.h"
 
 namespace jw
 {
@@ -17,5 +19,8 @@ namespace jw
 
 	private:
 		std::vector<GameObject*> mGameObjects;
+
+		Player* player;
+		Monster* monster;
 	};
 }

@@ -1,8 +1,6 @@
 #include "jwGraphicDevice_Dx11.h"
 #include "jwApplication.h"
 #include "jwRenderer.h"
-#include "jwInput.h"
-#include "jwTime.h"
 
 extern jw::Application application;
 
@@ -320,24 +318,6 @@ namespace jw::graphics
 		FLOAT bgColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
 		mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
 		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
-
-		// 조작
-		if (Input::GetKeyDown(eKeyCode::LEFT) || Input::GetKey(eKeyCode::LEFT))
-		{
-			renderer::pos.x -= 0.5f * Time::DeltaTime();
-		}
-		if (Input::GetKeyDown(eKeyCode::RIGHT) || Input::GetKey(eKeyCode::RIGHT))
-		{
-			renderer::pos.x += 0.5f * Time::DeltaTime();
-		}
-		if (Input::GetKeyDown(eKeyCode::UP) || Input::GetKey(eKeyCode::UP))
-		{
-			renderer::pos.y += 0.5f * Time::DeltaTime();
-		}
-		if (Input::GetKeyDown(eKeyCode::DOWN) || Input::GetKey(eKeyCode::DOWN))
-		{
-			renderer::pos.y -= 0.5f * Time::DeltaTime();
-		}
 		
 		// viewport update
 		HWND hWnd = application.GetHwnd();
@@ -360,19 +340,6 @@ namespace jw::graphics
 		//renderer::shader->Binds();
 		// Draw Render Target
 		//mContext->DrawIndexed(renderer::mesh->GetIndexCount(), 0, 0);
-
-		// change viewport
-		/*mViewPort =
-		{
-			0.0f, 0.0f
-			, 100
-			, 100
-			, 0.0f, 1.0f
-		};
-		BindViewPort(&mViewPort);*/
-
-		// 레더타겟에 있는 이미지를 화면에 그려준다
-		//mSwapChain->Present(0, 0);
 	}
 	void GraphicDevice_Dx11::Present()
 	{
