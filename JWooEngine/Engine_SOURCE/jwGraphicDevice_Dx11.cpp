@@ -1,8 +1,6 @@
 #include "jwGraphicDevice_Dx11.h"
 #include "jwApplication.h"
 #include "jwRenderer.h"
-#include "jwInput.h"
-#include "jwTime.h"
 
 extern jw::Application application;
 
@@ -10,18 +8,8 @@ namespace jw::graphics
 {
 	GraphicDevice_Dx11::GraphicDevice_Dx11()
 	{
-		// 1. graphic device, context 생성
-		// 2. 화면에 렌더링 할수 있게 도와주는
-		// swapchain 생성
-		// 3. rendertarget,view 생성하고 
-		// 4. 깊이버퍼와 깊이버퍼 뷰 생성해주고
-		// 5. 렌더타겟 클리어 ( 화면 지우기 )
-		// 6. present 함수로 렌더타겟에 있는 텍스쳐를
-		//    모니터에 그려준다.
-
-		// Device, Context 생성
 		HWND hWnd = application.GetHwnd();
-		UINT deviceFlag = D3D11_CREATE_DEVICE_DEBUG; // 열거형 찾아보자
+		UINT deviceFlag = D3D11_CREATE_DEVICE_DEBUG;
 		D3D_FEATURE_LEVEL featureLevel = (D3D_FEATURE_LEVEL)0;
 
 		D3D11CreateDevice(nullptr, D3D_DRIVER_TYPE_HARDWARE, nullptr
@@ -30,8 +18,7 @@ namespace jw::graphics
 			, mDevice.GetAddressOf(), &featureLevel
 			, mContext.GetAddressOf());
 
-		// Swapchain 더블 버퍼링 
-		DXGI_SWAP_CHAIN_DESC swapChainDesc = {}; // 쓰레기값이 들어가면 안되므로 초기화
+		DXGI_SWAP_CHAIN_DESC swapChainDesc = {};
 		swapChainDesc.BufferCount = 2;
 		swapChainDesc.BufferDesc.Width = application.GetWidth();
 		swapChainDesc.BufferDesc.Height = application.GetHeight();
@@ -39,13 +26,12 @@ namespace jw::graphics
 		if (!CreateSwapChain(&swapChainDesc, hWnd))
 			return;
 
-		// get rendertarget by swapchain
 		if (FAILED(mSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D)
 			, (void**)mRenderTarget.GetAddressOf())))
-			return; // FAILED 매크로 - 실패 할시 리턴
+			return;
 
-		// create rendertarget view
-		mDevice->CreateRenderTargetView((ID3D11Resource*)mRenderTarget.Get(), nullptr, mRenderTargetView.GetAddressOf());
+		mDevice->CreateRenderTargetView((ID3D11Resource*)mRenderTarget.Get()
+			, nullptr, mRenderTargetView.GetAddressOf());
 
 		D3D11_TEXTURE2D_DESC depthStencilDesc = {};
 		depthStencilDesc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_DEPTH_STENCIL;
@@ -53,13 +39,13 @@ namespace jw::graphics
 		depthStencilDesc.CPUAccessFlags = 0;
 
 		depthStencilDesc.Format = DXGI_FORMAT::DXGI_FORMAT_D24_UNORM_S8_UINT;
-		depthStencilDesc.Usage = D3D11_USAGE_DEFAULT;
 		depthStencilDesc.Width = application.GetWidth();
 		depthStencilDesc.Height = application.GetHeight();
 		depthStencilDesc.ArraySize = 1;
 
 		depthStencilDesc.SampleDesc.Count = 1;
 		depthStencilDesc.SampleDesc.Quality = 0;
+
 		depthStencilDesc.MipLevels = 0;
 		depthStencilDesc.MiscFlags = 0;
 
@@ -69,17 +55,6 @@ namespace jw::graphics
 
 		RECT winRect = {};
 		GetClientRect(hWnd, &winRect);
-
-		//typedef struct D3D11_VIEWPORT
-		//{
-		//	FLOAT TopLeftX;
-		//	FLOAT TopLeftY;
-		//	FLOAT Width;
-		//	FLOAT Height;
-		//	FLOAT MinDepth;
-		//	FLOAT MaxDepth;
-		//} 	D3D11_VIEWPORT;
-
 		mViewPort =
 		{
 			0.0f, 0.0f
@@ -89,14 +64,13 @@ namespace jw::graphics
 		};
 
 		BindViewPort(&mViewPort);
-
 		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
 	}
 
 	GraphicDevice_Dx11::~GraphicDevice_Dx11()
 	{
-	}
 
+	}
 	bool GraphicDevice_Dx11::CreateSwapChain(const DXGI_SWAP_CHAIN_DESC* desc, HWND hWnd)
 	{
 		DXGI_SWAP_CHAIN_DESC dxgiDesc = {};
@@ -210,6 +184,7 @@ namespace jw::graphics
 
 		return true;
 	}
+
 	bool GraphicDevice_Dx11::CreatePixelShader(const void* pShaderBytecode
 		, SIZE_T BytecodeLength
 		, ID3D11PixelShader** ppPixelShader)
@@ -220,10 +195,14 @@ namespace jw::graphics
 		return true;
 	}
 
-
 	void GraphicDevice_Dx11::BindViewPort(D3D11_VIEWPORT* viewPort)
 	{
 		mContext->RSSetViewports(1, viewPort);
+	}
+
+	void GraphicDevice_Dx11::DrawIndexed(UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation)
+	{
+		mContext->DrawIndexed(IndexCount, StartIndexLocation, BaseVertexLocation);
 	}
 
 	void GraphicDevice_Dx11::BindInputLayout(ID3D11InputLayout* pInputLayout)
@@ -309,36 +288,17 @@ namespace jw::graphics
 		mContext->CSSetConstantBuffers((UINT)type, 1, &buffer);
 	}
 
-	void GraphicDevice_Dx11::DrawIndexed(UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation)
-	{
-		mContext->DrawIndexed(IndexCount, StartIndexLocation, BaseVertexLocation);
-	}
-
-	void GraphicDevice_Dx11::Draw()
+	void GraphicDevice_Dx11::ClearTarget()
 	{
 		// render target clear
 		FLOAT bgColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
 		mContext->ClearRenderTargetView(mRenderTargetView.Get(), bgColor);
 		mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0.0f);
+		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+	}
 
-		// 조작
-		if (Input::GetKeyDown(eKeyCode::LEFT) || Input::GetKey(eKeyCode::LEFT))
-		{
-			renderer::pos.x -= 0.5f * Time::DeltaTime();
-		}
-		if (Input::GetKeyDown(eKeyCode::RIGHT) || Input::GetKey(eKeyCode::RIGHT))
-		{
-			renderer::pos.x += 0.5f * Time::DeltaTime();
-		}
-		if (Input::GetKeyDown(eKeyCode::UP) || Input::GetKey(eKeyCode::UP))
-		{
-			renderer::pos.y += 0.5f * Time::DeltaTime();
-		}
-		if (Input::GetKeyDown(eKeyCode::DOWN) || Input::GetKey(eKeyCode::DOWN))
-		{
-			renderer::pos.y -= 0.5f * Time::DeltaTime();
-		}
-		
+	void GraphicDevice_Dx11::UpdateViewPort()
+	{
 		// viewport update
 		HWND hWnd = application.GetHwnd();
 		RECT winRect = {};
@@ -352,28 +312,13 @@ namespace jw::graphics
 		};
 
 		BindViewPort(&mViewPort);
-		mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
-
-		// 메쉬 렌더러
-		//renderer::mesh->BindBuffer();
-		//Bind VS, PS 
-		//renderer::shader->Binds();
-		// Draw Render Target
-		//mContext->DrawIndexed(renderer::mesh->GetIndexCount(), 0, 0);
-
-		// change viewport
-		/*mViewPort =
-		{
-			0.0f, 0.0f
-			, 100
-			, 100
-			, 0.0f, 1.0f
-		};
-		BindViewPort(&mViewPort);*/
-
-		// 레더타겟에 있는 이미지를 화면에 그려준다
-		//mSwapChain->Present(0, 0);
 	}
+
+	void GraphicDevice_Dx11::Draw()
+	{
+
+	}
+
 	void GraphicDevice_Dx11::Present()
 	{
 		mSwapChain->Present(0, 0);

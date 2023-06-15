@@ -12,7 +12,9 @@ struct VSOut
 
 cbuffer Transform : register(b0)
 {
-    float4 Pos;
+    float4 Position;
+    //float4 Rotation;
+    //float4 Scale;
 }
 
 VSOut main(VSIn In)
@@ -21,8 +23,8 @@ VSOut main(VSIn In)
 
     Out.Pos = float4(In.Pos, 1.0f);
     //Out.Pos.x += 0.4f; //inputPosX; -> 상수버퍼를 통해서 이데이터가 넘어와야한다.
-    Out.Pos.x += Pos.x;
-    Out.Pos.y += Pos.y;
+    Out.Pos.x += Position.x;
+    Out.Pos.y += Position.y;
     
     
     Out.Color = In.Color;
