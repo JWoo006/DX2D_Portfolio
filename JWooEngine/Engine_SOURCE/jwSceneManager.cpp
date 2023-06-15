@@ -3,6 +3,7 @@
 
 namespace jw
 {
+	Scene* SceneManager::mActiveScene = nullptr;
 	void SceneManager::Initialize()
 	{
 		mActiveScene = new PlayScene();
