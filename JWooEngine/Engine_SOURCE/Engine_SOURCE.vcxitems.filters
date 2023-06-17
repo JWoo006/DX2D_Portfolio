@@ -37,11 +37,17 @@
     <Filter Include="GameObject\Component">
       <UniqueIdentifier>{d7224445-e06f-44f2-9757-7e6bc83f750e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Component\Script">
+      <UniqueIdentifier>{1fd174cd-5945-47e4-b4a2-29b44f276b2b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Scene\Base">
+      <UniqueIdentifier>{8cb3fd13-8891-4126-b963-f1f46a56a230}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Scene\Layer">
       <UniqueIdentifier>{0ad82a34-3e64-4e60-9f7a-868305d02e39}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GameObject\Component\Script">
-      <UniqueIdentifier>{1fd174cd-5945-47e4-b4a2-29b44f276b2b}</UniqueIdentifier>
+    <Filter Include="Scene\Manager">
+      <UniqueIdentifier>{a8257622-a032-432e-9587-3fb23dad5225}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -102,12 +108,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwLayer.h">
       <Filter>Scene\Layer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwSceneManager.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwScript.h">
       <Filter>GameObject\Component\Script</Filter>
     </ClInclude>
@@ -119,6 +119,13 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwTransform.h">
       <Filter>GameObject\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwTexture.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwScene.h">
+      <Filter>Scene\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwSceneManager.h">
+      <Filter>Scene\Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -167,12 +174,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwLayer.cpp">
       <Filter>Scene\Layer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwSceneManager.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwScript.cpp">
       <Filter>GameObject\Component\Script</Filter>
     </ClCompile>
@@ -184,6 +185,13 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwTransform.cpp">
       <Filter>GameObject\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwTexture.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwScene.cpp">
+      <Filter>Scene\Base</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwSceneManager.cpp">
+      <Filter>Scene\Manager</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
