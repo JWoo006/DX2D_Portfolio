@@ -37,7 +37,8 @@ namespace jw
 
 	void Transform::BindConstantBuffer()
 	{
-		ConstantBuffer* cb = renderer::constantBuffer;
+
+		ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Transform];
 		Vector4 position(mPosition.x, mPosition.y, mPosition.z, 1.0f);
 		cb->SetData(&position);
 		cb->Bind(eShaderStage::VS);

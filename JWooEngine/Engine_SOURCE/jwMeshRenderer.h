@@ -1,7 +1,7 @@
 #pragma once
 #include "jwComponent.h"
 #include "jwMesh.h"
-#include "jwShader.h"
+#include "jwMaterial.h"
 
 namespace jw
 {
@@ -16,8 +16,11 @@ namespace jw
 		virtual void LateUpdate() override;
 		virtual void Render() override;
 
+		void SetMesh(Mesh* mesh) { mMesh = mesh; }
+		void SetMaterial(Material* material) { mMaterial = material; }
+
 	private:
 		Mesh* mMesh;
-		Shader* mShader;
+		Material* mMaterial;
 	};
 }

@@ -25,6 +25,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwLayer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMeshRenderer.h" />
@@ -50,6 +51,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwLayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMeshRenderer.cpp" />

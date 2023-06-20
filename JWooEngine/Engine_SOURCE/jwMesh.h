@@ -16,6 +16,7 @@ namespace jw
 		bool CreateIndexBuffer(void* data, UINT count);
 		 
 		void BindBuffer(); // 파이프라인에 사용할 buffer를 바인드
+		void Render();
 
 		UINT GetIndexCount() { return mIndexCount; }
 

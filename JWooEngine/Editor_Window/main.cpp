@@ -5,6 +5,8 @@
 #include "Editor_Window.h"
 #include "jwApplication.h"
 #include "jwRenderer.h"
+#include "jwResources.h"
+#include "jwSceneManager.h"
 
 // 어플리케이션 선언
 jw::Application application;
@@ -31,6 +33,10 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: 여기에 코드를 입력합니다.
+
+    //Leak Check
+    _CrtSetDbgFlag(_CRTDBG_ALLOC_MEM_DF | _CRTDBG_LEAK_CHECK_DF);
+    //_CrtSetBreakAlloc(371);
 
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
@@ -70,6 +76,9 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 렌더러 release
     renderer::Release();
+
+    jw::Resources::Release();
+    jw::SceneManager::Release();
 
     return (int)msg.wParam;
 }

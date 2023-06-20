@@ -2,6 +2,7 @@
 
 #include "jwResources.h"
 #include "jwTexture.h"
+#include "jwMaterial.h"
 
 namespace renderer
 {
@@ -11,9 +12,9 @@ namespace renderer
 	Vertex vertexes[4] = {};
 	Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
 
-	jw::Mesh* mesh = nullptr;
-	jw::Shader* shader = nullptr;
-	jw::graphics::ConstantBuffer* constantBuffer = nullptr;
+	jw::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End] = {};
+
+	Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState[(UINT)eSamplerType::End] = {};
 
 	void SetupState()
 	{
@@ -41,16 +42,39 @@ namespace renderer
 		arrLayout[2].SemanticName = "TEXCOORD";
 		arrLayout[2].SemanticIndex = 0;
 
+		Shader* shader = jw::Resources::Find<Shader>(L"TriangleShader");
+		jw::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
+			, shader->GetVSCode()
+			, shader->GetInputLayoutAddressOf());
+
+		shader = jw::Resources::Find<Shader>(L"SpriteShader");
+
 
 		jw::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
 			, shader->GetVSCode()
 			, shader->GetInputLayoutAddressOf());
+
+		//Sampler State
+		D3D11_SAMPLER_DESC desc = {};
+		desc.AddressU = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
+		desc.AddressV = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
+		desc.AddressW = D3D11_TEXTURE_ADDRESS_MODE::D3D11_TEXTURE_ADDRESS_WRAP;
+		desc.Filter = D3D11_FILTER_MIN_MAG_MIP_POINT;
+		GetDevice()->CreateSampler(&desc, samplerState[(UINT)eSamplerType::Point].GetAddressOf());
+		GetDevice()->BindSampler(eShaderStage::PS, 0, samplerState[(UINT)eSamplerType::Point].GetAddressOf());
+
+		desc.Filter = D3D11_FILTER_ANISOTROPIC;
+		GetDevice()->CreateSampler(&desc, samplerState[(UINT)eSamplerType::Anisotropic].GetAddressOf());
+		GetDevice()->BindSampler(eShaderStage::PS, 1, samplerState[(UINT)eSamplerType::Anisotropic].GetAddressOf());
+	
 	}
 
 	void LoadBuffer()
 	{
 		// Vertex Buffer
-		mesh = new jw::Mesh();
+		Mesh* mesh = new jw::Mesh();
+		Resources::Insert(L"RectMesh", mesh);
+
 		mesh->CreateVertexBuffer(vertexes, 4);
 
 		// Index Buffer
@@ -66,8 +90,8 @@ namespace renderer
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 		
 		// Constant Buffer
-		constantBuffer = new ConstantBuffer(eCBType::Transform);
-		constantBuffer->Create(sizeof(Vector4));
+		constantBuffer[(UINT)eCBType::Transform] = new ConstantBuffer(eCBType::Transform);
+		constantBuffer[(UINT)eCBType::Transform]->Create(sizeof(Vector4));
 
 		//Vector4 pos(0.2f, 0.0f, 0.0f, 1.0f);
 		//constantBuffer->SetData(&pos);
@@ -76,11 +100,25 @@ namespace renderer
 
 	void LoadShader()
 	{
-		//jw::graphics::GetDevice()->CreateShader();
-
-		shader = new jw::Shader();
+		Shader* shader = new jw::Shader();
 		shader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "main");
 		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
+		jw::Resources::Insert(L"TriangleShader", shader);
+
+		Shader* spriteShader = new jw::Shader();
+		spriteShader->Create(eShaderStage::VS, L"SpriteVS.hlsl", "main");
+		spriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
+		jw::Resources::Insert(L"SpriteShader", spriteShader);
+
+		Texture* texture
+			= Resources::Load<Texture>(L"Link", L"..\\Resources\\Texture\\Link.png");
+
+
+		// 마테리얼 추가
+		Material* spriteMateiral = new jw::graphics::Material();
+		spriteMateiral->SetShader(spriteShader);
+		spriteMateiral->SetTexture(texture);
+		Resources::Insert(L"SpriteMaterial", spriteMateiral);
 	}
 
 	void Initialize()
@@ -108,14 +146,23 @@ namespace renderer
 		Texture* texture
 			= Resources::Load<Texture>(L"Smile", L"..\\Resources\\Texture\\Smile.png");
 
+		texture
+			= Resources::Load<Texture>(L"Link", L"..\\Resources\\Texture\\Link.png");
+
+
 		texture->BindShader(eShaderStage::PS, 0);
 	}
 
 	void Release()
 	{
-		delete mesh;
-		delete shader;
-		delete constantBuffer;
+		for (ConstantBuffer* buff : constantBuffer)
+		{
+			if (buff == nullptr)
+				continue;
+
+			delete buff;
+			buff = nullptr;
+		}
 	}
 
 }

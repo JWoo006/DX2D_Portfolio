@@ -6,7 +6,7 @@
 #include "jwConstantBuffer.h"
 
 using namespace jw::math;
-
+using namespace jw::graphics;
 namespace renderer
 {
 	struct Vertex
@@ -18,9 +18,7 @@ namespace renderer
 
 	extern Vertex vertexes[];
 	extern Vector4 pos;
-	extern jw::Mesh* mesh;
-	extern jw::Shader* shader;
-	extern jw::graphics::ConstantBuffer* constantBuffer;
+	extern jw::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End];
 
 	void Initialize();
 	void Release();

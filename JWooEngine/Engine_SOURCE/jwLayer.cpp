@@ -10,6 +10,14 @@ namespace jw
 	}
 	void Layer::Initialize()
 	{
+		for (GameObject* gameObj : mGameObjects)
+		{
+			if (gameObj == nullptr)
+				continue;
+
+			delete gameObj;
+			gameObj = nullptr;
+		}
 	}
 	void Layer::Update()
 	{
