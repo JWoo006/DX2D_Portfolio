@@ -16,6 +16,14 @@ namespace renderer
 		Vector2 uv;
 	};
 
+	CBUFFER(TransformCB, CBSLOT_TRANSFORM)
+	{
+		Matrix mWorld;
+		Matrix mView;
+		Matrix mProjection;
+	};
+
+
 	extern Vertex vertexes[];
 	extern Vector4 pos;
 	extern jw::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End];

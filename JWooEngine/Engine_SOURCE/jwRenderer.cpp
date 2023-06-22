@@ -42,7 +42,7 @@ namespace renderer
 		arrLayout[2].SemanticName = "TEXCOORD";
 		arrLayout[2].SemanticIndex = 0;
 
-		Shader* shader = jw::Resources::Find<Shader>(L"TriangleShader");
+		std::shared_ptr<Shader> shader = jw::Resources::Find<Shader>(L"TriangleShader");
 		jw::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
 			, shader->GetVSCode()
 			, shader->GetInputLayoutAddressOf());
@@ -72,7 +72,7 @@ namespace renderer
 	void LoadBuffer()
 	{
 		// Vertex Buffer
-		Mesh* mesh = new jw::Mesh();
+		std::shared_ptr<Mesh> mesh = std::make_shared<Mesh>();
 		Resources::Insert(L"RectMesh", mesh);
 
 		mesh->CreateVertexBuffer(vertexes, 4);
@@ -91,31 +91,27 @@ namespace renderer
 		
 		// Constant Buffer
 		constantBuffer[(UINT)eCBType::Transform] = new ConstantBuffer(eCBType::Transform);
-		constantBuffer[(UINT)eCBType::Transform]->Create(sizeof(Vector4));
-
-		//Vector4 pos(0.2f, 0.0f, 0.0f, 1.0f);
-		//constantBuffer->SetData(&pos);
-		//constantBuffer->Bind(eShaderStage::VS);
+		constantBuffer[(UINT)eCBType::Transform]->Create(sizeof(TransformCB));
 	}
 
 	void LoadShader()
 	{
-		Shader* shader = new jw::Shader();
+		std::shared_ptr<Shader> shader = std::make_shared<Shader>();
 		shader->Create(eShaderStage::VS, L"TriangleVS.hlsl", "main");
 		shader->Create(eShaderStage::PS, L"TrianglePS.hlsl", "main");
 		jw::Resources::Insert(L"TriangleShader", shader);
 
-		Shader* spriteShader = new jw::Shader();
+		std::shared_ptr<Shader> spriteShader = std::make_shared<Shader>();
 		spriteShader->Create(eShaderStage::VS, L"SpriteVS.hlsl", "main");
 		spriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
 		jw::Resources::Insert(L"SpriteShader", spriteShader);
 
-		Texture* texture
+		std::shared_ptr<Texture> texture
 			= Resources::Load<Texture>(L"Link", L"..\\Resources\\Texture\\Link.png");
 
 
 		// 마테리얼 추가
-		Material* spriteMateiral = new jw::graphics::Material();
+		std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
 		spriteMateiral->SetShader(spriteShader);
 		spriteMateiral->SetTexture(texture);
 		Resources::Insert(L"SpriteMaterial", spriteMateiral);
@@ -143,7 +139,7 @@ namespace renderer
 		LoadShader();
 		SetupState();
 
-		Texture* texture
+		std::shared_ptr<Texture> texture
 			= Resources::Load<Texture>(L"Smile", L"..\\Resources\\Texture\\Smile.png");
 
 		texture

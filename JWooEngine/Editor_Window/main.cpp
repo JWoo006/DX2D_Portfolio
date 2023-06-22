@@ -76,8 +76,6 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 
     // 렌더러 release
     renderer::Release();
-
-    jw::Resources::Release();
     jw::SceneManager::Release();
 
     return (int)msg.wParam;

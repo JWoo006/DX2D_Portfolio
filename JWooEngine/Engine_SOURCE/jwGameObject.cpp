@@ -21,10 +21,20 @@ namespace jw
 			delete comp;
 			comp = nullptr;
 		}
+
+		for (Script* script : mScripts)
+		{
+			if (script == nullptr)
+				continue;
+
+			delete script;
+			script = nullptr;
+		}
 	}
 
 	void GameObject::Initialize()
 	{
+
 	}
 
 	void GameObject::Update()
@@ -33,6 +43,11 @@ namespace jw
 		{
 			comp->Update();
 		}
+
+		for (Script* script : mScripts)
+		{
+			script->Update();
+		}
 	}
 
 	void GameObject::LateUpdate()
@@ -40,6 +55,11 @@ namespace jw
 		for (Component* comp : mComponents)
 		{
 			comp->LateUpdate();
+		}
+
+		for (Script* script : mScripts)
+		{
+			script->LateUpdate();
 		}
 	}
 
@@ -50,5 +70,10 @@ namespace jw
 			comp->Render();
 		}
 		//상수버퍼로 위치정보 크기정보, 색깔, 업데이트 해줘야한다.
+
+		for (Script* script : mScripts)
+		{
+			script->Render();
+		}
 	}
 }
