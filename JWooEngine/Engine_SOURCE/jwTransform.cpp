@@ -1,6 +1,7 @@
 #include "jwTransform.h"
 #include "jwRenderer.h"
 #include "jwConstantBuffer.h"
+#include "jwCamera.h"
 
 namespace jw
 {
@@ -57,9 +58,9 @@ namespace jw
 	{
 		renderer::TransformCB trCB = {};
 		trCB.mWorld = mWorld;
+		trCB.mView = Camera::GetViewMatrix();
+		trCB.mProjection = Camera::GetProjectionMatrix();
 
-		//trCB.mView = mWorld;
-		//trCB.mProjection = mWorld;
 		ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Transform];
 		cb->SetData(&trCB);
 		cb->Bind(eShaderStage::VS);

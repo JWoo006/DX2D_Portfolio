@@ -29,5 +29,7 @@ namespace jw
 		mMesh->BindBuffer();
 		mMaterial->Binds();
 		mMesh->Render();
+
+		mMaterial->Clear();
 	}
 }

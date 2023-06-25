@@ -49,6 +49,9 @@
     <Filter Include="Scene\Manager">
       <UniqueIdentifier>{a8257622-a032-432e-9587-3fb23dad5225}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Scene\01_Factory">
+      <UniqueIdentifier>{1289750a-209b-4d49-b2e4-d704da903de1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEntity.h">
@@ -130,6 +133,18 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwCameraScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwFactoryScene_01.h">
+      <Filter>Scene\01_Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwTitleScene.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwFactoryScene_00.h">
+      <Filter>Scene\01_Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwFactoryScene_02.h">
+      <Filter>Scene\01_Factory</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp">
@@ -199,6 +214,18 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwCameraScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwFactoryScene_01.cpp">
+      <Filter>Scene\01_Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwTitleScene.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwFactoryScene_00.cpp">
+      <Filter>Scene\01_Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwFactoryScene_02.cpp">
+      <Filter>Scene\01_Factory</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)jwMath.inl">

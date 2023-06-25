@@ -1,9 +1,4 @@
 #pragma once
-class CameraScript
-{
-};
-
-#pragma once
 #include "jwScript.h"
 
 namespace jw

@@ -106,15 +106,82 @@ namespace renderer
 		spriteShader->Create(eShaderStage::PS, L"SpritePS.hlsl", "main");
 		jw::Resources::Insert(L"SpriteShader", spriteShader);
 
-		std::shared_ptr<Texture> texture
-			= Resources::Load<Texture>(L"Link", L"..\\Resources\\Texture\\Link.png");
-
-
 		// 마테리얼 추가
-		std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
-		spriteMateiral->SetShader(spriteShader);
-		spriteMateiral->SetTexture(texture);
-		Resources::Insert(L"SpriteMaterial", spriteMateiral);
+		{
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Link", L"..\\Resources\\Texture\\Link.png");
+
+			std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+			spriteMateiral->SetShader(spriteShader);
+			spriteMateiral->SetTexture(texture);
+			Resources::Insert(L"SpriteMaterial", spriteMateiral);
+		}
+		{
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Smile", L"..\\Resources\\Texture\\Smile.png");
+			std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+			spriteMateiral->SetShader(spriteShader);
+			spriteMateiral->SetTexture(texture);
+			Resources::Insert(L"SpriteMaterial02", spriteMateiral);
+		}
+
+		// Title
+		{
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Title_Temp", L"..\\Resources\\Texture\\Title\\title_temp.png");
+
+			std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+			spriteMateiral->SetShader(spriteShader);
+			spriteMateiral->SetTexture(texture);
+			Resources::Insert(L"SpriteMaterial_Title_Temp", spriteMateiral);
+		}
+		// Room_Factory
+		{
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Room_Factory_0", L"..\\Resources\\Texture\\Room\\01_Factory\\room_factory_0.png");
+
+			std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+			spriteMateiral->SetShader(spriteShader);
+			spriteMateiral->SetTexture(texture);
+			Resources::Insert(L"SpriteMaterial_Room_Factory_0", spriteMateiral);
+		}
+		{
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Room_Factory_1", L"..\\Resources\\Texture\\Room\\01_Factory\\room_factory_1.png");
+
+			std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+			spriteMateiral->SetShader(spriteShader);
+			spriteMateiral->SetTexture(texture);
+			Resources::Insert(L"SpriteMaterial_Room_Factory_1", spriteMateiral);
+		}
+		{
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Room_Factory_2", L"..\\Resources\\Texture\\Room\\01_Factory\\room_factory_2.png");
+
+			std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+			spriteMateiral->SetShader(spriteShader);
+			spriteMateiral->SetTexture(texture);
+			Resources::Insert(L"SpriteMaterial_Room_Factory_2", spriteMateiral);
+		}
+		{
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Room_Factory_3", L"..\\Resources\\Texture\\Room\\01_Factory\\room_factory_3.png");
+
+			std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+			spriteMateiral->SetShader(spriteShader);
+			spriteMateiral->SetTexture(texture);
+			Resources::Insert(L"SpriteMaterial_Room_Factory_3", spriteMateiral);
+		}
+		{
+			std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Room_Factory_4", L"..\\Resources\\Texture\\Room\\01_Factory\\room_factory_4.png");
+
+			std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+			spriteMateiral->SetShader(spriteShader);
+			spriteMateiral->SetTexture(texture);
+			Resources::Insert(L"SpriteMaterial_Room_Factory_4", spriteMateiral);
+		}
+
 	}
 
 	void Initialize()

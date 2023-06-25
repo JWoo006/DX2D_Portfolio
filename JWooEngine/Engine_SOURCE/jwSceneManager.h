@@ -13,6 +13,7 @@ namespace jw
 		static void Release();
 
 		static Scene* GetActiveScene() { return mActiveScene; }
+		static std::map<std::wstring, Scene*> GetScenes() { return mScenes; }
 		static Scene* LoadScene(std::wstring name);
 
 	private:
