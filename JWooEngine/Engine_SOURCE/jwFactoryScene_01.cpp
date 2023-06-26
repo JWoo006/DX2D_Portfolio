@@ -20,6 +20,7 @@ namespace jw
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_Room_Factory_1"));
+			//mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_room_factory_1_1111"));
 			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 			player->GetComponent<Transform>()->SetScale(Vector3(10.0f, 4.5f, 1.0f));
 		}

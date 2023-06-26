@@ -24,10 +24,20 @@ namespace jw
 			player->GetComponent<Transform>()->SetScale(Vector3(32.0f, 4.5f, 1.0f));
 		}
 
+		{
+			GameObject* player = new GameObject();
+			AddGameObject(eLayerType::Player, player);
+			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
+			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
+			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -1.0f));
+			//player->AddComponent<CameraScript>();
+		}
+
 		//Main Camera
 		GameObject* camera = new GameObject();
 		AddGameObject(eLayerType::Player, camera);
-		camera->GetComponent<Transform>()->SetPosition(Vector3(-11.0f, 0.f, -10.0f));
+		camera->GetComponent<Transform>()->SetPosition(Vector3(-11.0f, 0.0f, -10.0f));
 		Camera* cameraComp = camera->AddComponent<Camera>();
 		camera->AddComponent<CameraScript>();
 	}
