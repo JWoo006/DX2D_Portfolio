@@ -1,4 +1,5 @@
 #include "jwShader.h"
+#include "jwRenderer.h"
 
 namespace jw
 {

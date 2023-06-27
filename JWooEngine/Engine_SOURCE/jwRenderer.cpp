@@ -21,6 +21,8 @@ namespace renderer
 	Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[(UINT)eDSType::End] = {};
 	Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[(UINT)eBSType::End] = {};
 
+	//
+	std::vector<jw::Camera*> cameras = {};
 
 	void SetupState()
 	{
@@ -346,6 +348,20 @@ namespace renderer
 
 		texture->BindShader(eShaderStage::PS, 0);
 	}
+
+	void Render()
+	{
+		for (Camera* cam : cameras)
+		{
+			if (cam == nullptr)
+				continue;
+
+			cam->Render();
+		}
+
+		cameras.clear();
+	}
+
 
 	void Release()
 	{

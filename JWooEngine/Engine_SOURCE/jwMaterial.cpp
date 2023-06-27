@@ -6,6 +6,7 @@ namespace jw::graphics
 		: Resource(jw::enums::eResourceType::Material)
 		, mShader(nullptr)
 		, mTexture(nullptr)
+		, mMode(eRenderingMode::Opaque)
 	{
 
 	}

@@ -44,7 +44,7 @@
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
-    <EnableUnitySupport>true</EnableUnitySupport>
+    <EnableUnitySupport>false</EnableUnitySupport>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
     <ConfigurationType>StaticLibrary</ConfigurationType>
@@ -143,9 +143,22 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="jwCameraScript.h" />
+    <ClInclude Include="jwFactoryScene_00.h" />
+    <ClInclude Include="jwFactoryScene_01.h" />
+    <ClInclude Include="jwFactoryScene_02.h" />
+    <ClInclude Include="jwPlayScene.h" />
+    <ClInclude Include="jwTitleScene.h" />
+    <ClInclude Include="LoadScenes.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="jwCameraScript.cpp" />
+    <ClCompile Include="jwFactoryScene_00.cpp" />
+    <ClCompile Include="jwFactoryScene_01.cpp" />
+    <ClCompile Include="jwFactoryScene_02.cpp" />
     <ClCompile Include="JWooEngine.cpp" />
+    <ClCompile Include="jwPlayScene.cpp" />
+    <ClCompile Include="jwTitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Update="D:\c\Assortrock\DX2D\DX2D_Portfolio\JWooEngine\Engine_SOURCE\jwMath.inl">

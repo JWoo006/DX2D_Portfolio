@@ -6,7 +6,7 @@
 #include "jwApplication.h"
 #include "jwRenderer.h"
 #include "jwResources.h"
-#include "jwSceneManager.h"
+#include "LoadScenes.h"
 
 // 어플리케이션 선언
 jw::Application application;
@@ -90,7 +90,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 //
 ATOM MyRegisterClass(HINSTANCE hInstance)
 {
-    WNDCLASSEXW wcex;
+    WNDCLASSEXW wcex = {};
 
     wcex.cbSize = sizeof(WNDCLASSEX);
 
@@ -137,6 +137,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
     // 어플리케이션 초기화
     application.Initialize();
+    jw::InitializeScenes();
 
     return TRUE;
 }

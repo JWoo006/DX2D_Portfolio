@@ -17,14 +17,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwCamera.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwCameraScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEnums.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwFactoryScene_00.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwFactoryScene_01.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwFactoryScene_02.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphics.h" />
@@ -35,7 +31,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMeshRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)JWooEngine.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwPlayScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwSceneManager.h" />
@@ -45,19 +40,14 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwResource.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwTitleScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwTransform.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwCamera.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwCameraScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwFactoryScene_00.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwFactoryScene_01.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwFactoryScene_02.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwInput.cpp" />
@@ -66,7 +56,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMeshRenderer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwPlayScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwSceneManager.cpp" />
@@ -76,7 +65,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwResources.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwResource.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwTitleScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwTransform.cpp" />
   </ItemGroup>
   <ItemGroup>

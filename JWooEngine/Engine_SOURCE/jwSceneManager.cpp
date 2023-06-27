@@ -1,10 +1,10 @@
 #include "jwSceneManager.h"
 
-#include "jwPlayScene.h"
-#include "jwTitleScene.h"
-#include "jwFactoryScene_00.h"
-#include "jwFactoryScene_01.h"
-#include "jwFactoryScene_02.h"
+//#include "jwPlayScene.h"
+//#include "jwTitleScene.h"
+//#include "jwFactoryScene_00.h"
+//#include "jwFactoryScene_01.h"
+//#include "jwFactoryScene_02.h"
 
 namespace jw
 {
@@ -16,22 +16,22 @@ namespace jw
 		//mActiveScene = new PlayScene();
 		//mScenes.insert(std::make_pair(L"PlayScene", mActiveScene));
 
-		mActiveScene = new TitleScene();
-		std::wstring a = mActiveScene->GetName();
-		mScenes.insert(std::make_pair(mActiveScene->GetName(), mActiveScene));
+		//mActiveScene = new TitleScene();
+		//std::wstring a = mActiveScene->GetName();
+		//mScenes.insert(std::make_pair(mActiveScene->GetName(), mActiveScene));
 		
-		Scene* mTempScene = new FactoryScene_00();
-		mScenes.insert(std::make_pair(mTempScene->GetName(), mTempScene));
+		//Scene* mTempScene = new FactoryScene_00();
+		//mScenes.insert(std::make_pair(mTempScene->GetName(), mTempScene));
 		//mActiveScene = mTempScene;
 
-		mTempScene = new FactoryScene_01();
-		mScenes.insert(std::make_pair(mTempScene->GetName(), mTempScene));
+		//mTempScene = new FactoryScene_01();
+		//mScenes.insert(std::make_pair(mTempScene->GetName(), mTempScene));
 
-		mTempScene = new FactoryScene_02();
-		mScenes.insert(std::make_pair(mTempScene->GetName(), mTempScene));
+		//mTempScene = new FactoryScene_02();
+		//mScenes.insert(std::make_pair(mTempScene->GetName(), mTempScene));
 		//mActiveScene = mTempScene;
 
-		mActiveScene->Initialize();
+		//mActiveScene->Initialize();
 	}
 	void SceneManager::Update()
 	{

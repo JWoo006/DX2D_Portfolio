@@ -2,8 +2,64 @@
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <ClInclude Include="framework.h" />
+    <ClInclude Include="jwCameraScript.h">
+      <Filter>Contents\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="jwPlayScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="jwTitleScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="jwFactoryScene_00.h">
+      <Filter>Contents\Scene\01_Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="jwFactoryScene_01.h">
+      <Filter>Contents\Scene\01_Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="jwFactoryScene_02.h">
+      <Filter>Contents\Scene\01_Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="LoadScenes.h">
+      <Filter>Contents\Load</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="JWooEngine.cpp" />
+    <ClCompile Include="jwCameraScript.cpp">
+      <Filter>Contents\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="jwPlayScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="jwTitleScene.cpp">
+      <Filter>Contents\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="jwFactoryScene_00.cpp">
+      <Filter>Contents\Scene\01_Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="jwFactoryScene_01.cpp">
+      <Filter>Contents\Scene\01_Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="jwFactoryScene_02.cpp">
+      <Filter>Contents\Scene\01_Factory</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{7348f4f3-db8a-4111-bb16-4f1c156d50f1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Load">
+      <UniqueIdentifier>{11ab45e8-7525-49fe-a827-941211e39f76}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene">
+      <UniqueIdentifier>{90898eb3-4d90-4649-b2fe-0c8af618d4b9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Script">
+      <UniqueIdentifier>{b5b01da3-ccf0-4964-a7c4-e35c3089af3d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\01_Factory">
+      <UniqueIdentifier>{a533ce84-cfb6-4146-a27e-4c76d0bcc80e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

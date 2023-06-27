@@ -52,6 +52,39 @@
     <Filter Include="Scene\01_Factory">
       <UniqueIdentifier>{1289750a-209b-4d49-b2e4-d704da903de1}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Component\Base">
+      <UniqueIdentifier>{e7121533-328c-4de7-bb4b-f938d5fd6691}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Camera">
+      <UniqueIdentifier>{a755b896-c952-462f-9162-04d3c0eebc1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\MeshRenderer">
+      <UniqueIdentifier>{fef7138d-53c7-414b-9bfd-0c54fc1cec72}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Transform">
+      <UniqueIdentifier>{dad8ce04-51dd-49cc-985d-732daa07fd78}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\ConstantBuffer">
+      <UniqueIdentifier>{856b6ec5-ca29-43d3-a885-c3114f0bb04a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\GraphicDevice">
+      <UniqueIdentifier>{9f1c53b2-e20e-4ca3-973a-d936673a24c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\Renderer">
+      <UniqueIdentifier>{e6c1839c-0c46-42f8-b3ef-eee5495105ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Material">
+      <UniqueIdentifier>{ee1ee8c4-75b1-489b-a153-be6977242dc6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Mesh">
+      <UniqueIdentifier>{97861bb6-7aef-4dd1-9472-3ee5955c6f01}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Shader">
+      <UniqueIdentifier>{ae3ca705-6fe8-4d25-afb6-4c49606e1950}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Texture">
+      <UniqueIdentifier>{7b1a2ecb-90c6-44f0-b2cf-8ff2482526dc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEntity.h">
@@ -62,9 +95,6 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwTime.h">
       <Filter>Common\Time</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.h">
-      <Filter>Graphics</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphics.h">
       <Filter>Graphics</Filter>
@@ -90,21 +120,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwResource.h">
       <Filter>Resource</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwRenderer.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwMesh.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwShader.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwConstantBuffer.h">
-      <Filter>Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwComponent.h">
-      <Filter>GameObject\Component</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGameObject.h">
       <Filter>GameObject</Filter>
     </ClInclude>
@@ -114,36 +129,44 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwScript.h">
       <Filter>GameObject\Component\Script</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwPlayScene.h">
-      <Filter>Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwMeshRenderer.h">
-      <Filter>GameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwTransform.h">
-      <Filter>GameObject\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwScene.h">
       <Filter>Scene\Base</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwSceneManager.h">
       <Filter>Scene\Manager</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwMaterial.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwCameraScript.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwCamera.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwFactoryScene_01.h">
-      <Filter>Scene\01_Factory</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwComponent.h">
+      <Filter>GameObject\Component\Base</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwTitleScene.h">
-      <Filter>Scene</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwTransform.h">
+      <Filter>GameObject\Component\Transform</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwFactoryScene_00.h">
-      <Filter>Scene\01_Factory</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwMeshRenderer.h">
+      <Filter>GameObject\Component\MeshRenderer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwFactoryScene_02.h">
-      <Filter>Scene\01_Factory</Filter>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwCamera.h">
+      <Filter>GameObject\Component\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwConstantBuffer.h">
+      <Filter>Graphics\ConstantBuffer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.h">
+      <Filter>Graphics\GraphicDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwRenderer.h">
+      <Filter>Graphics\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwShader.h">
+      <Filter>Resource\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwMesh.h">
+      <Filter>Resource\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwMaterial.h">
+      <Filter>Resource\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwTexture.h">
+      <Filter>Resource\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -155,9 +178,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwTime.cpp">
       <Filter>Common\Time</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.cpp">
-      <Filter>Graphics</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwApplication.cpp">
       <Filter>High Level Interface</Filter>
@@ -171,21 +191,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwResource.cpp">
       <Filter>Resource</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwRenderer.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwMesh.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwShader.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwConstantBuffer.cpp">
-      <Filter>Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwComponent.cpp">
-      <Filter>GameObject\Component</Filter>
-    </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwGameObject.cpp">
       <Filter>GameObject</Filter>
     </ClCompile>
@@ -195,36 +200,44 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwScript.cpp">
       <Filter>GameObject\Component\Script</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwPlayScene.cpp">
-      <Filter>Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwMeshRenderer.cpp">
-      <Filter>GameObject\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwTransform.cpp">
-      <Filter>GameObject\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwScene.cpp">
       <Filter>Scene\Base</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwSceneManager.cpp">
       <Filter>Scene\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwMaterial.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwCameraScript.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwCamera.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwFactoryScene_01.cpp">
-      <Filter>Scene\01_Factory</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwComponent.cpp">
+      <Filter>GameObject\Component\Base</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwTitleScene.cpp">
-      <Filter>Scene</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwTransform.cpp">
+      <Filter>GameObject\Component\Transform</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwFactoryScene_00.cpp">
-      <Filter>Scene\01_Factory</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwMeshRenderer.cpp">
+      <Filter>GameObject\Component\MeshRenderer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwFactoryScene_02.cpp">
-      <Filter>Scene\01_Factory</Filter>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwCamera.cpp">
+      <Filter>GameObject\Component\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwConstantBuffer.cpp">
+      <Filter>Graphics\ConstantBuffer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.cpp">
+      <Filter>Graphics\GraphicDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwRenderer.cpp">
+      <Filter>Graphics\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwShader.cpp">
+      <Filter>Resource\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwMesh.cpp">
+      <Filter>Resource\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwMaterial.cpp">
+      <Filter>Resource\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwTexture.cpp">
+      <Filter>Resource\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
