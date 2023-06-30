@@ -1,5 +1,5 @@
 #pragma once
-#include "jwSceneManager.h"
+#include "..\Engine_SOURCE\jwSceneManager.h"
 #include "jwPlayScene.h"
 #include "jwTitleScene.h"
 #include "jwFactoryScene_00.h"
@@ -22,6 +22,6 @@ namespace jw
 		SceneManager::CreateScene<FactoryScene_01>(L"FactoryScene_01");
 		SceneManager::CreateScene<FactoryScene_02>(L"FactoryScene_02");
 
-		SceneManager::SetActiveScene(L"TitleScene");
+		SceneManager::SetActiveScene(L"PlayScene");
 	}
 }

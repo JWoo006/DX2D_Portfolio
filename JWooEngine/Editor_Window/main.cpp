@@ -3,10 +3,17 @@
 
 #include "framework.h"
 #include "Editor_Window.h"
-#include "jwApplication.h"
-#include "jwRenderer.h"
-#include "jwResources.h"
+#include "..\Engine_SOURCE\jwApplication.h"
+#include "..\Engine_SOURCE\jwRenderer.h"
+#include "..\Engine_SOURCE\jwResources.h"
 #include "LoadScenes.h"
+
+#ifdef _DEBUG
+#pragma comment(lib, "..\\x64\\Debug\\JWooEngine.lib")
+#else
+#pragma comment(lib, "..\\x64\\Release\\JWooEngine.lib")
+#endif
+
 
 // 어플리케이션 선언
 jw::Application application;

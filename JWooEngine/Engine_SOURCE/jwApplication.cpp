@@ -55,9 +55,12 @@ namespace jw
 
 		graphicDevice->ClearTarget();
 		graphicDevice->UpdateViewPort();
-		SceneManager::Render();
+		
+		//SceneManager::Render();
+		// camera render
+		renderer::Render();
+		
 		//graphicDevice->Draw();
-
 		graphicDevice->Present();
 	}
 
