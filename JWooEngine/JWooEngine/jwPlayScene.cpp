@@ -6,6 +6,7 @@
 #include "jwCameraScript.h"
 #include "jwCamera.h"
 
+
 namespace jw
 {
 	PlayScene::PlayScene()
@@ -14,8 +15,108 @@ namespace jw
 	PlayScene::~PlayScene()
 	{
 	}
+	
 	void PlayScene::Initialize()
 	{
+		//UI
+		{
+			// hud_base
+			{
+				GameObject* UI_Obj = new GameObject();
+				AddGameObject(eLayerType::UI, UI_Obj);
+				MeshRenderer* mr = UI_Obj->AddComponent<MeshRenderer>();
+				mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+				mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_spr_hud_0"));
+				UI_Obj->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 2.1f, -0.001f));
+				UI_Obj->GetComponent<Transform>()->SetScale(Vector3(8.0f, 0.3f, 1.0f));
+			}
+			// hud_battery
+			{
+				GameObject* UI_Obj = new GameObject();
+				AddGameObject(eLayerType::UI, UI_Obj);
+				MeshRenderer* mr = UI_Obj->AddComponent<MeshRenderer>();
+				mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+				mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_spr_hud_battery_0"));
+				UI_Obj->GetComponent<Transform>()->SetPosition(Vector3(-3.5f, 2.1f, -0.002f));
+				UI_Obj->GetComponent<Transform>()->SetScale(Vector3(1.0f, 0.25f, 1.0f));
+			}
+			//keyboard_shift
+			{
+				GameObject* UI_Obj = new GameObject();
+				AddGameObject(eLayerType::UI, UI_Obj);
+				MeshRenderer* mr = UI_Obj->AddComponent<MeshRenderer>();
+				mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+				mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_spr_keyboard_shift_0"));
+				UI_Obj->GetComponent<Transform>()->SetPosition(Vector3(-2.8f, 2.1f, -0.003f));
+				UI_Obj->GetComponent<Transform>()->SetScale(Vector3(0.4f, 0.2f, 1.0f));
+			}
+			// hud_timer
+			{
+				GameObject* UI_Obj = new GameObject();
+				AddGameObject(eLayerType::UI, UI_Obj);
+				MeshRenderer* mr = UI_Obj->AddComponent<MeshRenderer>();
+				mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+				mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_spr_hud_timer_0"));
+				UI_Obj->GetComponent<Transform>()->SetPosition(Vector3(-0.05f, 2.1f, -0.004f));
+				UI_Obj->GetComponent<Transform>()->SetScale(Vector3(1.4f, 0.23f, 1.0f));
+			}
+			{
+				GameObject* UI_Obj = new GameObject();
+				AddGameObject(eLayerType::UI, UI_Obj);
+				MeshRenderer* mr = UI_Obj->AddComponent<MeshRenderer>();
+				mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+				mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_spr_timer_0"));
+				UI_Obj->GetComponent<Transform>()->SetPosition(Vector3(0.04f, 2.125f, -0.005f));
+				UI_Obj->GetComponent<Transform>()->SetScale(Vector3(1.2f, 0.125f, 1.0f));
+			}
+
+			//hud_subweapon
+			{
+				// base_hud
+				{
+					GameObject* UI_Obj = new GameObject();
+					AddGameObject(eLayerType::UI, UI_Obj);
+					MeshRenderer* mr = UI_Obj->AddComponent<MeshRenderer>();
+					mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+					mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_spr_hud_subweapon_0"));
+					UI_Obj->GetComponent<Transform>()->SetPosition(Vector3(3.55f, 2.1f, -0.006f));
+					UI_Obj->GetComponent<Transform>()->SetScale(Vector3(0.7f, 0.3f, 1.0f));
+				}
+				// katana
+				{
+					GameObject* UI_Obj = new GameObject();
+					AddGameObject(eLayerType::UI, UI_Obj);
+					MeshRenderer* mr = UI_Obj->AddComponent<MeshRenderer>();
+					mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+					mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_spr_katana_pickup_0"));
+					UI_Obj->GetComponent<Transform>()->SetPosition(Vector3(3.35f, 2.1f, -0.0065f));
+					UI_Obj->GetComponent<Transform>()->SetScale(Vector3(0.3f, 0.3f, 1.0f));
+				}
+
+				// left_click
+				{
+					GameObject* UI_Obj = new GameObject();
+					AddGameObject(eLayerType::UI, UI_Obj);
+					MeshRenderer* mr = UI_Obj->AddComponent<MeshRenderer>();
+					mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+					mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_spr_left_click_1"));
+					UI_Obj->GetComponent<Transform>()->SetPosition(Vector3(3.45f, 1.95f, -0.007f));
+					UI_Obj->GetComponent<Transform>()->SetScale(Vector3(0.16f, 0.22f, 1.0f));
+				}
+
+				// right_click
+				{
+					GameObject* UI_Obj = new GameObject();
+					AddGameObject(eLayerType::UI, UI_Obj);
+					MeshRenderer* mr = UI_Obj->AddComponent<MeshRenderer>();
+					mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+					mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_spr_right_click_1"));
+					UI_Obj->GetComponent<Transform>()->SetPosition(Vector3(3.85f, 1.95f, -0.008f));
+					UI_Obj->GetComponent<Transform>()->SetScale(Vector3(0.16f, 0.22f, 1.0f));
+				}
+			}
+		}
+
 		{
 			GameObject* player = new GameObject();
 			player->SetName(L"Zelda");
@@ -24,6 +125,35 @@ namespace jw
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
 			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0001f));
+
+			GameObject* player2 = new GameObject();
+			player2->SetName(L"ZeldaChild");
+			AddGameObject(eLayerType::Player, player2);
+			MeshRenderer* mr2 = player2->AddComponent<MeshRenderer>();
+			mr2->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+			mr2->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
+			player2->GetComponent<Transform>()->SetPosition(Vector3(1.0f, 0.0f, 1.0001f));
+
+			player2->GetComponent<Transform>()->SetParent(player->GetComponent<Transform>());
+			//player->AddComponent<CameraScript>();
+
+			const float pi = 3.141592f;
+			float degree = pi / 2.0f;
+
+			player->GetComponent<Transform>()->SetPosition(Vector3(-3.0f, 0.0f, 1.0001f));
+			//player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, degree));
+			player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, math::RotateDegree(-45.f) ));
+		}
+
+		{
+			GameObject* player = new GameObject();
+			player->SetName(L"Smile");
+			AddGameObject(eLayerType::Player, player);
+			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
+			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
+			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0f));
+			//player->AddComponent<CameraScript>();
 		}
 
 		{
@@ -33,8 +163,14 @@ namespace jw
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
-			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0f));
+			player->GetComponent<Transform>()->SetPosition(Vector3(0.2f, 0.0f, 0.01f));
+			//player->AddComponent<CameraScript>();
 		}
+
+
+		
+		
+
 
 		//Main Camera
 		{
@@ -79,4 +215,5 @@ namespace jw
 	{
 		Scene::Render();
 	}
+	
 }
