@@ -13,25 +13,7 @@ namespace jw
 
 	void SceneManager::Initialize()
 	{
-		//mActiveScene = new PlayScene();
-		//mScenes.insert(std::make_pair(L"PlayScene", mActiveScene));
-
-		//mActiveScene = new TitleScene();
-		//std::wstring a = mActiveScene->GetName();
-		//mScenes.insert(std::make_pair(mActiveScene->GetName(), mActiveScene));
 		
-		//Scene* mTempScene = new FactoryScene_00();
-		//mScenes.insert(std::make_pair(mTempScene->GetName(), mTempScene));
-		//mActiveScene = mTempScene;
-
-		//mTempScene = new FactoryScene_01();
-		//mScenes.insert(std::make_pair(mTempScene->GetName(), mTempScene));
-
-		//mTempScene = new FactoryScene_02();
-		//mScenes.insert(std::make_pair(mTempScene->GetName(), mTempScene));
-		//mActiveScene = mTempScene;
-
-		//mActiveScene->Initialize();
 	}
 	void SceneManager::Update()
 	{
@@ -45,6 +27,12 @@ namespace jw
 	{
 		mActiveScene->Render();
 	}
+
+	void SceneManager::Destroy()
+	{
+		mActiveScene->Destroy();
+	}
+
 	void SceneManager::Release()
 	{
 		for (auto iter : mScenes)

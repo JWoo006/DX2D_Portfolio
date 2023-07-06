@@ -23,6 +23,6 @@ namespace jw
 		SceneManager::CreateScene<FactoryScene_02>(L"FactoryScene_02");
 
 		SceneManager::SetActiveScene(L"PlayScene");
-		SceneManager::SetActiveScene(L"TitleScene");
+		//SceneManager::SetActiveScene(L"TitleScene");
 	}
 }

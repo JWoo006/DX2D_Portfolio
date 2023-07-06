@@ -23,6 +23,9 @@
     <ClInclude Include="LoadScenes.h">
       <Filter>Contents\Load</Filter>
     </ClInclude>
+    <ClInclude Include="jwGridScript.h">
+      <Filter>Contents\Script</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="JWooEngine.cpp" />
@@ -43,6 +46,9 @@
     </ClCompile>
     <ClCompile Include="jwFactoryScene_02.cpp">
       <Filter>Contents\Scene\01_Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="jwGridScript.cpp">
+      <Filter>Contents\Script</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

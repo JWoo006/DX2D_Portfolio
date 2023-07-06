@@ -16,6 +16,7 @@ namespace jw::enums
 
 	enum class eLayerType
 	{
+		Grid,
 		Player,
 		Monster,
 		UI,

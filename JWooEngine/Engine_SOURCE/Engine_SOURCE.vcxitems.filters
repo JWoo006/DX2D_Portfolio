@@ -49,9 +49,6 @@
     <Filter Include="Scene\Manager">
       <UniqueIdentifier>{a8257622-a032-432e-9587-3fb23dad5225}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Scene\01_Factory">
-      <UniqueIdentifier>{1289750a-209b-4d49-b2e4-d704da903de1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="GameObject\Component\Base">
       <UniqueIdentifier>{e7121533-328c-4de7-bb4b-f938d5fd6691}</UniqueIdentifier>
     </Filter>
@@ -84,6 +81,9 @@
     </Filter>
     <Filter Include="Resource\Texture">
       <UniqueIdentifier>{7b1a2ecb-90c6-44f0-b2cf-8ff2482526dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common\Object">
+      <UniqueIdentifier>{75b5ce74-7e4c-4bce-a38e-dbf4b4e8fe21}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -167,6 +167,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwTexture.h">
       <Filter>Resource\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwObject.h">
+      <Filter>Common\Object</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

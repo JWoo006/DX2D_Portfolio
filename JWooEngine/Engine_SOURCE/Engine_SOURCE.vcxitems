@@ -30,6 +30,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMeshRenderer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)JWooEngine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwScene.h" />
