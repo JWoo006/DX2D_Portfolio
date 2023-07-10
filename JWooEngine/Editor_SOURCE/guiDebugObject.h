@@ -1,9 +1,9 @@
 #pragma once
-#include "JWooEngine.h"
+#include "jwGameObject.h"
 
 namespace gui
 {
-	class DebugOjbect : public jw::GameObject
+	class DebugObject : public jw::GameObject
 	{
 	};
 }

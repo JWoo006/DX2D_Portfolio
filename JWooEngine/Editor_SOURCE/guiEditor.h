@@ -24,6 +24,6 @@ namespace gui
 	private:
 		static std::vector<Widget*> mWidgets;
 		static std::vector<EditorObject*> mEditorObjects;
-		static std::vector<DebugOjbect*> mDebugOjbects;
+		static std::vector<DebugObject*> mDebugOjbects;
 	};
 }

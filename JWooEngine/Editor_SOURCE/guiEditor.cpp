@@ -12,7 +12,7 @@ namespace gui
 	using namespace jw::enums;
 	std::vector<Widget*> Editor::mWidgets = {};
 	std::vector<EditorObject*> Editor::mEditorObjects = {};
-	std::vector<DebugOjbect*> Editor::mDebugOjbects = {};
+	std::vector<DebugObject*> Editor::mDebugOjbects = {};
 
 	void Editor::Initialize()
 	{
@@ -23,7 +23,7 @@ namespace gui
 		std::shared_ptr<jw::Material> material
 			= jw::Resources::Find<jw::Material>(L"DebugMaterial");
 
-		mDebugOjbects[(UINT)eColliderType::Rect] = new DebugOjbect();
+		mDebugOjbects[(UINT)eColliderType::Rect] = new DebugObject();
 		mDebugOjbects[(UINT)eColliderType::Rect]->AddComponent<jw::Transform>();
 		jw::MeshRenderer* mr
 			= mDebugOjbects[(UINT)eColliderType::Rect]->AddComponent<jw::MeshRenderer>();
@@ -88,7 +88,7 @@ namespace gui
 
 	void Editor::DebugRender(const jw::graphics::DebugMesh& mesh)
 	{
-		DebugOjbect* debugObj = mDebugOjbects[(UINT)mesh.type];
+		DebugObject* debugObj = mDebugOjbects[(UINT)mesh.type];
 
 		// 위치 크기 회전 정보를 받아와서
 		// 해당 게임오브젝트위에 그려주면된다.
