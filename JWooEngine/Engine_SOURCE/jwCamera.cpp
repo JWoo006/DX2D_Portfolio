@@ -214,6 +214,10 @@ namespace jw
 		{
 			if (gameObj == nullptr)
 				continue;
+			if (gameObj->GetState()
+				!= GameObject::eState::Active)
+				continue;
+
 
 			gameObj->Render();
 		}
@@ -224,6 +228,9 @@ namespace jw
 		for (GameObject* gameObj : mCutOutGameObjects)
 		{
 			if (gameObj == nullptr)
+				continue;
+			if (gameObj->GetState()
+				!= GameObject::eState::Active)
 				continue;
 
 			gameObj->Render();
@@ -236,11 +243,13 @@ namespace jw
 		{
 			if (gameObj == nullptr)
 				continue;
+			if (gameObj->GetState()
+				!= GameObject::eState::Active)
+				continue;
 
 			gameObj->Render();
 		}
 	}
-
 
 	void Camera::EnableDepthStencilState()
 	{

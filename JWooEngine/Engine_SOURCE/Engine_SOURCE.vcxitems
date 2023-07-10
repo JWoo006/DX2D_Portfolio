@@ -17,6 +17,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwApplication.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwCamera.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwCollider2D.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwComponent.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEntity.h" />
@@ -46,6 +48,8 @@
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwCamera.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwCollider2D.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwComponent.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp" />

@@ -7,6 +7,7 @@
 #include "jwCamera.h"
 #include "jwGridScript.h"
 #include "jwObject.h"
+#include "jwRenderer.h"
 
 namespace jw
 {
@@ -85,6 +86,7 @@ namespace jw
 			cameraComp = camera->AddComponent<Camera>();
 			cameraComp->TurnLayerMask(eLayerType::UI, false);
 			camera->AddComponent<CameraScript>();
+			renderer::cameras.push_back(cameraComp);
 		}
 
 		//UI Camera
@@ -98,14 +100,14 @@ namespace jw
 		}
 
 		{
-			GameObject* grid = new GameObject();
+			/*GameObject* grid = new GameObject();
 			grid->SetName(L"Grid");
 			AddGameObject(eLayerType::Grid, grid);
 			MeshRenderer* mr = grid->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"GridMaterial"));
 			GridScript* gridSc = grid->AddComponent<GridScript>();
-			gridSc->SetCamera(cameraComp);
+			gridSc->SetCamera(cameraComp);*/
 		}
 
 		//GameObject* player2 = new GameObject();

@@ -7,6 +7,7 @@
 #include "..\Engine_SOURCE\jwRenderer.h"
 #include "..\Engine_SOURCE\jwResources.h"
 #include "LoadScenes.h"
+#include "guiEditor.h"
 
 #ifdef _DEBUG
 #pragma comment(lib, "..\\x64\\Debug\\JWooEngine.lib")
@@ -78,12 +79,15 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
         {
             // 여기서 게임 로직이 돌아가야한다.
             application.Run();
+            gui::Editor::Run();
+            application.Present();
         }
     }
 
     // 렌더러 release
     renderer::Release();
     jw::SceneManager::Release();
+    gui::Editor::Release();
 
     return (int)msg.wParam;
 }
@@ -145,6 +149,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
     // 어플리케이션 초기화
     application.Initialize();
     jw::InitializeScenes();
+    gui::Editor::Initialize();
 
     return TRUE;
 }
