@@ -2,7 +2,6 @@
 #include "jwComponent.h"
 #include "jwTransform.h"
 
-
 namespace jw
 {
 	class Collider2D : public Component
@@ -24,6 +23,7 @@ namespace jw
 		eColliderType mType;
 		Transform* mTransform;
 
+		Vector3 mPosition;
 		Vector2 mSize;
 		Vector2 mCenter;
 	};

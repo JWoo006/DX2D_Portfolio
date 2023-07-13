@@ -1,32 +1,33 @@
 #include "guiEditor.h"
-#include "jwMesh.h"
-#include "jwResources.h"
-#include "jwTransform.h"
-#include "jwMeshRenderer.h"
-#include "jwMaterial.h"
+#include "..\\Engine_SOURCE\\jwMesh.h"
+#include "..\\Engine_SOURCE\\jwResources.h"
+#include "..\\Engine_SOURCE\\jwTransform.h"
+#include "..\\Engine_SOURCE\\jwMeshRenderer.h"
+#include "..\\Engine_SOURCE\\jwMaterial.h"
+#include "..\\Engine_SOURCE\\jwRenderer.h"
+
 #include "jwGridScript.h"
-#include "jwRenderer.h"
 
 namespace gui
 {
 	using namespace jw::enums;
 	std::vector<Widget*> Editor::mWidgets = {};
 	std::vector<EditorObject*> Editor::mEditorObjects = {};
-	std::vector<DebugObject*> Editor::mDebugOjbects = {};
+	std::vector<DebugObject*> Editor::mDebugObjects = {};
 
 	void Editor::Initialize()
 	{
-		mDebugOjbects.resize((UINT)eColliderType::End);
+		mDebugObjects.resize((UINT)eColliderType::End);
 
 		std::shared_ptr<jw::Mesh> mesh
 			= jw::Resources::Find<jw::Mesh>(L"DebugRect");
 		std::shared_ptr<jw::Material> material
 			= jw::Resources::Find<jw::Material>(L"DebugMaterial");
 
-		mDebugOjbects[(UINT)eColliderType::Rect] = new DebugObject();
-		mDebugOjbects[(UINT)eColliderType::Rect]->AddComponent<jw::Transform>();
+		mDebugObjects[(UINT)eColliderType::Rect] = new DebugObject();
+		mDebugObjects[(UINT)eColliderType::Rect]->AddComponent<jw::Transform>();
 		jw::MeshRenderer* mr
-			= mDebugOjbects[(UINT)eColliderType::Rect]->AddComponent<jw::MeshRenderer>();
+			= mDebugObjects[(UINT)eColliderType::Rect]->AddComponent<jw::MeshRenderer>();
 		mr->SetMaterial(material);
 		mr->SetMesh(mesh);
 
@@ -84,14 +85,49 @@ namespace gui
 	}
 	void Editor::Release()
 	{
+		for (auto widget : mWidgets)
+		{
+			delete widget;
+			widget = nullptr;
+		}
+
+		for (auto editorObj : mEditorObjects)
+		{
+			delete editorObj;
+			editorObj = nullptr;
+		}
+
+		for (auto debugObj : mDebugObjects)
+		{
+			delete debugObj;
+			debugObj = nullptr;
+		}
 	}
 
 	void Editor::DebugRender(const jw::graphics::DebugMesh& mesh)
 	{
-		DebugObject* debugObj = mDebugOjbects[(UINT)mesh.type];
+		DebugObject* debugObj = mDebugObjects[(UINT)mesh.type];
 
 		// 위치 크기 회전 정보를 받아와서
 		// 해당 게임오브젝트위에 그려주면된다.
+		jw::Transform* tr = debugObj->GetComponent<jw::Transform>();
+
+		Vector3 pos = mesh.position;
+		pos.z -= 0.01f;
+
+		tr->SetPosition(pos);
+		tr->SetScale(mesh.scale);
+		tr->SetRotation(mesh.rotation);
+
+		tr->LateUpdate();
+
+		/*jw::MeshRenderer * mr
+			= debugObj->GetComponent<jw::MeshRenderer>();*/
+			// main camera
+		jw::Camera* mainCamara = renderer::mainCamera;
+
+		jw::Camera::SetGpuViewMatrix(mainCamara->GetViewMatrix());
+		jw::Camera::SetGpuProjectionMatrix(mainCamara->GetProjectionMatrix());
 
 
 

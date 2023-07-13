@@ -1,5 +1,6 @@
 #include "jwCollider2D.h"
 #include "jwGameObject.h"
+#include "jwRenderer.h"
 
 namespace jw
 {
@@ -23,6 +24,25 @@ namespace jw
 	}
 	void Collider2D::LateUpdate()
 	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+
+		Vector3 scale = tr->GetScale();
+		scale.x *= mSize.x;
+		scale.y *= mSize.y;
+
+		Vector3 pos = tr->GetPosition();
+		pos.x += mCenter.x;
+		pos.y += mCenter.y;
+
+		mPosition = pos;
+
+		graphics::DebugMesh mesh = {};
+		mesh.position = pos;
+		mesh.scale = scale;
+		mesh.rotation = tr->GetRotation();
+		mesh.type = eColliderType::Rect;
+
+		renderer::PushDebugMeshAttribute(mesh);
 	}
 	void Collider2D::Render()
 	{

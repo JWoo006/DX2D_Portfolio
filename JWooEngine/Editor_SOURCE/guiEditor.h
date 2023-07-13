@@ -1,10 +1,12 @@
 #pragma once
-#include "CommonInclude.h"
-#include "JWooEngine.h"
+#include "..\\Engine_SOURCE\\CommonInclude.h"
+#include "..\\Engine_SOURCE\\JWooEngine.h"
+#include "..\\Engine_SOURCE\\jwGraphics.h"
+
 #include "guiWidget.h"
 #include "guiEditorObject.h"
 #include "guiDebugObject.h"
-#include "jwGraphics.h"
+
 
 namespace gui
 {
@@ -24,6 +26,6 @@ namespace gui
 	private:
 		static std::vector<Widget*> mWidgets;
 		static std::vector<EditorObject*> mEditorObjects;
-		static std::vector<DebugObject*> mDebugOjbects;
+		static std::vector<DebugObject*> mDebugObjects;
 	};
 }

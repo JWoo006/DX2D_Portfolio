@@ -1,6 +1,6 @@
 #pragma once
-#include <jwScript.h>
-#include "jwCamera.h"
+#include "..\\Engine_SOURCE\\jwScript.h"
+#include "..\\Engine_SOURCE\\jwCamera.h"
 
 namespace jw
 {

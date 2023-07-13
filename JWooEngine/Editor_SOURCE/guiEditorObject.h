@@ -1,5 +1,5 @@
 #pragma once
-#include "jwGameObject.h"
+#include "..\\Engine_SOURCE\\jwGameObject.h"
 
 
 namespace gui

@@ -38,6 +38,7 @@ namespace renderer
 	extern Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[];
 	extern Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[];
 
+	extern jw::Camera* mainCamera;
 	extern std::vector<jw::Camera*> cameras;
 	extern std::vector<DebugMesh> debugMeshs;
 
@@ -45,5 +46,5 @@ namespace renderer
 	void Render();
 	void Release();
 
-	void PushDebugMeshAttribute(DebugMesh& mesh);
+	void PushDebugMeshAttribute(DebugMesh mesh);
 }

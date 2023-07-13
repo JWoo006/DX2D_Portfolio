@@ -8,6 +8,7 @@
 #include "jwGridScript.h"
 #include "jwObject.h"
 #include "jwRenderer.h"
+#include "jwCollider2D.h"
 
 namespace jw
 {
@@ -27,27 +28,37 @@ namespace jw
 
 			player->SetName(L"Zelda");
 
+			Collider2D* cd = player->AddComponent<Collider2D>();
+			//cd->SetCenter(Vector2(0.5f, 0.0f));
+
+			//cd = player->AddComponent<Collider2D>();
+			//cd->SetCenter(Vector2(0.f, 0.0f));
+
+			//std::vector<Collider2D*> comps 
+			//	= player->GetComponents<Collider2D>();
+
+
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
 
-			GameObject* player2 = new GameObject();
-			player2->SetName(L"ZeldaChild");
-			AddGameObject(eLayerType::Player, player2);
-			MeshRenderer* mr2 = player2->AddComponent<MeshRenderer>();
-			mr2->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
-			mr2->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
-			player2->GetComponent<Transform>()->SetPosition(Vector3(1.0f, 0.0f, 1.0001f));
+			//GameObject* player2 = new GameObject();
+			//player2->SetName(L"ZeldaChild");
+			//AddGameObject(eLayerType::Player, player2);
+			//MeshRenderer* mr2 = player2->AddComponent<MeshRenderer>();
+			//mr2->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+			//mr2->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
+			//player2->GetComponent<Transform>()->SetPosition(Vector3(1.0f, 0.0f, 1.0001f));
 
-			player2->GetComponent<Transform>()->SetParent(player->GetComponent<Transform>());
+			//player2->GetComponent<Transform>()->SetParent(player->GetComponent<Transform>());
 			//player->AddComponent<CameraScript>();
 
 			const float pi = 3.141592f;
 			float degree = pi / 2.0f;
 
-			player->GetComponent<Transform>()->SetPosition(Vector3(-3.0f, 0.0f, 1.0001f));
+			player->GetComponent<Transform>()->SetPosition(Vector3(-2.0f, 0.0f, 1.0001f));
 			//player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, degree));
-			player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, math::RotateDegree(-45.f) ));
+			//player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, math::RotateDegree(-45.f) ));
 		}
 
 		{
@@ -87,6 +98,7 @@ namespace jw
 			cameraComp->TurnLayerMask(eLayerType::UI, false);
 			camera->AddComponent<CameraScript>();
 			renderer::cameras.push_back(cameraComp);
+			renderer::mainCamera = cameraComp;
 		}
 
 		//UI Camera
@@ -99,6 +111,7 @@ namespace jw
 			//camera->AddComponent<CameraScript>();
 		}
 
+		//grid
 		{
 			/*GameObject* grid = new GameObject();
 			grid->SetName(L"Grid");
@@ -135,8 +148,8 @@ namespace jw
 		//viewport.minDepth = 0.0f;
 		//viewport.maxDepth = 1.0f;
 
-		//pos = viewport.Unproject(pos, Camera::GetProjectionMatrix(), Camera::GetViewMatrix(), Matrix::Identity);
-		//pos2 = viewport.Unproject(pos2, Camera::GetProjectionMatrix(), Camera::GetViewMatrix(), Matrix::Identity);
+		//pos = viewport.Unproject(pos, Camera::GetGpuProjectionMatrix(), Camera::GetGpuViewMatrix(), Matrix::Identity);
+		//pos2 = viewport.Unproject(pos2, Camera::GetGpuProjectionMatrix(), Camera::GetGpuViewMatrix(), Matrix::Identity);
 
 		Scene::LateUpdate();
 	}
