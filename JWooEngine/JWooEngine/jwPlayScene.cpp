@@ -29,36 +29,16 @@ namespace jw
 			player->SetName(L"Zelda");
 
 			Collider2D* cd = player->AddComponent<Collider2D>();
-			//cd->SetCenter(Vector2(0.5f, 0.0f));
-
-			//cd = player->AddComponent<Collider2D>();
-			//cd->SetCenter(Vector2(0.f, 0.0f));
-
-			//std::vector<Collider2D*> comps 
-			//	= player->GetComponents<Collider2D>();
-
-
+			
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
 
-			//GameObject* player2 = new GameObject();
-			//player2->SetName(L"ZeldaChild");
-			//AddGameObject(eLayerType::Player, player2);
-			//MeshRenderer* mr2 = player2->AddComponent<MeshRenderer>();
-			//mr2->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
-			//mr2->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
-			//player2->GetComponent<Transform>()->SetPosition(Vector3(1.0f, 0.0f, 1.0001f));
-
-			//player2->GetComponent<Transform>()->SetParent(player->GetComponent<Transform>());
-			//player->AddComponent<CameraScript>();
-
 			const float pi = 3.141592f;
-			float degree = pi / 2.0f;
+			float degree = pi / 8.0f;
 
 			player->GetComponent<Transform>()->SetPosition(Vector3(-2.0f, 0.0f, 1.0001f));
-			//player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, degree));
-			//player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, math::RotateDegree(-45.f) ));
+			player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, degree));
 		}
 
 		{
@@ -138,18 +118,18 @@ namespace jw
 
 	void PlayScene::LateUpdate()
 	{
-		//Vector3 pos(600, 450, 0.0f);
-		//Vector3 pos2(600, 450, 1000.0f);
-		//Viewport viewport;
-		//viewport.width = 1600.0f;
-		//viewport.height = 900.0f;
-		//viewport.x = 0;
-		//viewport.y = 0;
-		//viewport.minDepth = 0.0f;
-		//viewport.maxDepth = 1.0f;
+		Vector3 pos(600, 450, 0.0f);
+		Vector3 pos2(600, 450, 1000.0f);
+		Viewport viewport;
+		viewport.width = 1600.0f;
+		viewport.height = 900.0f;
+		viewport.x = 0;
+		viewport.y = 0;
+		viewport.minDepth = 0.0f;
+		viewport.maxDepth = 1.0f;
 
-		//pos = viewport.Unproject(pos, Camera::GetGpuProjectionMatrix(), Camera::GetGpuViewMatrix(), Matrix::Identity);
-		//pos2 = viewport.Unproject(pos2, Camera::GetGpuProjectionMatrix(), Camera::GetGpuViewMatrix(), Matrix::Identity);
+		pos = viewport.Unproject(pos, Camera::GetGpuProjectionMatrix(), Camera::GetGpuViewMatrix(), Matrix::Identity);
+		pos2 = viewport.Unproject(pos2, Camera::GetGpuProjectionMatrix(), Camera::GetGpuViewMatrix(), Matrix::Identity);
 
 		Scene::LateUpdate();
 	}
