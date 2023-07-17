@@ -92,14 +92,6 @@ namespace jw
 				left->OnCollisionEnter(right);
 				right->OnCollisionEnter(left);
 				iter->second = true;
-
-				XMFLOAT4 colorBufferData;
-				colorBufferData = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
-				jw::graphics::GetDevice();
-
-				ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Color];
-				cb->SetData(&colorBufferData);
-				cb->Bind(eShaderStage::PS);
 			}
 			else
 			{
