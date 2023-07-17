@@ -3,6 +3,7 @@
 #include "jwTime.h"
 #include "jwRenderer.h"
 #include "jwSceneManager.h"
+#include "jwCollisionManager.h"
 
 namespace jw
 {
@@ -43,11 +44,13 @@ namespace jw
 		Input::Update();
 
 		SceneManager::Update();
+		CollisionManager::Update();
 	}
 
 	void Application::LateUpdate()
 	{
 		SceneManager::LateUpdate();
+		
 	}
 
 	void Application::Render()

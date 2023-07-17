@@ -5,6 +5,9 @@
 #include "jwLayer.h"
 #include "jwCollider2D.h"
 
+#include "jwRenderer.h"
+#include "jwConstantBuffer.h"
+#include "jwGraphicDevice_Dx11.h"
 
 namespace jw
 {
@@ -21,7 +24,7 @@ namespace jw
 		{
 			for (UINT row = 0; row < (UINT)eLayerType::End; row++)
 			{
-				if (mMatrix[row] == true)
+				if (mMatrix[column][row] == true)
 				{
 					LayerCollision((eLayerType)column, (eLayerType)row);
 				}
@@ -88,6 +91,15 @@ namespace jw
 				//최초 충돌
 				left->OnCollisionEnter(right);
 				right->OnCollisionEnter(left);
+				iter->second = true;
+
+				XMFLOAT4 colorBufferData;
+				colorBufferData = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
+				jw::graphics::GetDevice();
+
+				ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Color];
+				cb->SetData(&colorBufferData);
+				cb->Bind(eShaderStage::PS);
 			}
 			else
 			{
@@ -104,6 +116,7 @@ namespace jw
 				// 충돌하고 있다가 나갈떄
 				left->OnCollisionExit(right);
 				right->OnCollisionExit(left);
+				iter->second = false;
 			}
 		}
 	}
@@ -112,12 +125,39 @@ namespace jw
 	{
 		// 네모 네모 충돌
 		// 분리축 이론
+		
+		Vector3 LeftColPos = left->GetPosition();
+		Vector3 RightColPos = right->GetPosition();
 
+		Vector3 tempaxes = LeftColPos - RightColPos;
+
+		Vector3 LeftColUp = left->GetOwner()->GetComponent<Transform>()->Up();
+		Vector3 LeftColRight = left->GetOwner()->GetComponent<Transform>()->Right();
+		Vector3 RightColUp = right->GetOwner()->GetComponent<Transform>()->Up();
+		Vector3 RightColRight = right->GetOwner()->GetComponent<Transform>()->Right();
+
+		std::vector<Vector3> axes;
+		axes.push_back(LeftColUp);
+		axes.push_back(LeftColRight);
+		axes.push_back(RightColUp);
+		axes.push_back(RightColRight);
+
+		for (const auto& axis : axes)
+		{
+			float Distance = abs(tempaxes.Dot(axis));
+
+			if (Distance > abs((LeftColUp * left->GetScale().y * 0.5f).Dot(axis))
+				+ abs((LeftColRight * left->GetScale().x * 0.5f).Dot(axis))
+				+ abs((RightColUp * left->GetScale().y * 0.5f).Dot(axis))
+				+ abs((RightColRight * left->GetScale().x * 0.5f).Dot(axis)))
+
+				return false;
+		}
 		// To do... (숙제)
 		// 분리축이 어렵다 하시는분들은
 		// 원 - 원 충돌
 
-		return false;
+		return true;
 	}
 
 	void CollisionManager::SetLayer(eLayerType left, eLayerType right, bool enable)
@@ -147,4 +187,5 @@ namespace jw
 		mMatrix->reset();
 		mCollisionMap.clear();
 	}
+	
 }

@@ -31,6 +31,8 @@ namespace jw
 		Vector3 Foward() { return mFoward; }
 		Vector3 Right() { return mRight; }
 		Vector3 Up() { return mUp; }
+		Vector3 TopLeft() { return mTopLeft; }
+		Vector3 BottomRight() { return mBottomRight; }
 
 		void SetParent(Transform* transform) { mParent = transform; }
 		Transform* GetParent() { return mParent; }
@@ -43,6 +45,9 @@ namespace jw
 		Vector3 mUp;
 		Vector3 mFoward;
 		Vector3 mRight;
+
+		Vector3 mTopLeft;
+		Vector3 mBottomRight;
 
 		Matrix mWorld;
 

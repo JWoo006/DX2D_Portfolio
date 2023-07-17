@@ -34,6 +34,7 @@ namespace jw::graphics
 	enum class eCBType
 	{
 		Transform,
+		Color,
 		Material,
 		Grid,
 		End,

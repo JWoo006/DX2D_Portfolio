@@ -24,6 +24,9 @@ namespace jw
 		void SetCenter(Vector2 size) { mCenter = size; }
 		UINT GetColliderID() { return mColliderID; }
 
+		Vector3 GetPosition() { return mPosition; }
+		Vector3 GetScale() { return mScale; }
+
 	private:
 		static UINT mColliderNumber;
 		UINT mColliderID;
@@ -34,5 +37,7 @@ namespace jw
 		Vector3 mPosition;
 		Vector2 mSize;
 		Vector2 mCenter;
+
+		Vector3 mScale;
 	};
 }

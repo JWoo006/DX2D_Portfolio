@@ -19,7 +19,7 @@ namespace jw
 			};
 			UINT64 id;
 		};
-
+	
 		static void Initialize();
 		static void Update();
 		static void LayerCollision(eLayerType left, eLayerType right);
@@ -28,6 +28,8 @@ namespace jw
 
 		static void SetLayer(eLayerType left, eLayerType right, bool enable);
 		static void Clear();
+
+		static std::map<UINT64, bool> GetCollisionMap() { return mCollisionMap; }
 
 	private:
 

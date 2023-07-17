@@ -311,6 +311,8 @@ namespace jw::math
         static const Vector3 Down;
         static const Vector3 Right;
         static const Vector3 Left;
+        static const Vector3 TopLeft;
+        static const Vector3 BottomRight;
         static const Vector3 Forward;
         static const Vector3 Backward;
     };

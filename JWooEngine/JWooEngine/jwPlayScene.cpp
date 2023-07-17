@@ -9,6 +9,7 @@
 #include "jwObject.h"
 #include "jwRenderer.h"
 #include "jwCollider2D.h"
+#include "jwCollisionManager.h"
 
 namespace jw
 {
@@ -22,6 +23,9 @@ namespace jw
 	void PlayScene::Initialize()
 	{
 		
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::UI, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Player, true);
+
 		{
 			GameObject* player
 				= object::Instantiate<GameObject>(Vector3(0.0f, 0.0f, 1.0001f), eLayerType::Player);
@@ -41,26 +45,29 @@ namespace jw
 			player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, degree));
 		}
 
-		{
-			GameObject* player = new GameObject();
-			player->SetName(L"Smile");
-			AddGameObject(eLayerType::Player, player);
-			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
-			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
-			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
-			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0f));
-			//player->AddComponent<CameraScript>();
-		}
+		//{
+		//	GameObject* player = new GameObject();
+		//	player->SetName(L"Smile");
+		//	AddGameObject(eLayerType::Player, player);
+		//	MeshRenderer* mr = player->AddComponent<MeshRenderer>();
+		//	mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+		//	mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
+		//	player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0f));
+		//	//player->AddComponent<CameraScript>();
+		//}
 
 		{
-			GameObject* player = new GameObject();
+
+			GameObject* player
+				= object::Instantiate<GameObject>(Vector3(0.2f, 0.0f, 0.01f), eLayerType::UI);
+
 			player->SetName(L"Smile");
-			AddGameObject(eLayerType::UI, player);
+			//Collider2D* cd = player->AddComponent<Collider2D>();
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
-			player->GetComponent<Transform>()->SetPosition(Vector3(0.2f, 0.0f, 0.01f));
 			//player->AddComponent<CameraScript>();
+			
 		}
 
 
@@ -75,6 +82,7 @@ namespace jw
 			AddGameObject(eLayerType::Player, camera);
 			camera->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -10.0f));
 			cameraComp = camera->AddComponent<Camera>();
+			Collider2D* cd = camera->AddComponent<Collider2D>();
 			cameraComp->TurnLayerMask(eLayerType::UI, false);
 			camera->AddComponent<CameraScript>();
 			renderer::cameras.push_back(cameraComp);
@@ -137,6 +145,15 @@ namespace jw
 	void PlayScene::Render()
 	{
 		Scene::Render();
+	}
+
+	void PlayScene::OnEnter()
+	{
+		
+	}
+
+	void PlayScene::OnExit()
+	{
 	}
 	
 }

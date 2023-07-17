@@ -30,9 +30,9 @@ namespace jw
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 
-		Vector3 scale = tr->GetScale();
-		scale.x *= mSize.x;
-		scale.y *= mSize.y;
+		mScale = tr->GetScale();
+		mScale.x *= mSize.x;
+		mScale.y *= mSize.y;
 
 		Vector3 pos = tr->GetPosition();
 		pos.x += mCenter.x;
@@ -42,7 +42,7 @@ namespace jw
 
 		graphics::DebugMesh mesh = {};
 		mesh.position = pos;
-		mesh.scale = scale;
+		mesh.scale = mScale;
 		mesh.rotation = tr->GetRotation();
 		mesh.type = eColliderType::Rect;
 

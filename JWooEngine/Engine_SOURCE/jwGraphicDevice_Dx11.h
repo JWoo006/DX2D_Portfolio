@@ -54,7 +54,7 @@ namespace jw::graphics
 		//  dx11에서 직접적으로 디바이스객체 접근하지않고
 		// 이객체를 이용하여 명령을 내린다.
 		Microsoft::WRL::ComPtr<ID3D11DeviceContext> mContext; 
-		
+
 		// 최종적으로 그려질 텍스처(도화지)
 		Microsoft::WRL::ComPtr<ID3D11Texture2D> mRenderTarget;
 
