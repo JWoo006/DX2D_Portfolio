@@ -9,6 +9,8 @@
 #include "jwObject.h"
 #include "jwRenderer.h"
 #include "jwCollider2D.h"
+
+#include "jwPlayerScript.h"
 #include "jwCollisionManager.h"
 
 namespace jw
@@ -24,7 +26,7 @@ namespace jw
 	{
 		
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::UI, true);
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Player, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
 
 		{
 			GameObject* player
@@ -33,6 +35,7 @@ namespace jw
 			player->SetName(L"Zelda");
 
 			Collider2D* cd = player->AddComponent<Collider2D>();
+			cd->SetSize(Vector2(1.5f, 1.5f));
 			
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
@@ -62,11 +65,12 @@ namespace jw
 				= object::Instantiate<GameObject>(Vector3(0.2f, 0.0f, 0.01f), eLayerType::UI);
 
 			player->SetName(L"Smile");
-			//Collider2D* cd = player->AddComponent<Collider2D>();
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
-			//player->AddComponent<CameraScript>();
+			Collider2D* cd = player->AddComponent<Collider2D>();
+			//cd->SetSize(Vector2(1.2f, 1.2f));
+			player->AddComponent<PlayerScript>();
 			
 		}
 

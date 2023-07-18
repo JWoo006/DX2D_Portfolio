@@ -14,7 +14,9 @@
 #define CBUFFER(name, slot) static const int CB_GETBINDSLOT(name) = slot; struct alignas(16) name 
 
 #define CBSLOT_TRANSFORM		0
-#define CBSLOT_GRID				2
+#define CBSLOT_OVERLAPCNT		1
+#define CBSLOT_GRID				3
+
 //#define CBSLOT_PARTICLE			1
 
 
@@ -34,7 +36,7 @@ namespace jw::graphics
 	enum class eCBType
 	{
 		Transform,
-		Color,
+		Collider,
 		Material,
 		Grid,
 		End,
@@ -106,6 +108,8 @@ namespace jw::graphics
 		float radius;
 		float duration;
 		float time;
+
+		bool isOverlap;
 	};
 }
 

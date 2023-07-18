@@ -5,9 +5,6 @@
 #include "jwLayer.h"
 #include "jwCollider2D.h"
 
-#include "jwRenderer.h"
-#include "jwConstantBuffer.h"
-#include "jwGraphicDevice_Dx11.h"
 
 namespace jw
 {
@@ -92,14 +89,6 @@ namespace jw
 				left->OnCollisionEnter(right);
 				right->OnCollisionEnter(left);
 				iter->second = true;
-
-				XMFLOAT4 colorBufferData;
-				colorBufferData = XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f);
-				jw::graphics::GetDevice();
-
-				ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Color];
-				cb->SetData(&colorBufferData);
-				cb->Bind(eShaderStage::PS);
 			}
 			else
 			{
@@ -123,39 +112,103 @@ namespace jw
 
 	bool CollisionManager::Intersect(Collider2D* left, Collider2D* right)
 	{
-		// 네모 네모 충돌
-		// 분리축 이론
-		
-		Vector3 LeftColPos = left->GetPosition();
-		Vector3 RightColPos = right->GetPosition();
+		// my obb collision
+		/* {
+			// 네모 네모 충돌
+			// 분리축 이론
 
-		Vector3 tempaxes = LeftColPos - RightColPos;
+			Vector3 LeftColPos = left->GetPosition();
+			Vector3 RightColPos = right->GetPosition();
 
-		Vector3 LeftColUp = left->GetOwner()->GetComponent<Transform>()->Up();
-		Vector3 LeftColRight = left->GetOwner()->GetComponent<Transform>()->Right();
-		Vector3 RightColUp = right->GetOwner()->GetComponent<Transform>()->Up();
-		Vector3 RightColRight = right->GetOwner()->GetComponent<Transform>()->Right();
+			Vector3 tempaxes = LeftColPos - RightColPos;
 
-		std::vector<Vector3> axes;
-		axes.push_back(LeftColUp);
-		axes.push_back(LeftColRight);
-		axes.push_back(RightColUp);
-		axes.push_back(RightColRight);
+			Vector3 LeftColUp = left->GetOwner()->GetComponent<Transform>()->Up();
+			Vector3 LeftColRight = left->GetOwner()->GetComponent<Transform>()->Right();
+			Vector3 RightColUp = right->GetOwner()->GetComponent<Transform>()->Up();
+			Vector3 RightColRight = right->GetOwner()->GetComponent<Transform>()->Right();
 
-		for (const auto& axis : axes)
+			std::vector<Vector3> axes;
+			axes.push_back(LeftColUp);
+			axes.push_back(LeftColRight);
+			axes.push_back(RightColUp);
+			axes.push_back(RightColRight);
+
+			for (const auto& axis : axes)
+			{
+				float Distance = abs(tempaxes.Dot(axis));
+
+				if (Distance > abs((LeftColUp * left->GetScale().y * 0.5f).Dot(axis))
+					+ abs((LeftColRight * left->GetScale().x * 0.5f).Dot(axis))
+					+ abs((RightColUp * left->GetScale().y * 0.5f).Dot(axis))
+					+ abs((RightColRight * left->GetScale().x * 0.5f).Dot(axis)))
+
+					return false;
+			}
+			// To do... (숙제)
+			// 분리축이 어렵다 하시는분들은
+			// 원 - 원 충돌
+
+			return true;
+		}*/
+
+		// Rect vs Rect 
+		// 0 --- 1
+		// |     |
+		// 3 --- 2
+		Vector3 arrLocalPos[4] =
 		{
-			float Distance = abs(tempaxes.Dot(axis));
+		   Vector3{-0.5f, 0.5f, 0.0f}
+		   ,Vector3{0.5f, 0.5f, 0.0f}
+		   ,Vector3{0.5f, -0.5f, 0.0f}
+		   ,Vector3{-0.5f, -0.5f, 0.0f}
+		};
 
-			if (Distance > abs((LeftColUp * left->GetScale().y * 0.5f).Dot(axis))
-				+ abs((LeftColRight * left->GetScale().x * 0.5f).Dot(axis))
-				+ abs((RightColUp * left->GetScale().y * 0.5f).Dot(axis))
-				+ abs((RightColRight * left->GetScale().x * 0.5f).Dot(axis)))
+		Transform* leftTr = left->GetOwner()->GetComponent<Transform>();
+		Transform* rightTr = right->GetOwner()->GetComponent<Transform>();
 
+		Matrix leftMatrix = leftTr->GetMatrix();
+		Matrix rightMatrix = rightTr->GetMatrix();
+
+		Vector3 Axis[4] = {};
+
+		Vector3 leftScale = Vector3(left->GetSize().x, left->GetSize().y, 1.0f);
+		Matrix finalLeft = Matrix::CreateScale(leftScale);
+		finalLeft *= leftMatrix;
+
+		Vector3 rightScale = Vector3(right->GetSize().x, right->GetSize().y, 1.0f);
+		Matrix finalRight = Matrix::CreateScale(rightScale);
+		finalRight *= rightMatrix;
+
+		Axis[0] = Vector3::Transform(arrLocalPos[1], finalLeft);
+		Axis[1] = Vector3::Transform(arrLocalPos[3], finalLeft);
+		Axis[2] = Vector3::Transform(arrLocalPos[1], finalRight);
+		Axis[3] = Vector3::Transform(arrLocalPos[3], finalRight);
+
+		Axis[0] -= Vector3::Transform(arrLocalPos[0], finalLeft);
+		Axis[1] -= Vector3::Transform(arrLocalPos[0], finalLeft);
+		Axis[2] -= Vector3::Transform(arrLocalPos[0], finalRight);
+		Axis[3] -= Vector3::Transform(arrLocalPos[0], finalRight);
+
+		for (size_t i = 0; i < 4; i++)
+			Axis[i].z = 0.0f;
+
+		Vector3 vc = leftTr->GetPosition() - rightTr->GetPosition();
+		vc.z = 0.0f;
+
+		Vector3 centerDir = vc;
+		for (size_t i = 0; i < 4; i++)
+		{
+			Vector3 vA = Axis[i];
+
+			float projDistance = 0.0f;
+			for (size_t j = 0; j < 4; j++)
+			{
+				projDistance += fabsf(Axis[j].Dot(vA) / 2.0f);
+			}
+
+			if (projDistance < fabsf(centerDir.Dot(vA)))
 				return false;
 		}
-		// To do... (숙제)
-		// 분리축이 어렵다 하시는분들은
-		// 원 - 원 충돌
 
 		return true;
 	}

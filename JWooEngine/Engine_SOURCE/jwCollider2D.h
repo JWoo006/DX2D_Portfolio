@@ -26,6 +26,7 @@ namespace jw
 
 		Vector3 GetPosition() { return mPosition; }
 		Vector3 GetScale() { return mScale; }
+		Vector2 GetSize() { return mSize; }
 
 	private:
 		static UINT mColliderNumber;
@@ -39,5 +40,7 @@ namespace jw
 		Vector2 mCenter;
 
 		Vector3 mScale;
+
+		bool misOverlap;
 	};
 }

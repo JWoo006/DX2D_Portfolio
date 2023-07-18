@@ -11,6 +11,7 @@ namespace jw
 		, mTransform(nullptr)
 		, mSize(Vector2::One)
 		, mCenter(Vector2::Zero)
+		, misOverlap(false)
 	{
 		mColliderNumber++;
 		mColliderID = mColliderNumber;
@@ -45,6 +46,7 @@ namespace jw
 		mesh.scale = mScale;
 		mesh.rotation = tr->GetRotation();
 		mesh.type = eColliderType::Rect;
+		mesh.isOverlap = misOverlap;
 
 		renderer::PushDebugMeshAttribute(mesh);
 	}
@@ -54,6 +56,8 @@ namespace jw
 
 	void Collider2D::OnCollisionEnter(Collider2D* other)
 	{
+		misOverlap = true;
+
 		const std::vector<Script*>& scripts
 			= GetOwner()->GetComponents<Script>();
 
@@ -74,6 +78,8 @@ namespace jw
 	}
 	void Collider2D::OnCollisionExit(Collider2D* other)
 	{
+		misOverlap = false;
+
 		const std::vector<Script*>& scripts
 			= GetOwner()->GetComponents<Script>();
 

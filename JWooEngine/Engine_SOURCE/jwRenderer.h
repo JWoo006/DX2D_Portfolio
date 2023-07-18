@@ -31,6 +31,11 @@ namespace renderer
 		Vector2 Resolution;
 	};
 
+	CBUFFER(ColliderCB, CBSLOT_OVERLAPCNT)
+	{
+		bool isOverlap;
+	};
+
 	extern jw::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End];
 
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState[];

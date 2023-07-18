@@ -128,6 +128,16 @@ namespace gui
 		jw::Camera::SetGpuProjectionMatrix(mainCamara->GetProjectionMatrix());
 
 
+		// Collider Line Color CB Bind
+		{
+			renderer::ColliderCB ColCB = {};
+			ColCB.isOverlap = mesh.isOverlap;
+
+			ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Collider];
+			cb->SetData(&ColCB);
+			cb->Bind(eShaderStage::PS);
+		}
+
 
 		debugObj->Render();
 	}

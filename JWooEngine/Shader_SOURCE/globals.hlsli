@@ -7,13 +7,17 @@ cbuffer Transform : register(b0)
     row_major matrix ProjectionMatrix;
 }
 
-cbuffer Grid : register(b2)
+cbuffer Grid : register(b3)
 {
     float4 CameraPosition;
     float2 CameraScale;
     float2 Resolution;
 }
 
+cbuffer Collider : register(b1)
+{
+    bool Overlap;
+}
 
 Texture2D albedoTexture : register(t0);
 

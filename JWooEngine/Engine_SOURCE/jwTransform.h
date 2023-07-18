@@ -36,6 +36,7 @@ namespace jw
 
 		void SetParent(Transform* transform) { mParent = transform; }
 		Transform* GetParent() { return mParent; }
+		Matrix& GetMatrix() { return mWorld; }
 
 	private:
 		Vector3 mPosition;

@@ -19,7 +19,8 @@ float4 main(VSOut In) : SV_TARGET
 {
     float4 color = float4(0.0f, 1.0f, 0.0f, 1.0f);
     
-    //color = In.Color;
+    if (Overlap)
+        color = float4(1.f, 0.f, 0.f, 1.f);
     
     return color;
 }

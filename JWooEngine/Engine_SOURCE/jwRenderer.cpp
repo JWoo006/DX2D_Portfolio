@@ -55,20 +55,20 @@ namespace renderer
 			, shader->GetVSCode()
 			, shader->GetInputLayoutAddressOf());
 
-		shader = jw::Resources::Find<Shader>(L"SpriteShader");
+		std::shared_ptr<Shader> Spriteshader = jw::Resources::Find<Shader>(L"SpriteShader");
 		jw::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
-			, shader->GetVSCode()
-			, shader->GetInputLayoutAddressOf());
+			, Spriteshader->GetVSCode()
+			, Spriteshader->GetInputLayoutAddressOf());
 
-		shader = jw::Resources::Find<Shader>(L"GridShader");
+		std::shared_ptr<Shader> GridShader = jw::Resources::Find<Shader>(L"GridShader");
 		jw::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
-			, shader->GetVSCode()
-			, shader->GetInputLayoutAddressOf());
+			, GridShader->GetVSCode()
+			, GridShader->GetInputLayoutAddressOf());
 
-		shader = jw::Resources::Find<Shader>(L"DebugShader");
+		std::shared_ptr<Shader> DebugShader = jw::Resources::Find<Shader>(L"DebugShader");
 		jw::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
-			, shader->GetVSCode()
-			, shader->GetInputLayoutAddressOf());
+			, DebugShader->GetVSCode()
+			, DebugShader->GetInputLayoutAddressOf());
 
 
 #pragma endregion
@@ -219,9 +219,9 @@ namespace renderer
 		indexes.push_back(1);
 		indexes.push_back(2);
 
-		indexes.push_back(0);
 		indexes.push_back(2);
 		indexes.push_back(3);
+		indexes.push_back(0);
 
 		mesh->CreateIndexBuffer(indexes.data(), indexes.size());
 
@@ -290,6 +290,9 @@ namespace renderer
 		// Grid Buffer
 		constantBuffer[(UINT)eCBType::Grid] = new ConstantBuffer(eCBType::Grid);
 		constantBuffer[(UINT)eCBType::Grid]->Create(sizeof(TransformCB));
+
+		constantBuffer[(UINT)eCBType::Collider] = new ConstantBuffer(eCBType::Collider);
+		constantBuffer[(UINT)eCBType::Collider]->Create(sizeof(ColliderCB));
 	}
 
 	void LoadShader()
@@ -313,8 +316,7 @@ namespace renderer
 		debugShader->Create(eShaderStage::VS, L"DebugVS.hlsl", "main");
 		debugShader->Create(eShaderStage::PS, L"DebugPS.hlsl", "main");
 		debugShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D_PRIMITIVE_TOPOLOGY_LINESTRIP);
-		debugShader->SetRSState(eRSType::SolidNone);
-		//debugShader->SetDSState(eDSType::NoWrite);
+		debugShader->SetRSState(eRSType::WireframeNone);
 		jw::Resources::Insert(L"DebugShader", debugShader);
 	}
 

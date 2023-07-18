@@ -148,6 +148,7 @@
     <ClInclude Include="jwFactoryScene_01.h" />
     <ClInclude Include="jwFactoryScene_02.h" />
     <ClInclude Include="jwGridScript.h" />
+    <ClInclude Include="jwPlayerScript.h" />
     <ClInclude Include="jwPlayScene.h" />
     <ClInclude Include="jwTitleScene.h" />
     <ClInclude Include="LoadScenes.h" />
@@ -159,6 +160,7 @@
     <ClCompile Include="jwFactoryScene_02.cpp" />
     <ClCompile Include="jwGridScript.cpp" />
     <ClCompile Include="JWooEngine.cpp" />
+    <ClCompile Include="jwPlayerScript.cpp" />
     <ClCompile Include="jwPlayScene.cpp" />
     <ClCompile Include="jwTitleScene.cpp" />
   </ItemGroup>
