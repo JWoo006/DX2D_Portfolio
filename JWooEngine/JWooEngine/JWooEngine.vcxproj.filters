@@ -29,6 +29,24 @@
     <ClInclude Include="jwPlayerScript.h">
       <Filter>Contents\Script</Filter>
     </ClInclude>
+    <ClInclude Include="jwFactoryScene_03.h">
+      <Filter>Contents\Scene\01_Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="jwFactoryScene_03_2.h">
+      <Filter>Contents\Scene\01_Factory</Filter>
+    </ClInclude>
+    <ClInclude Include="jwStudioScene_00.h">
+      <Filter>Contents\Scene\02_Studio</Filter>
+    </ClInclude>
+    <ClInclude Include="jwStudioScene_Boss.h">
+      <Filter>Contents\Scene\02_Studio</Filter>
+    </ClInclude>
+    <ClInclude Include="jwBunkerScene_00.h">
+      <Filter>Contents\Scene\03_Bunker</Filter>
+    </ClInclude>
+    <ClInclude Include="jwBunkerScene_Boss.h">
+      <Filter>Contents\Scene\03_Bunker</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="JWooEngine.cpp" />
@@ -56,6 +74,24 @@
     <ClCompile Include="jwPlayerScript.cpp">
       <Filter>Contents\Script</Filter>
     </ClCompile>
+    <ClCompile Include="jwFactoryScene_03.cpp">
+      <Filter>Contents\Scene\01_Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="jwFactoryScene_03_2.cpp">
+      <Filter>Contents\Scene\01_Factory</Filter>
+    </ClCompile>
+    <ClCompile Include="jwStudioScene_00.cpp">
+      <Filter>Contents\Scene\02_Studio</Filter>
+    </ClCompile>
+    <ClCompile Include="jwStudioScene_Boss.cpp">
+      <Filter>Contents\Scene\02_Studio</Filter>
+    </ClCompile>
+    <ClCompile Include="jwBunkerScene_00.cpp">
+      <Filter>Contents\Scene\03_Bunker</Filter>
+    </ClCompile>
+    <ClCompile Include="jwBunkerScene_Boss.cpp">
+      <Filter>Contents\Scene\03_Bunker</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Contents">
@@ -72,6 +108,12 @@
     </Filter>
     <Filter Include="Contents\Scene\01_Factory">
       <UniqueIdentifier>{a533ce84-cfb6-4146-a27e-4c76d0bcc80e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\02_Studio">
+      <UniqueIdentifier>{69448bce-c93e-4803-8fa7-b0f26e3e036a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Scene\03_Bunker">
+      <UniqueIdentifier>{24351d0b-01f1-440d-8375-ad83d03ab2b8}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

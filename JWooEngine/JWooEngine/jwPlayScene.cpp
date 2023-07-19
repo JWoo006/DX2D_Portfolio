@@ -24,9 +24,13 @@ namespace jw
 	
 	void PlayScene::Initialize()
 	{
-		
+		SetName(L"PlayScene");
+		Scene* scene = SceneManager::GetActiveScene();
+
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::UI, true);
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Player, true);
+		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
+		//CollisionManager::SetLayer(eLayerType::UI, eLayerType::Monster, true);
 
 		{
 			GameObject* player
@@ -35,7 +39,7 @@ namespace jw
 			player->SetName(L"Zelda");
 
 			Collider2D* cd = player->AddComponent<Collider2D>();
-			cd->SetSize(Vector2(1.5f, 1.5f));
+			//cd->SetSize(Vector2(1.5f, 1.5f));
 			
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
@@ -73,11 +77,6 @@ namespace jw
 			player->AddComponent<PlayerScript>();
 			
 		}
-
-
-		
-		
-
 
 		//Main Camera
 		Camera* cameraComp = nullptr;

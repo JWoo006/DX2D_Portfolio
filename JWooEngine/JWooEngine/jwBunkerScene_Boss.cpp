@@ -1,4 +1,4 @@
-#include "jwFactoryScene_02.h"
+#include "jwBunkerScene_Boss.h"
 #include "jwTransform.h"
 #include "jwMeshRenderer.h"
 #include "jwResources.h"
@@ -8,23 +8,33 @@
 #include "jwInput.h"
 #include "jwSceneManager.h"
 
+#include "jwObject.h"
+
 namespace jw
 {
-	FactoryScene_02::FactoryScene_02()
+	BunkerScene_Boss::BunkerScene_Boss()
 	{
-		SetName(L"FactoryScene_02");
-
+		SetName(L"BunkerScene_Boss");
+	}
+	BunkerScene_Boss::~BunkerScene_Boss()
+	{
+	}
+	void BunkerScene_Boss::Initialize()
+	{
 		//UI
 		{
 			// hud_base
 			{
-				GameObject* UI_Obj = new GameObject();
-				AddGameObject(eLayerType::UI, UI_Obj);
+				GameObject* UI_Obj
+					= object::Instantiate<GameObject>(eLayerType::UI);
+				//GameObject* UI_Obj = new GameObject();
+				//AddGameObject(eLayerType::UI, UI_Obj);
 				MeshRenderer* mr = UI_Obj->AddComponent<MeshRenderer>();
 				mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 				mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_spr_hud_0"));
 				UI_Obj->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 2.1f, -0.001f));
 				UI_Obj->GetComponent<Transform>()->SetScale(Vector3(8.0f, 0.3f, 1.0f));
+
 			}
 			// hud_battery
 			{
@@ -118,9 +128,9 @@ namespace jw
 			AddGameObject(eLayerType::Player, player);
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
-			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_Room_Factory_2"));
+			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_room_bunker2_boss_final"));
 			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
-			player->GetComponent<Transform>()->SetScale(Vector3(10.0f, 4.5f, 1.0f));
+			player->GetComponent<Transform>()->SetScale(Vector3(9.0f, 5.5f, 1.0f));
 		}
 
 		//Main Camera
@@ -141,32 +151,25 @@ namespace jw
 			Camera* cameraComp = camera->AddComponent<Camera>();
 			cameraComp->TurnLayerMask(eLayerType::Player, false);
 		}
-	}
-	FactoryScene_02::~FactoryScene_02()
-	{
-	}
-	void FactoryScene_02::Initialize()
-	{
-
 
 	}
 
-	void FactoryScene_02::Update()
+	void BunkerScene_Boss::Update()
 	{
 		Scene::Update();
 
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
-			SceneManager::LoadScene(L"FactoryScene_03");
+			SceneManager::LoadScene(L"TitleScene");
 		}
 	}
 
-	void FactoryScene_02::LateUpdate()
+	void BunkerScene_Boss::LateUpdate()
 	{
 		Scene::LateUpdate();
 	}
 
-	void FactoryScene_02::Render()
+	void BunkerScene_Boss::Render()
 	{
 		Scene::Render();
 	}

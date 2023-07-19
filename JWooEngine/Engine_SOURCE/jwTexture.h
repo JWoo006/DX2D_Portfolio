@@ -23,6 +23,10 @@ namespace jw::graphics
 		void BindShader(eShaderStage stage, UINT startSlot);
 		void Clear();
 
+		size_t GetWidth() { return mImage.GetMetadata().width; }
+		size_t GetHeight() { return mImage.GetMetadata().height; }
+
+
 	private:
 		ScratchImage mImage; // 원본 이미지 확장자
 		Microsoft::WRL::ComPtr<ID3D11Texture2D> mTexture;

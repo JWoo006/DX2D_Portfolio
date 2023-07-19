@@ -1,4 +1,4 @@
-#include "jwFactoryScene_02.h"
+#include "jwStudioScene_00.h"
 #include "jwTransform.h"
 #include "jwMeshRenderer.h"
 #include "jwResources.h"
@@ -8,23 +8,33 @@
 #include "jwInput.h"
 #include "jwSceneManager.h"
 
+#include "jwObject.h"
+
 namespace jw
 {
-	FactoryScene_02::FactoryScene_02()
+	StudioScene_00::StudioScene_00()
 	{
-		SetName(L"FactoryScene_02");
-
+		SetName(L"StudioScene_00");
+	}
+	StudioScene_00::~StudioScene_00()
+	{
+	}
+	void StudioScene_00::Initialize()
+	{
 		//UI
 		{
 			// hud_base
 			{
-				GameObject* UI_Obj = new GameObject();
-				AddGameObject(eLayerType::UI, UI_Obj);
+				GameObject* UI_Obj
+					= object::Instantiate<GameObject>(eLayerType::UI);
+				//GameObject* UI_Obj = new GameObject();
+				//AddGameObject(eLayerType::UI, UI_Obj);
 				MeshRenderer* mr = UI_Obj->AddComponent<MeshRenderer>();
 				mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 				mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_spr_hud_0"));
 				UI_Obj->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 2.1f, -0.001f));
 				UI_Obj->GetComponent<Transform>()->SetScale(Vector3(8.0f, 0.3f, 1.0f));
+
 			}
 			// hud_battery
 			{
@@ -118,7 +128,7 @@ namespace jw
 			AddGameObject(eLayerType::Player, player);
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
-			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_Room_Factory_2"));
+			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_room_haunted_alien1"));
 			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 			player->GetComponent<Transform>()->SetScale(Vector3(10.0f, 4.5f, 1.0f));
 		}
@@ -141,32 +151,25 @@ namespace jw
 			Camera* cameraComp = camera->AddComponent<Camera>();
 			cameraComp->TurnLayerMask(eLayerType::Player, false);
 		}
-	}
-	FactoryScene_02::~FactoryScene_02()
-	{
-	}
-	void FactoryScene_02::Initialize()
-	{
-
 
 	}
 
-	void FactoryScene_02::Update()
+	void StudioScene_00::Update()
 	{
 		Scene::Update();
 
 		if (Input::GetKeyDown(eKeyCode::N))
 		{
-			SceneManager::LoadScene(L"FactoryScene_03");
+			SceneManager::LoadScene(L"StudioScene_Boss");
 		}
 	}
 
-	void FactoryScene_02::LateUpdate()
+	void StudioScene_00::LateUpdate()
 	{
 		Scene::LateUpdate();
 	}
 
-	void FactoryScene_02::Render()
+	void StudioScene_00::Render()
 	{
 		Scene::Render();
 	}

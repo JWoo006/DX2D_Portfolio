@@ -291,8 +291,13 @@ namespace renderer
 		constantBuffer[(UINT)eCBType::Grid] = new ConstantBuffer(eCBType::Grid);
 		constantBuffer[(UINT)eCBType::Grid]->Create(sizeof(TransformCB));
 
+		// Collider
 		constantBuffer[(UINT)eCBType::Collider] = new ConstantBuffer(eCBType::Collider);
 		constantBuffer[(UINT)eCBType::Collider]->Create(sizeof(ColliderCB));
+
+		// Animator
+		constantBuffer[(UINT)eCBType::Animator] = new ConstantBuffer(eCBType::Animator);
+		constantBuffer[(UINT)eCBType::Animator]->Create(sizeof(AnimatorCB));
 	}
 
 	void LoadShader()
@@ -558,12 +563,63 @@ namespace renderer
 			}
 			{
 				std::shared_ptr<Texture> texture
+					= Resources::Load<Texture>(L"room_factory_3_2", L"..\\Resources\\Texture\\Room\\01_Factory\\room_factory_3_2.png");
+
+				std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+				spriteMateiral->SetShader(spriteShader);
+				spriteMateiral->SetTexture(texture);
+				Resources::Insert(L"SpriteMaterial_room_factory_3_2", spriteMateiral);
+			}
+			{
+				std::shared_ptr<Texture> texture
 					= Resources::Load<Texture>(L"Room_Factory_4", L"..\\Resources\\Texture\\Room\\01_Factory\\room_factory_4.png");
 
 				std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
 				spriteMateiral->SetShader(spriteShader);
 				spriteMateiral->SetTexture(texture);
 				Resources::Insert(L"SpriteMaterial_Room_Factory_4", spriteMateiral);
+			}
+		}
+		// Room_Studio
+		{
+			{
+				std::shared_ptr<Texture> texture
+					= Resources::Load<Texture>(L"room_haunted_alien1", L"..\\Resources\\Texture\\Room\\02_Studio\\room_haunted_alien1.png");
+
+				std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+				spriteMateiral->SetShader(spriteShader);
+				spriteMateiral->SetTexture(texture);
+				Resources::Insert(L"SpriteMaterial_room_haunted_alien1", spriteMateiral);
+			}
+			{
+				std::shared_ptr<Texture> texture
+					= Resources::Load<Texture>(L"room_haunted_finale2_boss", L"..\\Resources\\Texture\\Room\\02_Studio\\room_haunted_finale2.png");
+
+				std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+				spriteMateiral->SetShader(spriteShader);
+				spriteMateiral->SetTexture(texture);
+				Resources::Insert(L"SpriteMaterial_room_haunted_finale2_boss", spriteMateiral);
+			}
+		}
+		// Room_Bunker
+		{
+			{
+				std::shared_ptr<Texture> texture
+					= Resources::Load<Texture>(L"room_bunker_0", L"..\\Resources\\Texture\\Room\\03_Bunker\\room_bunker_0.png");
+
+				std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+				spriteMateiral->SetShader(spriteShader);
+				spriteMateiral->SetTexture(texture);
+				Resources::Insert(L"SpriteMaterial_room_bunker_0", spriteMateiral);
+			}
+			{
+				std::shared_ptr<Texture> texture
+					= Resources::Load<Texture>(L"room_bunker2_boss_final", L"..\\Resources\\Texture\\Room\\03_Bunker\\room_bunker2_boss_final.png");
+
+				std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+				spriteMateiral->SetShader(spriteShader);
+				spriteMateiral->SetTexture(texture);
+				Resources::Insert(L"SpriteMaterial_room_bunker2_boss_final", spriteMateiral);
 			}
 		}
 		// temp

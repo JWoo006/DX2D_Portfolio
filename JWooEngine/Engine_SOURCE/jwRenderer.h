@@ -31,9 +31,17 @@ namespace renderer
 		Vector2 Resolution;
 	};
 
-	CBUFFER(ColliderCB, CBSLOT_OVERLAPCNT)
+	CBUFFER(ColliderCB, CBSLOT_OVERLAP)
 	{
 		bool isOverlap;
+	};
+
+	CBUFFER(AnimatorCB, CBSLOT_ANIMATION2D)
+	{
+		Vector2 spriteLeftTop;
+		Vector2 spriteSize;
+		Vector2 spriteOffset;
+		Vector2 atlasSize;
 	};
 
 	extern jw::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End];

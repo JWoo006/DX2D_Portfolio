@@ -17,7 +17,12 @@ namespace jw
 	TitleScene::TitleScene()
 	{
 		SetName(L"TitleScene");
-		
+	}
+	TitleScene::~TitleScene()
+	{
+	}
+	void TitleScene::Initialize()
+	{
 		{
 			GameObject* player = new GameObject();
 			AddGameObject(eLayerType::Player, player);
@@ -27,15 +32,7 @@ namespace jw
 			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 0.0f));
 			player->GetComponent<Transform>()->SetScale(Vector3(8.0f, 8.0f, 1.0f));
 		}
-		{
-			GameObject* player = new GameObject();
-			AddGameObject(eLayerType::UI, player);
-			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
-			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
-			mr->SetMaterial(Resources::Find<Material>(L"SM_control_desc"));
-			player->GetComponent<Transform>()->SetPosition(Vector3(2.5f, -1.5f, -0.01f));
-			player->GetComponent<Transform>()->SetScale(Vector3(2.0f, 1.0f, 1.0f));
-		}
+		
 
 		//Main Camera
 		{
@@ -55,13 +52,6 @@ namespace jw
 			Camera* cameraComp = camera->AddComponent<Camera>();
 			cameraComp->TurnLayerMask(eLayerType::Player, false);
 		}
-	}
-	TitleScene::~TitleScene()
-	{
-	}
-	void TitleScene::Initialize()
-	{
-		
 
 	}
 

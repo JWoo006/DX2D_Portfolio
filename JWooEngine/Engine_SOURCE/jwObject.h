@@ -12,6 +12,7 @@ namespace jw::object
 	static __forceinline T* Instantiate(enums::eLayerType layer)
 	{
 		T* gameObj = new T();
+
 		Scene* scene = SceneManager::GetActiveScene();
 		scene->AddGameObject(layer, gameObj);
 

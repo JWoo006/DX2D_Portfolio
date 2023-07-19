@@ -10,6 +10,7 @@ namespace jw::enums
 		Collider2D,
 		Particle,
 		MeshRenderer,
+		Animator,
 		Script,
 		Camera,
 		End,
@@ -30,6 +31,7 @@ namespace jw::enums
 		Shader,
 		Material,
 		Mesh,
+		Animation,
 		End,
 	};
 
@@ -41,5 +43,6 @@ namespace jw::enums
 		Cube,
 		End,
 	};
+
 }
 
