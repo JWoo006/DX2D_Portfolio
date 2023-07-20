@@ -62,8 +62,8 @@ namespace jw
 		for (size_t i = 0; i < columnLength; i++)
 		{
 			Sprite sprite = {};
-			sprite.leftTop.x = leftTop.x + (i * size.x) / width;
-			sprite.leftTop.y = leftTop.y / height;
+			sprite.leftTop.x = leftTop.x + (i * size.x) / width; // UV
+			sprite.leftTop.y = leftTop.y / height; // UV
 			sprite.size = size;
 			sprite.offset = offset;
 			sprite.duration = duration;
