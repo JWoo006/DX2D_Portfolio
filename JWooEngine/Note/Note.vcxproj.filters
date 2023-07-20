@@ -25,6 +25,7 @@
     <ClCompile Include="DX2D_day30_07-13.cpp" />
     <ClCompile Include="DX2D_day31_07-17.cpp" />
     <ClCompile Include="DX2D_day32_07-18.cpp" />
+    <ClCompile Include="DX2D_day33_07-20.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="DX2D_day02_05-16.txt" />
