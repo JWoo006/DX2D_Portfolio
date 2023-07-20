@@ -12,6 +12,7 @@
 
 #include "jwPlayerScript.h"
 #include "jwCollisionManager.h"
+#include "jwAnimator.h"
 
 namespace jw
 {
@@ -50,6 +51,14 @@ namespace jw
 
 			player->GetComponent<Transform>()->SetPosition(Vector3(-2.0f, 0.0f, 1.0001f));
 			player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, degree));
+
+			std::shared_ptr<Texture> atlas
+				= Resources::Load<Texture>(L"LinkSprite", L"..\\Resources\\Texture\\linkSprites.png");
+
+			Animator* at = player->AddComponent<Animator>();
+			at->Create(L"Idle", atlas, Vector2(0.0f, 0.0f), Vector2(120.0f, 130.0f), 3);
+
+			at->PlayAnimation(L"Idle", true);
 		}
 
 		//{

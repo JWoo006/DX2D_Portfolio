@@ -2,6 +2,7 @@
 #include "jwGameObject.h"
 #include "jwTransform.h"
 #include "jwRenderer.h"
+#include "jwAnimator.h"
 
 namespace jw
 {
@@ -28,6 +29,13 @@ namespace jw
 
 		mMesh->BindBuffer();
 		mMaterial->Binds();
+
+		Animator* animator = GetOwner()->GetComponent<Animator>();
+		if (animator)
+		{
+			animator->Binds();
+		}
+
 		mMesh->Render();
 
 		mMaterial->Clear();

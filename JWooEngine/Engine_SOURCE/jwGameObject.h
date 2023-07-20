@@ -45,7 +45,7 @@ namespace jw
 		}
 
 		template <typename T>
-		const std::vector<T*>& GetComponents()
+		const std::vector<T*> GetComponents()
 		{
 			std::vector<T*> comps;
 
