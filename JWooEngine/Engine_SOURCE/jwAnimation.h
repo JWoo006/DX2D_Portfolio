@@ -11,6 +11,12 @@ namespace jw
 	class Animation : public Resource
 	{
 	public:
+		enum class eAnimDirection
+		{
+			Left = 0,
+			Right = 1,
+
+		};
 		struct Sprite
 		{
 			Vector2 leftTop;
@@ -52,6 +58,8 @@ namespace jw
 
 		bool IsComplete() { return mbComplete; }
 
+		void SetAnimDirection(eAnimDirection dir) { mAnimDirection = dir; }
+
 	private:
 		std::shared_ptr<graphics::Texture> mAtlas;
 		Animator* mAnimator;
@@ -59,5 +67,7 @@ namespace jw
 		int mIndex;
 		float mTime;
 		bool mbComplete;
+
+		eAnimDirection mAnimDirection;
 	};
 }

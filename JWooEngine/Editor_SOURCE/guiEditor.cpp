@@ -5,8 +5,11 @@
 #include "..\\Engine_SOURCE\\jwMeshRenderer.h"
 #include "..\\Engine_SOURCE\\jwMaterial.h"
 #include "..\\Engine_SOURCE\\jwRenderer.h"
+#include "..\\Engine_SOURCE\\jwApplication.h"
 
 #include "jwGridScript.h"
+
+extern jw::Application application;
 
 namespace gui
 {
@@ -18,6 +21,8 @@ namespace gui
 	void Editor::Initialize()
 	{
 		mDebugObjects.resize((UINT)eColliderType::End);
+
+		
 
 		std::shared_ptr<jw::Mesh> mesh
 			= jw::Resources::Find<jw::Mesh>(L"DebugRect");
@@ -138,7 +143,10 @@ namespace gui
 			cb->Bind(eShaderStage::PS);
 		}
 
-
-		debugObj->Render();
+		if (application.GetColShow())
+		{
+			debugObj->Render();
+		}
+		
 	}
 }

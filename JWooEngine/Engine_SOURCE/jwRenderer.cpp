@@ -70,6 +70,11 @@ namespace renderer
 			, DebugShader->GetVSCode()
 			, DebugShader->GetInputLayoutAddressOf());
 
+		shader = jw::Resources::Find<Shader>(L"SpriteAnimationShader");
+		jw::graphics::GetDevice()->CreateInputLayout(arrLayout, 3
+			, shader->GetVSCode()
+			, shader->GetInputLayoutAddressOf());
+
 
 #pragma endregion
 #pragma region Sampler State
@@ -323,6 +328,12 @@ namespace renderer
 		debugShader->SetTopology(D3D11_PRIMITIVE_TOPOLOGY::D3D_PRIMITIVE_TOPOLOGY_LINESTRIP);
 		debugShader->SetRSState(eRSType::WireframeNone);
 		jw::Resources::Insert(L"DebugShader", debugShader);
+
+		std::shared_ptr<Shader> spriteAniShader = std::make_shared<Shader>();
+		spriteAniShader->Create(eShaderStage::VS, L"SpriteAnimationVS.hlsl", "main");
+		spriteAniShader->Create(eShaderStage::PS, L"SpriteAnimationPS.hlsl", "main");
+		jw::Resources::Insert(L"SpriteAnimationShader", spriteAniShader);
+
 	}
 
 	void LoadMaterial()
@@ -346,19 +357,30 @@ namespace renderer
 		material->SetRenderingMode(eRenderingMode::Transparent);
 		Resources::Insert(L"SpriteMaterial02", material);
 
-		std::shared_ptr<Shader> gridShader
-			= Resources::Find<Shader>(L"GridShader");
+		//shader
+		{
+			std::shared_ptr<Shader> gridShader
+				= Resources::Find<Shader>(L"GridShader");
 
-		material = std::make_shared<Material>();
-		material->SetShader(gridShader);
-		Resources::Insert(L"GridMaterial", material);
+			material = std::make_shared<Material>();
+			material->SetShader(gridShader);
+			Resources::Insert(L"GridMaterial", material);
 
-		std::shared_ptr<Shader> debugShader
-			= Resources::Find<Shader>(L"DebugShader");
+			std::shared_ptr<Shader> debugShader
+				= Resources::Find<Shader>(L"DebugShader");
 
-		material = std::make_shared<Material>();
-		material->SetShader(debugShader);
-		Resources::Insert(L"DebugMaterial", material);
+			material = std::make_shared<Material>();
+			material->SetShader(debugShader);
+			Resources::Insert(L"DebugMaterial", material);
+
+			spriteShader
+				= Resources::Find<Shader>(L"SpriteAnimationShader");
+			material = std::make_shared<Material>();
+			material->SetShader(spriteShader);
+			material->SetRenderingMode(eRenderingMode::Transparent);
+			Resources::Insert(L"SpriteAnimaionMaterial", material);
+		}
+		
 
 		// UI
 		{

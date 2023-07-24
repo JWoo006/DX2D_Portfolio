@@ -156,6 +156,7 @@
     <ClInclude Include="jwPlayScene.h" />
     <ClInclude Include="jwStudioScene_00.h" />
     <ClInclude Include="jwStudioScene_Boss.h" />
+    <ClInclude Include="jwTestScene.h" />
     <ClInclude Include="jwTitleScene.h" />
     <ClInclude Include="LoadScenes.h" />
   </ItemGroup>
@@ -174,6 +175,7 @@
     <ClCompile Include="jwPlayScene.cpp" />
     <ClCompile Include="jwStudioScene_00.cpp" />
     <ClCompile Include="jwStudioScene_Boss.cpp" />
+    <ClCompile Include="jwTestScene.cpp" />
     <ClCompile Include="jwTitleScene.cpp" />
   </ItemGroup>
   <ItemGroup>

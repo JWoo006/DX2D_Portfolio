@@ -1,6 +1,8 @@
 #pragma once
 #include "..\Engine_SOURCE\jwSceneManager.h"
 #include "jwPlayScene.h"
+#include "jwTestScene.h"
+
 #include "jwTitleScene.h"
 #include "jwFactoryScene_00.h"
 #include "jwFactoryScene_01.h"
@@ -25,6 +27,8 @@ namespace jw
 	void InitializeScenes()
 	{
 		SceneManager::CreateScene<PlayScene>(L"PlayScene");
+		SceneManager::CreateScene<TestScene>(L"TestScene");
+
 		SceneManager::CreateScene<TitleScene>(L"TitleScene");
 		SceneManager::CreateScene<FactoryScene_00>(L"FactoryScene_00");
 		SceneManager::CreateScene<FactoryScene_01>(L"FactoryScene_01");
@@ -40,6 +44,8 @@ namespace jw
 
 		//SceneManager::SetActiveScene(L"StudioScene_00");
 		
-		SceneManager::SetActiveScene(L"PlayScene");
+		//SceneManager::SetActiveScene(L"PlayScene");
+
+		SceneManager::SetActiveScene(L"TestScene");
 	}
 }

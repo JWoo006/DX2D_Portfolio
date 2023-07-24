@@ -14,6 +14,7 @@ namespace jw
 		, mIndex(-1)
 		, mTime(0.0f)
 		, mbComplete(false)
+		, mAnimDirection(eAnimDirection::Right)
 	{
 
 	}
@@ -88,7 +89,7 @@ namespace jw
 		data.spriteSize = mSprites[mIndex].size;
 		data.spriteOffset = mSprites[mIndex].offset;
 		data.atlasSize = mSprites[mIndex].atlasSize;
-		data.animationType = 1;
+		data.animationType = (int)mAnimDirection;
 
 		ConstantBuffer* cb = renderer::constantBuffer[(UINT)eCBType::Animator];
 		cb->SetData(&data);

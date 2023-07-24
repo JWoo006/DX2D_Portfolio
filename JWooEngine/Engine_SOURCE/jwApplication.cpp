@@ -40,6 +40,18 @@ namespace jw
 
 	void Application::Update()
 	{
+		if (Input::GetKeyDown(eKeyCode::K))
+		{
+			if (mbColShow)
+			{
+				mbColShow = false;
+			}
+			else
+			{
+				mbColShow = true;
+			}
+		}
+
 		Time::Update();
 		Input::Update();
 

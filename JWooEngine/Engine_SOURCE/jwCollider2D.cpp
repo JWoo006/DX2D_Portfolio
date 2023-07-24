@@ -42,7 +42,7 @@ namespace jw
 		mPosition = pos;
 
 		graphics::DebugMesh mesh = {};
-		mesh.position = pos;
+		mesh.position = mPosition;
 		mesh.scale = mScale;
 		mesh.rotation = tr->GetRotation();
 		mesh.type = eColliderType::Rect;

@@ -26,8 +26,11 @@ namespace jw
 		UINT GetHeight() { return mHeight; }
 		HWND GetHwnd() { return mHwnd; }
 
+		bool GetColShow() { return mbColShow; }
+
 	private:
 		bool mbInitialize = false;
+		bool mbColShow = false;
 		// 오로지 한개의 객체만 만들수 있는 스마트 포인터
 		std::unique_ptr<jw::graphics::GraphicDevice_Dx11> graphicDevice;
 
@@ -35,5 +38,7 @@ namespace jw
 		HWND mHwnd;
 		UINT mWidth;
 		UINT mHeight;
+
+		
 	};
 }

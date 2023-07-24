@@ -23,6 +23,8 @@ namespace jw::graphics
 		void BindShader(eShaderStage stage, UINT startSlot);
 		void Clear();
 
+		HRESULT CreateTex(const std::wstring& path, std::shared_ptr<graphics::Texture>& atlasTexture);
+
 		size_t GetWidth() { return mImage.GetMetadata().width; }
 		size_t GetHeight() { return mImage.GetMetadata().height; }
 

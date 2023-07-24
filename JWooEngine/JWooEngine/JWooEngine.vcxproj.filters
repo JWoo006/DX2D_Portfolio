@@ -47,6 +47,9 @@
     <ClInclude Include="jwBunkerScene_Boss.h">
       <Filter>Contents\Scene\03_Bunker</Filter>
     </ClInclude>
+    <ClInclude Include="jwTestScene.h">
+      <Filter>Contents\Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="JWooEngine.cpp" />
@@ -91,6 +94,9 @@
     </ClCompile>
     <ClCompile Include="jwBunkerScene_Boss.cpp">
       <Filter>Contents\Scene\03_Bunker</Filter>
+    </ClCompile>
+    <ClCompile Include="jwTestScene.cpp">
+      <Filter>Contents\Scene</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
