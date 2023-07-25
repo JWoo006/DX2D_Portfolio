@@ -43,6 +43,8 @@ namespace jw
 		at->CreateAnimation(L"Player_Jump", L"..\\Resources\\Texture\\Player\\spr_jump", Vector2(0, 10.f), Vector2(32.f, 100.0f), 0.05f); // ÇÈ¼¿ 32X42
 		at->CreateAnimation(L"Player_Fall", L"..\\Resources\\Texture\\Player\\spr_fall", Vector2(0, 20.f), Vector2(42.f, 100.0f), 0.05f); // ÇÈ¼¿ 42x48
 
+		at->CreateAnimation(L"Player_WallGrab", L"..\\Resources\\Texture\\Player\\spr_wallgrab", Vector2(0, 10), Vector2(48.f, 100.0f)); // ÇÈ¼¿ 48x38
+
 		at->CreateAnimation(L"Player_Hurtfly_Begin", L"..\\Resources\\Texture\\Player\\spr_hurtfly_begin", Vector2(0, 20.f), Vector2(50.f, 80.0f)); // pixel 50x43
 		at->CreateAnimation(L"Player_Hurtfly_Loop", L"..\\Resources\\Texture\\Player\\spr_hurtfly_loop", Vector2(0, 20.f), Vector2(50.f, 80.0f)); // pixel 50x43
 		at->CreateAnimation(L"Player_Death", L"..\\Resources\\Texture\\Player\\spr_hurtground", Vector2(0, -10.f), Vector2(57.f, 80.0f)); // pixel 57x25
