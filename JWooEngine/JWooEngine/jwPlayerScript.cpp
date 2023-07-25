@@ -39,8 +39,12 @@ namespace jw
 		at->CreateAnimation(L"Player_Roll", L"..\\Resources\\Texture\\Player\\spr_roll", Vector2(0, -5.f), Vector2(48.f, 100.0f), 0.05f); // pixel 48x33
 
 		at->CreateAnimation(L"Player_Attack", L"..\\Resources\\Texture\\Player\\spr_attack", Vector2(0.0), Vector2(62.f, 117.0f), 0.05f); // ÇÈ¼¿ 62X42
-		at->CreateAnimation(L"Player_Jump", L"..\\Resources\\Texture\\Player\\spr_jump", Vector2(0.0), Vector2(32.f, 117.0f), 0.05f); // ÇÈ¼¿ 32X42
 
+		at->CreateAnimation(L"Player_Jump", L"..\\Resources\\Texture\\Player\\spr_jump", Vector2(0, 10.f), Vector2(32.f, 100.0f), 0.05f); // ÇÈ¼¿ 32X42
+		at->CreateAnimation(L"Player_Fall", L"..\\Resources\\Texture\\Player\\spr_fall", Vector2(0, 20.f), Vector2(42.f, 100.0f), 0.05f); // ÇÈ¼¿ 42x48
+
+		at->CreateAnimation(L"Player_Hurtfly_Begin", L"..\\Resources\\Texture\\Player\\spr_hurtfly_begin", Vector2(0, 20.f), Vector2(50.f, 80.0f)); // pixel 50x43
+		at->CreateAnimation(L"Player_Hurtfly_Loop", L"..\\Resources\\Texture\\Player\\spr_hurtfly_loop", Vector2(0, 20.f), Vector2(50.f, 80.0f)); // pixel 50x43
 		at->CreateAnimation(L"Player_Death", L"..\\Resources\\Texture\\Player\\spr_hurtground", Vector2(0, -10.f), Vector2(57.f, 80.0f)); // pixel 57x25
 
 		tr->SetScale(Vector3(2.5f, 2.5f, 1.0f));		
@@ -62,11 +66,11 @@ namespace jw
 
 
 		at->PlayAnimation(L"Player_Idle", true);
-		mPlayerState = ePlayerState::Idle;
+		mState = ePlayerState::Idle;
 	}
 	void PlayerScript::Update()
 	{
-		switch (mPlayerState)
+		switch (mState)
 		{
 		case jw::PlayerScript::ePlayerState::Idle:
 			tr->SetScale(Vector3(2.5f, 2.5f, 1.0f));
@@ -102,16 +106,12 @@ namespace jw
 			break;
 		}
 		
-		if (Input::GetKey(eKeyCode::W))
-		{
-			pos.y += 2.0f * Time::DeltaTime();
-			tr->SetPosition(pos);
-		}
+		
 
 		if (Input::GetKeyDown(eKeyCode::Z))
 		{
 			at->PlayAnimation(L"Player_Idle", true);
-			mPlayerState = ePlayerState::Idle;
+			mState = ePlayerState::Idle;
 		}
 		if (Input::GetKey(eKeyCode::X))
 		{
@@ -120,7 +120,7 @@ namespace jw
 		if (Input::GetKeyDown(eKeyCode::V))
 		{
 			at->PlayAnimation(L"Player_Death", false);
-			//mPlayerState = ePlayerState::Idle_R;
+			//mState = ePlayerState::Idle_R;
 		}
 
 	}
@@ -168,20 +168,20 @@ namespace jw
 	}
 	void PlayerScript::RollAnimComplete()
 	{
-		mPlayerState = ePlayerState::Idle;
+		mState = ePlayerState::Idle;
 		at->PlayAnimation(L"Player_Idle", true);
 	}
 	void PlayerScript::idle()
 	{
 		if (Input::GetKeyDown(eKeyCode::LBUTTON))
 		{
-			//mPlayerState = ePlayerState::Attack;
+			//mState = ePlayerState::Attack;
 			at->PlayAnimation(L"Player_Attack", true);
 		}
 
 		if (Input::GetKeyDown(eKeyCode::S) || Input::GetKey(eKeyCode::S))
 		{
-			mPlayerState = ePlayerState::Crouch;
+			mState = ePlayerState::Crouch;
 			at->PlayAnimation(L"Player_PreCrouch", true);
 		}
 
@@ -189,20 +189,34 @@ namespace jw
 		{
 			at->SetAnimDirection(Animation::eAnimDirection::Left);
 			at->PlayAnimation(L"Player_Idle_to_Run", true);
-			mPlayerState = ePlayerState::Move_L;
+			mState = ePlayerState::Move_L;
 		}
 		if (Input::GetKeyDown(eKeyCode::D) || Input::GetKey(eKeyCode::D))
 		{
 			at->SetAnimDirection(Animation::eAnimDirection::Right);
 			at->PlayAnimation(L"Player_Idle_to_Run", true);
-			mPlayerState = ePlayerState::Move_R;
+			mState = ePlayerState::Move_R;
+		}
+
+		if (Input::GetKey(eKeyCode::W))
+		{
+			at->PlayAnimation(L"Player_Jump", true);
+
+			if (at->GetAnimDirection() == Animation::eAnimDirection::Left)
+			{
+				mState = ePlayerState::Jump_L;
+			}
+			else
+			{
+				mState = ePlayerState::Jump_R;
+			}
 		}
 	}
 	void PlayerScript::move()
 	{
 		if (Input::GetKeyDown(eKeyCode::LBUTTON))
 		{
-			//mPlayerState = ePlayerState::Attack;
+			//mState = ePlayerState::Attack;
 			at->PlayAnimation(L"Player_Attack", true);
 		}
 
@@ -219,19 +233,33 @@ namespace jw
 
 		if (Input::GetKeyDown(eKeyCode::S))
 		{
-			mPlayerState = ePlayerState::Roll;
+			mState = ePlayerState::Roll;
 			at->PlayAnimation(L"Player_Roll", true);
 		}
 
 		if (Input::GetKeyUp(eKeyCode::A))
 		{
-			mPlayerState = ePlayerState::Idle;
+			mState = ePlayerState::Idle;
 			at->PlayAnimation(L"Player_Run_to_Idle", true);
 		}
 		else if (Input::GetKeyUp(eKeyCode::D))
 		{
-			mPlayerState = ePlayerState::Idle;
+			mState = ePlayerState::Idle;
 			at->PlayAnimation(L"Player_Run_to_Idle", true);
+		}
+
+		if (Input::GetKey(eKeyCode::W))
+		{
+			at->PlayAnimation(L"Player_Jump", true);
+
+			if (at->GetAnimDirection() == Animation::eAnimDirection::Left)
+			{
+				mState = ePlayerState::Jump_L;
+			}
+			else
+			{
+				mState = ePlayerState::Jump_R;
+			}
 		}
 
 	}
@@ -239,19 +267,19 @@ namespace jw
 	{
 		if (Input::GetKeyUp(eKeyCode::S))
 		{
-			mPlayerState = ePlayerState::Idle;
+			mState = ePlayerState::Idle;
 			at->PlayAnimation(L"Player_PostCrouch", true);
 		}
 
 		if (Input::GetKeyDown(eKeyCode::A))
 		{
-			mPlayerState = ePlayerState::Roll;
+			mState = ePlayerState::Roll;
 			at->SetAnimDirection(Animation::eAnimDirection::Left);
 			at->PlayAnimation(L"Player_Roll", true);
 		}
 		if (Input::GetKeyDown(eKeyCode::D))
 		{
-			mPlayerState = ePlayerState::Roll;
+			mState = ePlayerState::Roll;
 			at->SetAnimDirection(Animation::eAnimDirection::Right);
 			at->PlayAnimation(L"Player_Roll", true);
 		}
@@ -268,22 +296,87 @@ namespace jw
 			pos.x += 4.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
-
-		
 	}
 	void PlayerScript::jump()
 	{
+		if (Input::GetKey(eKeyCode::A))
+		{
+			pos.x -= 2.0f * Time::DeltaTime();
+
+			if (mState == ePlayerState::Jump_R)
+			{
+				mState = ePlayerState::Jump_L;
+
+				if (mbFall)
+				{
+					at->SetAnimDirection(Animation::eAnimDirection::Left);
+					at->PlayAnimation(L"Player_Fall", true);
+				}
+				else
+				{
+					at->SetAnimDirection(Animation::eAnimDirection::Left);
+					at->PlayAnimation(L"Player_Jump", true);
+				}
+			}
+			tr->SetPosition(pos);
+		}
+		if (Input::GetKey(eKeyCode::D))
+		{
+			pos.x += 2.0f * Time::DeltaTime();
+
+			if (mState == ePlayerState::Jump_L)
+			{
+				mState = ePlayerState::Jump_R;
+
+				if (mbFall)
+				{
+					at->SetAnimDirection(Animation::eAnimDirection::Right);
+					at->PlayAnimation(L"Player_Fall", true);
+				}
+				else
+				{
+					at->SetAnimDirection(Animation::eAnimDirection::Right);
+					at->PlayAnimation(L"Player_Jump", true);
+				}
+			}
+			tr->SetPosition(pos);
+		}
+		mJumpTime += Time::DeltaTime();
+		if (mJumpTime > 0.3f)
+		{
+			if (!mbFall)
+			{
+				mbFall = true;
+				at->PlayAnimation(L"Player_Fall", true);
+			}
+			pos.y -= 2.0f * Time::DeltaTime();
+			tr->SetPosition(pos);
+		}
+		else
+		{
+			pos.y += 4.0f * Time::DeltaTime();
+			tr->SetPosition(pos);
+		}
+
+		if (pos.y < 0.0f)
+		{
+			pos.y = 0.0f;
+			mJumpTime = 0.0f;
+			mbFall = false;
+			mState = ePlayerState::Idle;
+			at->PlayAnimation(L"Player_Idle", true);
+		}
 	}
 	void PlayerScript::attack()
 	{
 		if (at->GetAnimDirection() == Animation::eAnimDirection::Left)
 		{
-			mPlayerState = ePlayerState::Idle;
+			mState = ePlayerState::Idle;
 			at->PlayAnimation(L"Player_Idle", true);
 		}
 		else
 		{
-			mPlayerState = ePlayerState::Idle;
+			mState = ePlayerState::Idle;
 			at->PlayAnimation(L"Player_Idle", true);
 		}
 	}

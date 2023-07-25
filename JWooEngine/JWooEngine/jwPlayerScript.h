@@ -51,13 +51,16 @@ namespace jw
 		void death();
 
 	private:
-		ePlayerState mPlayerState;
+		ePlayerState mState;
 
 		Transform* tr;
 		Collider2D* cd;
 		Animator* at;
 
 		Vector3 pos;
+
+		float mJumpTime;
+		bool mbFall = false;
 		
 	};
 }
