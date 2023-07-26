@@ -8,6 +8,8 @@
 #include "jwInput.h"
 #include "jwSceneManager.h"
 
+#include "jwLight.h"
+
 #include "jwApplication.h"
 
 extern jw::Application application;
@@ -33,6 +35,14 @@ namespace jw
 			player->GetComponent<Transform>()->SetScale(Vector3(8.0f, 8.0f, 1.0f));
 		}
 		
+		{
+			GameObject* light = new GameObject();
+			light->SetName(L"Light");
+			AddGameObject(eLayerType::Light, light);
+			Light* lightComp = light->AddComponent<Light>();
+			lightComp->SetType(eLightType::Directional);
+			lightComp->SetColor(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+		}
 
 		//Main Camera
 		{

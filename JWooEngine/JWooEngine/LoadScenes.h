@@ -42,9 +42,9 @@ namespace jw
 		SceneManager::CreateScene<BunkerScene_00>(L"BunkerScene_00");
 		SceneManager::CreateScene<BunkerScene_Boss>(L"BunkerScene_Boss");
 
-		//SceneManager::SetActiveScene(L"StudioScene_00");
+		SceneManager::SetActiveScene(L"BunkerScene_Boss");
 		
-		SceneManager::SetActiveScene(L"PlayScene");
+		//SceneManager::SetActiveScene(L"PlayScene");
 
 		//SceneManager::SetActiveScene(L"TestScene");
 	}
