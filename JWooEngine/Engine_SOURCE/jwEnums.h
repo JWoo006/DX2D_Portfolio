@@ -12,6 +12,7 @@ namespace jw::enums
 		MeshRenderer,
 		Animator,
 		Script,
+		Light,
 		Camera,
 		End,
 	};
@@ -21,6 +22,7 @@ namespace jw::enums
 		Grid,
 		Player,
 		Monster,
+		Light,
 		UI,
 		End,
 	};
@@ -41,6 +43,14 @@ namespace jw::enums
 		Circle,
 		Sphere,
 		Cube,
+		End,
+	};
+
+	enum class eLightType
+	{
+		Directional,
+		Point,
+		Spot,
 		End,
 	};
 

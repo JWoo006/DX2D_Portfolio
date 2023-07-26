@@ -5,6 +5,7 @@
 #include "jwShader.h"
 #include "jwConstantBuffer.h"
 #include "jwCamera.h"
+#include "jwLight.h"
 
 using namespace jw::math;
 using namespace jw::graphics;
@@ -46,17 +47,18 @@ namespace renderer
 	};
 
 	extern jw::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End];
-
 	extern Microsoft::WRL::ComPtr<ID3D11SamplerState> samplerState[];
 	extern Microsoft::WRL::ComPtr<ID3D11RasterizerState> rasterizerStates[];
 	extern Microsoft::WRL::ComPtr<ID3D11DepthStencilState> depthStencilStates[];
 	extern Microsoft::WRL::ComPtr<ID3D11BlendState> blendStates[];
 
+	extern std::vector<jw::Light*> lights;
 	extern jw::Camera* mainCamera;
 	extern std::vector<jw::Camera*> cameras;
 	extern std::vector<DebugMesh> debugMeshs;
 
 	void Initialize();
+	void BindLights();
 	void Render();
 	void Release();
 

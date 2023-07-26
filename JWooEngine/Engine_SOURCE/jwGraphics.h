@@ -85,6 +85,11 @@ namespace jw::graphics
 		End,
 	};
 
+	enum class eSRVType
+	{
+		None,
+		End,
+	};
 
 	struct GpuBuffer
 	{
@@ -112,6 +117,18 @@ namespace jw::graphics
 		float time;
 
 		bool isOverlap;
+	};
+
+	struct LightAttribute
+	{
+		math::Vector4 color;
+		math::Vector4 position;
+		math::Vector4 direction;
+
+		enums::eLightType type;
+		float radius;
+		float angle;
+		int pad;
 	};
 }
 

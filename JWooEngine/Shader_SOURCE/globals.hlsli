@@ -21,6 +21,7 @@ cbuffer Animator : register(b3)
     float2 SpriteOffset;
     float2 AtlasSize;
     uint animationType;
+    float3 pad;
 }
 
 cbuffer Collider : register(b4)
@@ -30,6 +31,21 @@ cbuffer Collider : register(b4)
 
 Texture2D albedoTexture : register(t0);
 Texture2D atlasTexture : register(t12);
+
+struct LightAttribute
+{
+    float4 color;
+    float4 position;
+    float4 direction;
+    
+    uint type;
+    float radius;
+    float angle;
+    int pad;
+};
+
+StructuredBuffer<LightAttribute> lightsAttribute : register(t13);
+
 
 SamplerState pointSampler : register(s0);
 SamplerState anisotropicSampler : register(s1);

@@ -30,6 +30,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwLayer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwLight.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMesh.h" />
@@ -41,6 +42,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwScript.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwStructedBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwResources.h" />
@@ -61,6 +63,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwLayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwLight.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMesh.cpp" />
@@ -70,6 +73,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwScript.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwStructedBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwResources.cpp" />

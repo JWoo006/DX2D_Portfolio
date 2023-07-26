@@ -94,6 +94,9 @@
     <Filter Include="GameObject\Component\Animator">
       <UniqueIdentifier>{0c0af7fa-e254-461c-95ed-fef5540771ca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Graphics\StructedBuffer">
+      <UniqueIdentifier>{0a21913f-e7c8-4dfa-b98b-d7452146ab1a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEntity.h">
@@ -192,6 +195,10 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwAnimator.h">
       <Filter>GameObject\Component\Animator</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwLight.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwStructedBuffer.h">
+      <Filter>Graphics\StructedBuffer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp">
@@ -274,6 +281,10 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwAnimator.cpp">
       <Filter>GameObject\Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwLight.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwStructedBuffer.cpp">
+      <Filter>Graphics\StructedBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

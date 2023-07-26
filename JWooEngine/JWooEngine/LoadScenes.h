@@ -44,8 +44,8 @@ namespace jw
 
 		//SceneManager::SetActiveScene(L"StudioScene_00");
 		
-		//SceneManager::SetActiveScene(L"PlayScene");
+		SceneManager::SetActiveScene(L"PlayScene");
 
-		SceneManager::SetActiveScene(L"TestScene");
+		//SceneManager::SetActiveScene(L"TestScene");
 	}
 }
