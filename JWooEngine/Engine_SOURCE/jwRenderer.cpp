@@ -505,13 +505,38 @@ namespace renderer
 			spriteMateiral->SetTexture(texture);
 			Resources::Insert(L"SpriteMaterial_Title_Temp", spriteMateiral);
 
-			/*std::shared_ptr<Texture> texture
-				= Resources::Load<Texture>(L"Title_Temp", L"..\\Resources\\Texture\\Title\\title_temp.png");
+			// background
+			{
+				std::shared_ptr<Texture> texture
+					= Resources::Load<Texture>(L"Title_Background", L"..\\Resources\\Texture\\Title\\spr_title_background\\spr_title_background_0.png");
 
-			std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
-			spriteMateiral->SetShader(spriteShader);
-			spriteMateiral->SetTexture(texture);
-			Resources::Insert(L"SpriteMaterial_Title_Temp", spriteMateiral);*/
+				std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+				spriteMateiral->SetShader(spriteShader);
+				spriteMateiral->SetTexture(texture);
+				Resources::Insert(L"SpriteMaterial_Title_Background", spriteMateiral);
+			}
+
+			//fence
+			{
+				std::shared_ptr<Texture> texture
+					= Resources::Load<Texture>(L"Title_Fence", L"..\\Resources\\Texture\\Title\\spr_title_fence\\spr_title_fence_0.png");
+
+				std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+				spriteMateiral->SetShader(spriteShader);
+				spriteMateiral->SetTexture(texture);
+				Resources::Insert(L"SpriteMaterial_Title_Fence", spriteMateiral);
+			}
+
+			//bottom_grass
+			{
+				std::shared_ptr<Texture> texture
+					= Resources::Load<Texture>(L"Title_Grass", L"..\\Resources\\Texture\\Title\\spr_title_grass\\spr_title_grass_0.png");
+
+				std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+				spriteMateiral->SetShader(spriteShader);
+				spriteMateiral->SetTexture(texture);
+				Resources::Insert(L"SpriteMaterial_Title_Grass", spriteMateiral);
+			}
 		}
 
 		// Room_Factory

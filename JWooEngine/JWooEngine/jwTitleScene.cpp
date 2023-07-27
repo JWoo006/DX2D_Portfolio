@@ -27,12 +27,16 @@ namespace jw
 	{
 		//bg
 		{
+			
+		}
+
+		{
 			GameObject* player = new GameObject();
 			AddGameObject(eLayerType::BG, player);
-			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
-			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
-			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_Title_Temp"));
-			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -0.001f));
+			//MeshRenderer* mr = player->AddComponent<MeshRenderer>();
+			//mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+			//mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_Title_Temp"));
+			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -0.0011f));
 			player->GetComponent<Transform>()->SetScale(Vector3(8.0f, 8.0f, 1.0f));
 		}
 		
