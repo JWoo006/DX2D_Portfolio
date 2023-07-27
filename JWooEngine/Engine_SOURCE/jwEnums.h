@@ -20,6 +20,7 @@ namespace jw::enums
 	enum class eLayerType
 	{
 		Grid,
+		BG,
 		Player,
 		Monster,
 		Light,

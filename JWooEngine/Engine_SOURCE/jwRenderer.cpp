@@ -352,31 +352,6 @@ namespace renderer
 		material->SetRenderingMode(eRenderingMode::Transparent);
 		Resources::Insert(L"SpriteMaterial02", material);
 
-		//shader
-		{
-			std::shared_ptr<Shader> gridShader
-				= Resources::Find<Shader>(L"GridShader");
-
-			material = std::make_shared<Material>();
-			material->SetShader(gridShader);
-			Resources::Insert(L"GridMaterial", material);
-
-			std::shared_ptr<Shader> debugShader
-				= Resources::Find<Shader>(L"DebugShader");
-
-			material = std::make_shared<Material>();
-			material->SetShader(debugShader);
-			Resources::Insert(L"DebugMaterial", material);
-
-			spriteShader
-				= Resources::Find<Shader>(L"SpriteAnimationShader");
-			material = std::make_shared<Material>();
-			material->SetShader(spriteShader);
-			material->SetRenderingMode(eRenderingMode::Transparent);
-			Resources::Insert(L"SpriteAnimaionMaterial", material);
-		}
-		
-
 		// UI
 		{
 			// hud_base
@@ -529,6 +504,14 @@ namespace renderer
 			spriteMateiral->SetShader(spriteShader);
 			spriteMateiral->SetTexture(texture);
 			Resources::Insert(L"SpriteMaterial_Title_Temp", spriteMateiral);
+
+			/*std::shared_ptr<Texture> texture
+				= Resources::Load<Texture>(L"Title_Temp", L"..\\Resources\\Texture\\Title\\title_temp.png");
+
+			std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+			spriteMateiral->SetShader(spriteShader);
+			spriteMateiral->SetTexture(texture);
+			Resources::Insert(L"SpriteMaterial_Title_Temp", spriteMateiral);*/
 		}
 
 		// Room_Factory
@@ -671,6 +654,30 @@ namespace renderer
 				spriteMateiral->SetRenderingMode(eRenderingMode::Transparent);
 				Resources::Insert(L"SM_spr_idle_0", spriteMateiral);
 			}
+		}
+
+		//shader
+		{
+			std::shared_ptr<Shader> gridShader
+				= Resources::Find<Shader>(L"GridShader");
+
+			material = std::make_shared<Material>();
+			material->SetShader(gridShader);
+			Resources::Insert(L"GridMaterial", material);
+
+			std::shared_ptr<Shader> debugShader
+				= Resources::Find<Shader>(L"DebugShader");
+
+			material = std::make_shared<Material>();
+			material->SetShader(debugShader);
+			Resources::Insert(L"DebugMaterial", material);
+
+			spriteShader
+				= Resources::Find<Shader>(L"SpriteAnimationShader");
+			material = std::make_shared<Material>();
+			material->SetShader(spriteShader);
+			material->SetRenderingMode(eRenderingMode::Transparent);
+			Resources::Insert(L"SpriteAnimaionMaterial", material);
 		}
 	}
 
