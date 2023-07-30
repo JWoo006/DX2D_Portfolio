@@ -199,6 +199,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwStructedBuffer.h">
       <Filter>Graphics\StructedBuffer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwComputeShader.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp">
@@ -286,6 +287,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwStructedBuffer.cpp">
       <Filter>Graphics\StructedBuffer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwComputeShader.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)jwMath.inl">

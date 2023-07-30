@@ -13,6 +13,7 @@
 #include "jwPlayerScript.h"
 #include "jwCollisionManager.h"
 #include "jwAnimator.h"
+#include "jwComputeShader.h"
 
 namespace jw
 {
@@ -32,6 +33,9 @@ namespace jw
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Player, true);
 		//CollisionManager::SetLayer(eLayerType::Player, eLayerType::Monster, true);
 		//CollisionManager::SetLayer(eLayerType::UI, eLayerType::Monster, true);
+
+		ComputeShader* cs = new ComputeShader();
+		cs->Create(L"PaintCS.hlsl", "main");
 
 		{
 			GameObject* player

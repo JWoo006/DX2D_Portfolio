@@ -25,6 +25,8 @@ namespace jw
 	}
 	void TitleScene::Initialize()
 	{
+		
+
 		//bg
 		{
 			
@@ -33,20 +35,15 @@ namespace jw
 		{
 			GameObject* player = new GameObject();
 			AddGameObject(eLayerType::BG, player);
-			//MeshRenderer* mr = player->AddComponent<MeshRenderer>();
-			//mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
-			//mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_Title_Temp"));
+			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
+			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial_Title_Temp"));
 			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -0.0011f));
 			player->GetComponent<Transform>()->SetScale(Vector3(8.0f, 8.0f, 1.0f));
 		}
 		
 		{
-			GameObject* light = new GameObject();
-			light->SetName(L"Light");
-			AddGameObject(eLayerType::Light, light);
-			Light* lightComp = light->AddComponent<Light>();
-			lightComp->SetType(eLightType::Directional);
-			lightComp->SetColor(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+			
 		}
 
 		//Main Camera

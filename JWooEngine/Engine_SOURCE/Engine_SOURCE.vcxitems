@@ -22,6 +22,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwComputeShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEnums.h" />
@@ -57,6 +58,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwComputeShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwGameObject.cpp" />

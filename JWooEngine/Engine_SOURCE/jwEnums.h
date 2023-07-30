@@ -35,6 +35,7 @@ namespace jw::enums
 		Material,
 		Mesh,
 		Animation,
+		ComputeShader,
 		End,
 	};
 
