@@ -11,6 +11,7 @@ namespace jw::enums
 		Particle,
 		MeshRenderer,
 		Animator,
+		Rigidbody,
 		Script,
 		Light,
 		Camera,
@@ -21,10 +22,12 @@ namespace jw::enums
 	{
 		Grid,
 		BG,
+		Ground,
 		Player,
 		Monster,
 		Light,
 		UI,
+		MouseCursor,
 		End,
 	};
 

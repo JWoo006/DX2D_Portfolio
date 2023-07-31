@@ -43,7 +43,12 @@ namespace jw
 		}
 		
 		{
-			
+			GameObject* light = new GameObject();
+			light->SetName(L"Light");
+			AddGameObject(eLayerType::Light, light);
+			Light* lightComp = light->AddComponent<Light>();
+			lightComp->SetType(eLightType::Directional);
+			lightComp->SetColor(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 
 		//Main Camera

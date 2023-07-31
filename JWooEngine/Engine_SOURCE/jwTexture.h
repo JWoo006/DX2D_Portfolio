@@ -23,7 +23,6 @@ namespace jw::graphics
 		virtual HRESULT Load(const std::wstring& path) override;
 		void BindShader(eShaderStage stage, UINT startSlot);
 		void Clear();
-
 		HRESULT CreateTex(const std::wstring& path, std::shared_ptr<graphics::Texture>& atlasTexture);
 
 		size_t GetWidth() { return mImage.GetMetadata().width; }
@@ -38,6 +37,7 @@ namespace jw::graphics
 		Microsoft::WRL::ComPtr<ID3D11Texture2D> GetTexture() { return mTexture; }
 		void SetTexture(Microsoft::WRL::ComPtr<ID3D11Texture2D> texture) { mTexture = texture; }
 
+		
 
 	private:
 		ScratchImage mImage; // 원본 이미지 확장자

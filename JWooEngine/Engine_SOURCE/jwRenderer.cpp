@@ -493,6 +493,16 @@ namespace renderer
 					Resources::Insert(L"SpriteMaterial_spr_right_click_1", spriteMateiral);
 				}
 			}
+			// MouseCursor
+			{
+				std::shared_ptr<Texture> texture
+					= Resources::Load<Texture>(L"MouseCursor", L"..\\Resources\\Texture\\spr_cursor\\spr_cursor_0.png");
+
+				std::shared_ptr<Material> spriteMateiral = std::make_shared<Material>();
+				spriteMateiral->SetShader(spriteShader);
+				spriteMateiral->SetTexture(texture);
+				Resources::Insert(L"SpriteMaterial_MouseCursor", spriteMateiral);
+			}
 		}
 
 		// title

@@ -30,7 +30,7 @@ namespace jw
 
 	private:
 		bool mbInitialize = false;
-		bool mbColShow = false;
+		bool mbColShow = true;
 		// 오로지 한개의 객체만 만들수 있는 스마트 포인터
 		std::unique_ptr<jw::graphics::GraphicDevice_Dx11> graphicDevice;
 

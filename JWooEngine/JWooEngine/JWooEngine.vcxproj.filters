@@ -50,6 +50,15 @@
     <ClInclude Include="jwTestScene.h">
       <Filter>Contents\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="jwGroundScript.h">
+      <Filter>Contents\Script</Filter>
+    </ClInclude>
+    <ClInclude Include="jwPlayer.h">
+      <Filter>Contents\Object\Player</Filter>
+    </ClInclude>
+    <ClInclude Include="jwMouseCursor.h">
+      <Filter>Contents\Object\MouseCursor</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="JWooEngine.cpp" />
@@ -98,6 +107,15 @@
     <ClCompile Include="jwTestScene.cpp">
       <Filter>Contents\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="jwGroundScript.cpp">
+      <Filter>Contents\Script</Filter>
+    </ClCompile>
+    <ClCompile Include="jwPlayer.cpp">
+      <Filter>Contents\Object\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="jwMouseCursor.cpp">
+      <Filter>Contents\Object\MouseCursor</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Contents">
@@ -120,6 +138,15 @@
     </Filter>
     <Filter Include="Contents\Scene\03_Bunker">
       <UniqueIdentifier>{24351d0b-01f1-440d-8375-ad83d03ab2b8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object">
+      <UniqueIdentifier>{eb469fc3-48a3-4139-a417-bac3a4914f58}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Player">
+      <UniqueIdentifier>{e59cdad1-e055-47ac-bb36-763b794e07d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\MouseCursor">
+      <UniqueIdentifier>{27026f00-b279-472f-a12b-dea07ee8793d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

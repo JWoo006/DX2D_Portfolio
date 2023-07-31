@@ -62,9 +62,23 @@ namespace jw
 		}
 		
 		static __forceinline Vector2 GetMousePos() { return mMousePos; }
+		static __forceinline Vector3 GetWorldMousePos() { return mCursorWorldPos; }
+		static __forceinline Vector3 GetUIMousePos() { return mCursorUIPos; }
+
+		static __forceinline void SetWorldMousePos(Vector3 pos)
+		{
+			mCursorWorldPos = pos;
+		}
+
+		static __forceinline void SetUIMousePos(Vector3 pos)
+		{
+			mCursorUIPos = pos;
+		}
 
 	private:
 		static std::vector<Key> mKeys;
 		static Vector2 mMousePos;
+		static Vector3 mCursorWorldPos;
+		static Vector3 mCursorUIPos;
 	};
 }

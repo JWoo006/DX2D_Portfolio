@@ -97,6 +97,9 @@
     <Filter Include="Graphics\StructedBuffer">
       <UniqueIdentifier>{0a21913f-e7c8-4dfa-b98b-d7452146ab1a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Component\RigidBody">
+      <UniqueIdentifier>{3eb66e2c-22de-4e4e-8835-f5edcb1af7d4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEntity.h">
@@ -200,6 +203,12 @@
       <Filter>Graphics\StructedBuffer</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwComputeShader.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwRigidbody.h">
+      <Filter>GameObject\Component\RigidBody</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwMyMath.h">
+      <Filter>Common\Math</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp">
@@ -288,6 +297,12 @@
       <Filter>Graphics\StructedBuffer</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwComputeShader.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwRigidbody.cpp">
+      <Filter>GameObject\Component\RigidBody</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwMyMath.cpp">
+      <Filter>Common\Math</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="$(MSBuildThisFileDirectory)jwMath.inl">

@@ -7,6 +7,7 @@ namespace jw
 	class Transform;
 	class Collider2D;
 	class Animator;
+	class Rigidbody;
 	class PlayerScript : public Script
 	{
 	public:
@@ -21,8 +22,6 @@ namespace jw
 			Jump_R,
 			Attack,
 			Death,
-			
-
 		};
 		PlayerScript();
 		~PlayerScript();
@@ -37,6 +36,7 @@ namespace jw
 		void PreCrouchAnimComplete();
 		void PostCrouchAnimComplete();
 		void RollAnimComplete();
+		void AttackAnimComplete();
 
 		//virtual void OnCollisionEnter(Collider2D* other) override;
 		//virtual void OnCollisionStay(Collider2D* other) override;
@@ -56,11 +56,14 @@ namespace jw
 		Transform* tr;
 		Collider2D* cd;
 		Animator* at;
+		Rigidbody* rb;
 
 		Vector3 pos;
 
+		float mJumpScale;
 		float mJumpTime;
 		bool mbFall = false;
+		bool mbAttack = false;
 		
 	};
 }

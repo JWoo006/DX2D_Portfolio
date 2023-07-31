@@ -9,10 +9,16 @@
 #include "jwObject.h"
 #include "jwRenderer.h"
 #include "jwCollider2D.h"
+#include "jwRigidbody.h"
+#include "jwLight.h"
 
+#include "jwPlayer.h"
 #include "jwPlayerScript.h"
 #include "jwCollisionManager.h"
 #include "jwAnimator.h"
+
+#include "jwGroundScript.h"
+#include "jwMouseCursor.h"
 
 namespace jw
 {
@@ -29,38 +35,61 @@ namespace jw
 		Scene* scene = SceneManager::GetActiveScene();
 
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::UI, true);
-		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Player, true);
+		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
 
+		// player
 		{
-			GameObject* player
-				= object::Instantiate<GameObject>(Vector3(0.0f, 0.0f, 1.001f), eLayerType::Player);
-
-			player->SetName(L"PlayerZero");
+			Player* player =object::Instantiate<Player>(Vector3(0.0f, 2.0f, 1.001f), eLayerType::Player);
 
 			Collider2D* cd = player->AddComponent<Collider2D>();
+			Rigidbody* rb = player->AddComponent<Rigidbody>();
+			rb->SetMass(1.0f);
 		
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteAnimaionMaterial"));
 
+			Animator* at = player->AddComponent<Animator>();
+
 			const float pi = 3.141592f;
 			float degree = pi / 8.0f;
 
-			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0001f));
-			//player->GetComponent<Transform>()->SetRotation(Vector3(0.0f, 0.0f, degree));
-
-			// idle 애니메이션 기준 collider, transform(scale)
-			player->GetComponent<Transform>()->SetScale(Vector3(3.0f, 3.0f, 1.0f));
-			cd->SetSize(Vector2(0.1f, 0.16f));
-			cd->SetCenter(Vector2(0.f, -0.1f));
-
-			std::shared_ptr<Texture> atlas
-				= Resources::Load<Texture>(L"LinkSprite", L"..\\Resources\\Texture\\linkSprites.png");
-			Animator* at = player->AddComponent<Animator>();
+			
 			
 			player->AddComponent<PlayerScript>();
 		}
+		// Mouse
+		{
+			//GameObject* Cursor = object::Instantiate<MouseCursor>(eLayerType::MouseCursor);
+			//Collider2D* cd = Cursor->AddComponent<Collider2D>();
+			//cd->Initialize();
+			//cd->SetSize(Vector2(1.0f, 1.0f));
+		}
 
+		// ground
+		{
+			GameObject* ground
+				= object::Instantiate<GameObject>(Vector3(0.0f, 0.0f, 1.001f), eLayerType::Ground);
+
+			ground->SetName(L"GroundCollider");
+
+			Collider2D* cd = ground->AddComponent<Collider2D>();
+			cd->SetSize(Vector2(8.f, 0.5f));
+			Transform* tr = ground->GetComponent<Transform>();
+			tr->SetPosition(Vector3(0.0f, -2.0f, 1.001f));
+			ground->AddComponent<GroundScript>();
+		}
+
+		//Light
+		{
+			GameObject* light = new GameObject();
+			light->SetName(L"Light");
+			AddGameObject(eLayerType::Light, light);
+			Light* lightComp = light->AddComponent<Light>();
+			lightComp->SetType(eLightType::Directional);
+			lightComp->SetColor(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
+			lightComp->SetRadius(3.0f);
+		}
 		//Main Camera
 		Camera* cameraComp = nullptr;
 		{

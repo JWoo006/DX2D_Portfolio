@@ -26,6 +26,11 @@ namespace jw::math
     struct Quaternion;
     struct Plane;
 
+   /* inline static float Dot(Vector2& v1, Vector2& v2)
+    {
+        return v1.x * v2.x + v1.y * v2.y;
+    }*/
+
     //------------------------------------------------------------------------------
     // 2D rectangle
     struct Rectangle
@@ -193,6 +198,8 @@ namespace jw::math
         static const Vector2 One;
         static const Vector2 UnitX;
         static const Vector2 UnitY;
+
+        
     };
 
     // Binary operators

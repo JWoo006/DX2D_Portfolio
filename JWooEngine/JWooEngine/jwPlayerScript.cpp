@@ -6,13 +6,18 @@
 #include "jwInput.h"
 #include "jwAnimator.h"
 #include "jwCollider2D.h"
+#include "jwRigidbody.h"
 
 #include "jwCamera.h"
 
+#include "jwGroundScript.h"
+
+#include "jwMyMath.h"
 
 namespace jw
 {
 	PlayerScript::PlayerScript()
+		: mJumpScale(5.0f)
 	{
 	}
 	PlayerScript::~PlayerScript()
@@ -23,6 +28,9 @@ namespace jw
 		tr = GetOwner()->GetComponent<Transform>();
 		cd = GetOwner()->GetComponent<Collider2D>();
 		at = GetOwner()->GetComponent<Animator>();
+
+		rb = GetOwner()->GetComponent<Rigidbody>();
+		
 
 		pos = tr->GetPosition();
 
@@ -64,7 +72,7 @@ namespace jw
 
 		at->CompleteEvent(L"Player_Roll") = std::bind(&PlayerScript::RollAnimComplete, this);
 
-		at->CompleteEvent(L"Player_Attack") = std::bind(&PlayerScript::attack, this);
+		at->CompleteEvent(L"Player_Attack") = std::bind(&PlayerScript::AttackAnimComplete, this);
 
 
 		at->PlayAnimation(L"Player_Idle", true);
@@ -109,11 +117,16 @@ namespace jw
 		}
 		
 		
-
 		if (Input::GetKeyDown(eKeyCode::Z))
 		{
 			at->PlayAnimation(L"Player_Idle", true);
 			mState = ePlayerState::Idle;
+		}
+		if(Input::GetKeyDown(eKeyCode::R))
+		{
+			Vector3 pos = tr->GetPosition();
+
+			tr->SetPosition(0.0f, 1.0f, pos.z);
 		}
 		if (Input::GetKey(eKeyCode::X))
 		{
@@ -128,19 +141,6 @@ namespace jw
 	}
 	void PlayerScript::LateUpdate()
 	{
-		// 마우스 좌표계 변환 
-		Vector3 pos(600, 450, 0.0f);
-		Vector3 pos2(600, 450, 1000.0f);
-		Viewport viewport;
-		viewport.width = 1600.0f;
-		viewport.height = 900.0f;
-		viewport.x = 0;
-		viewport.y = 0;
-		viewport.minDepth = 0.0f;
-		viewport.maxDepth = 1.0f;
-
-		pos = viewport.Unproject(pos, Camera::GetGpuProjectionMatrix(), Camera::GetGpuViewMatrix(), Matrix::Identity);
-		pos2 = viewport.Unproject(pos2, Camera::GetGpuProjectionMatrix(), Camera::GetGpuViewMatrix(), Matrix::Identity);
 	}
 	void PlayerScript::Complete()
 	{
@@ -173,18 +173,41 @@ namespace jw
 		mState = ePlayerState::Idle;
 		at->PlayAnimation(L"Player_Idle", true);
 	}
+	void PlayerScript::AttackAnimComplete()
+	{
+		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+		Vector3 velocity = rb->GetVelocity();
+		velocity.x = 0.0f;
+		velocity.y = 0.0f;
+		rb->SetVelocity(velocity);
+
+		if (rb->GetGround() == true)
+		{
+			mState = ePlayerState::Idle;
+			at->PlayAnimation(L"Player_Idle", true);
+		}
+		if (rb->GetGround() == false)
+		{
+			Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+			Vector3 velocity = rb->GetVelocity();
+			mState = ePlayerState::Jump_L;
+			at->PlayAnimation(L"Player_Fall", true);
+		}
+	}
 	void PlayerScript::idle()
 	{
+		mbAttack = false;
+
 		if (Input::GetKeyDown(eKeyCode::LBUTTON))
 		{
-			//mState = ePlayerState::Attack;
-			at->PlayAnimation(L"Player_Attack", true);
+			mState = ePlayerState::Attack;
 		}
 
 		if (Input::GetKeyDown(eKeyCode::S) || Input::GetKey(eKeyCode::S))
 		{
 			mState = ePlayerState::Crouch;
 			at->PlayAnimation(L"Player_PreCrouch", true);
+
 		}
 
 		if (Input::GetKeyDown(eKeyCode::A) || Input::GetKey(eKeyCode::A))
@@ -200,8 +223,14 @@ namespace jw
 			mState = ePlayerState::Move_R;
 		}
 
-		if (Input::GetKey(eKeyCode::W))
+		if (Input::GetKeyDown(eKeyCode::W))
 		{
+			rb->SetGround(false);
+
+			Vector3 velocity = rb->GetVelocity();
+			velocity.y = -mJumpScale;
+			rb->SetVelocity(velocity);
+
 			at->PlayAnimation(L"Player_Jump", true);
 
 			if (at->GetAnimDirection() == Animation::eAnimDirection::Left)
@@ -218,17 +247,19 @@ namespace jw
 	{
 		if (Input::GetKeyDown(eKeyCode::LBUTTON))
 		{
-			//mState = ePlayerState::Attack;
-			at->PlayAnimation(L"Player_Attack", true);
+			mState = ePlayerState::Attack;
 		}
 
 		if (Input::GetKey(eKeyCode::A))
 		{
+			Vector3 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
+
 			pos.x -= 2.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 		else if (Input::GetKey(eKeyCode::D))
 		{
+			Vector3 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
 			pos.x += 2.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
@@ -250,8 +281,14 @@ namespace jw
 			at->PlayAnimation(L"Player_Run_to_Idle", true);
 		}
 
-		if (Input::GetKey(eKeyCode::W))
+		if (Input::GetKeyDown(eKeyCode::W))
 		{
+			rb->SetGround(false);
+
+			Vector3 velocity = rb->GetVelocity();
+			velocity.y = -6.0f;
+			rb->SetVelocity(velocity);
+
 			at->PlayAnimation(L"Player_Jump", true);
 
 			if (at->GetAnimDirection() == Animation::eAnimDirection::Left)
@@ -263,10 +300,12 @@ namespace jw
 				mState = ePlayerState::Jump_R;
 			}
 		}
-
 	}
 	void PlayerScript::crouch()
 	{
+		//pos.y -= 4.0f * Time::DeltaTime();
+		//tr->SetPosition(pos);
+
 		if (Input::GetKeyUp(eKeyCode::S))
 		{
 			mState = ePlayerState::Idle;
@@ -290,19 +329,27 @@ namespace jw
 	{
 		if (at->GetAnimDirection() == Animation::eAnimDirection::Left)
 		{
+			Vector3 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
 			pos.x -= 4.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 		if (at->GetAnimDirection() == Animation::eAnimDirection::Right)
 		{
+			Vector3 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
 			pos.x += 4.0f * Time::DeltaTime();
 			tr->SetPosition(pos);
 		}
 	}
 	void PlayerScript::jump()
 	{
+		if (Input::GetKeyDown(eKeyCode::LBUTTON))
+		{
+			mState = ePlayerState::Attack;
+		}
+
 		if (Input::GetKey(eKeyCode::A))
 		{
+			Vector3 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
 			pos.x -= 2.0f * Time::DeltaTime();
 
 			if (mState == ePlayerState::Jump_R)
@@ -324,6 +371,7 @@ namespace jw
 		}
 		if (Input::GetKey(eKeyCode::D))
 		{
+			Vector3 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
 			pos.x += 2.0f * Time::DeltaTime();
 
 			if (mState == ePlayerState::Jump_L)
@@ -343,26 +391,22 @@ namespace jw
 			}
 			tr->SetPosition(pos);
 		}
-		mJumpTime += Time::DeltaTime();
-		if (mJumpTime > 0.3f)
+	
+		Vector3 velocity = rb->GetVelocity();
+		velocity.Normalize();
+
+		float angle = atan2(XMVectorGetY(velocity), XMVectorGetX(velocity));
+
+		XMConvertToDegrees(angle);
+
+		if (angle > 0 && mbFall != true)
 		{
-			if (!mbFall)
-			{
-				mbFall = true;
-				at->PlayAnimation(L"Player_Fall", true);
-			}
-			pos.y -= 2.0f * Time::DeltaTime();
-			tr->SetPosition(pos);
-		}
-		else
-		{
-			pos.y += 4.0f * Time::DeltaTime();
-			tr->SetPosition(pos);
+			mbFall = true;
+			at->PlayAnimation(L"Player_Fall", true);
 		}
 
-		if (pos.y < 0.0f)
+		if (rb->GetGround() == true)
 		{
-			pos.y = 0.0f;
 			mJumpTime = 0.0f;
 			mbFall = false;
 			mState = ePlayerState::Idle;
@@ -371,13 +415,85 @@ namespace jw
 	}
 	void PlayerScript::attack()
 	{
-		if (at->GetAnimDirection() == Animation::eAnimDirection::Left)
+
+		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+		Vector3 velocity = rb->GetVelocity();
+
+		if (!mbAttack)
 		{
-			mState = ePlayerState::Idle;
-			at->PlayAnimation(L"Player_Idle", true);
-		}
-		else
+			mbAttack = true;
+
+			// 마우스 좌표계 변환 
+			Vector3 mousepos = Vector3(Input::GetMousePos().x, Input::GetMousePos().y, 0);
+			Viewport viewport;
+			viewport.width = 1600.0f;
+			viewport.height = 900.0f;
+			viewport.x = 0;
+			viewport.y = 0;
+			viewport.minDepth = 0.0f;
+			viewport.maxDepth = 1.0f;
+
+			mousepos = viewport.Unproject(mousepos, Camera::GetGpuProjectionMatrix(), Camera::GetGpuViewMatrix(), Matrix::Identity);
+
+			Vector3 PlayerPos = tr->GetPosition();
+
+			float angle = 0.0f;
+
+			float x = mousepos.x - PlayerPos.x;
+			float y = mousepos.y - PlayerPos.y;
+			angle = atan2(y, x);
+
+			angle = angle * (180.0 / 3.141592);
+
+			Vector2 dir = Vector2(1.0f, 0.0f);
+			dir = math::Rotate(dir, angle);
+
+
+			if (rb->GetGround() == true && mousepos.y < PlayerPos.y)
+			{
+				rb->SetGround(false);
+				velocity.x = 2.0f * -dir.x;
+				velocity.y = 3.0f * dir.y;
+				rb->SetVelocity(velocity);
+			}
+			else if(rb->GetGround() == true && mousepos.y > PlayerPos.y)
+			{
+				rb->SetGround(false);
+
+				velocity.x = 5.0f * -dir.x;
+				velocity.y = 5.0f * -dir.y;
+				rb->SetVelocity(velocity);
+			}
+			else if (rb->GetGround() == false && mousepos.y > PlayerPos.y)
+			{
+				velocity.x = 5.0f * -dir.x;
+				velocity.y = 5.0f * -dir.y;
+				rb->SetVelocity(velocity);
+			}
+			else if (rb->GetGround() == false && mousepos.y < PlayerPos.y)
+			{
+				velocity.x = 5.0f * -dir.x;
+				velocity.y = 1.0f * -dir.y;
+				rb->SetVelocity(velocity);
+			}
+
+			
+			if (mousepos.x > PlayerPos.x)
+			{
+				at->SetAnimDirection(Animation::eAnimDirection::Right);
+			}
+			else
+			{
+				at->SetAnimDirection(Animation::eAnimDirection::Left);
+			}
+			at->PlayAnimation(L"Player_Attack", true);
+		}	
+
+		if (rb->GetGround() == true)
 		{
+			velocity.x = 0.0f;
+			velocity.y = 0.0f;
+			rb->SetVelocity(velocity);
 			mState = ePlayerState::Idle;
 			at->PlayAnimation(L"Player_Idle", true);
 		}

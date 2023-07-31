@@ -68,7 +68,7 @@ namespace jw
 			//at->PlayAnimation(L"Idle", true);
 			//at->PlayAnimation(L"Player_Idle", true);
 
-			player->AddComponent<PlayerScript>();
+			//player->AddComponent<PlayerScript>();
 		}
 
 		//{
@@ -107,12 +107,13 @@ namespace jw
 			lightComp->SetColor(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 		}*/
 
+		//Light
 		{
 			GameObject* light = new GameObject();
 			light->SetName(L"Smile");
 			AddGameObject(eLayerType::Light, light);
 			Light* lightComp = light->AddComponent<Light>();
-			lightComp->SetType(eLightType::Spot);
+			lightComp->SetType(eLightType::Point);
 			lightComp->SetColor(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 			lightComp->SetRadius(3.0f);
 		}
