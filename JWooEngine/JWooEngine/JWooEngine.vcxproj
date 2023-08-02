@@ -155,6 +155,7 @@
     <ClInclude Include="jwGroundScript.h" />
     <ClInclude Include="jwMouseCursor.h" />
     <ClInclude Include="jwPlayer.h" />
+    <ClInclude Include="jwPlayerAttackSlash.h" />
     <ClInclude Include="jwPlayerScript.h" />
     <ClInclude Include="jwPlayScene.h" />
     <ClInclude Include="jwStudioScene_00.h" />
@@ -177,6 +178,7 @@
     <ClCompile Include="jwMouseCursor.cpp" />
     <ClCompile Include="JWooEngine.cpp" />
     <ClCompile Include="jwPlayer.cpp" />
+    <ClCompile Include="jwPlayerAttackSlash.cpp" />
     <ClCompile Include="jwPlayerScript.cpp" />
     <ClCompile Include="jwPlayScene.cpp" />
     <ClCompile Include="jwStudioScene_00.cpp" />

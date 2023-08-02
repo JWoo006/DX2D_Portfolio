@@ -7,15 +7,18 @@
 #include "jwAnimator.h"
 #include "jwCollider2D.h"
 #include "jwRigidbody.h"
+#include "jwObject.h"
 
 #include "jwCamera.h"
 
 #include "jwGroundScript.h"
 
 #include "jwMyMath.h"
+#include "jwPlayerAttackSlash.h"
 
 namespace jw
 {
+
 	PlayerScript::PlayerScript()
 		: mJumpScale(5.0f)
 	{
@@ -31,8 +34,6 @@ namespace jw
 
 		rb = GetOwner()->GetComponent<Rigidbody>();
 
-
-		pos = tr->GetPosition();
 
 		at->CreateAnimations(L"Player_Idle", L"..\\Resources\\Texture\\Player\\spr_idle", 80, 0.1f);
 		//at->CreateAnimation(L"Player_Idle", L"..\\Resources\\Texture\\Player\\spr_idle", Vector2(0.0), Vector2(36.1f, 100.0f)); // ÇÈ¼¿ 36X35
@@ -460,38 +461,35 @@ namespace jw
 			dir = math::Rotate(dir, angle);
 
 
-			if (rb->GetGround() == true && mousepos.y < PlayerPos.y)
+			if (rb->GetGround() == true && mousepos.y <= PlayerPos.y)
 			{
-				//rb->AddForce(Vector3(3.f, 3.f, 0.f));
-				//rb->SetGround(false);
 				//velocity.x = 2.0f * -dir.x;
 				//velocity.y = 3.0f * dir.y;
 				//rb->SetVelocity(velocity);
 				rb->SetGround(false);
-				rb->AddForce(Vector3(100.f, -10000.f, 0.f));
+				rb->AddForce(Vector3(0.f, -1000.f, 0.f));
 			}
 			else if (rb->GetGround() == true && mousepos.y > PlayerPos.y)
 			{
-				/*rb->SetGround(false);
-
-				velocity.x = 5.0f * -dir.x;
-				velocity.y = 5.0f * -dir.y;
-				rb->SetVelocity(velocity);*/
+				//rb->SetGround(false);
+				//velocity.x = 5.0f * -dir.x;
+				//velocity.y = 5.0f * -dir.y;
+				//rb->SetVelocity(velocity);
 				rb->SetGround(false);
-				rb->AddForce(Vector3(100.f, -10000.f, 0.f));
+				rb->AddForce(Vector3(0.f, -1000.f, 0.f));
 			}
 			else if (rb->GetGround() == false && mousepos.y > PlayerPos.y)
 			{
 				//rb->AddForce(Vector3(1500.f * -dir.x, 0 * -dir.y, 0.f));
-				rb->AddForce(Vector3(500.f * -dir.x, -20000.f, 0.f));
-				//velocity.x = 5.0f * -dir.x;
-				//velocity.y = 5.0f * -dir.y;
-				//rb->SetVelocity(velocity);
+				//rb->AddForce(Vector3(500.f * -dir.x, -20000.f, 0.f));
+				velocity.x = 5.0f * -dir.x;
+				velocity.y = 5.0f * -dir.y;
+				rb->SetVelocity(velocity);
 			}
 			else if (rb->GetGround() == false && mousepos.y < PlayerPos.y)
 			{
 				velocity.x = 5.0f * -dir.x;
-				velocity.y = 1.0f * -dir.y;
+				velocity.y = 0.0f * -dir.y;
 				rb->SetVelocity(velocity);
 			}
 
@@ -499,10 +497,22 @@ namespace jw
 			if (mousepos.x > PlayerPos.x)
 			{
 				at->SetAnimDirection(Animation::eAnimDirection::Right);
+				//PlayerAttackSlash* slash 
+				//	= object::Instantiate<PlayerAttackSlash>(eLayerType::Effect, Vector3(PlayerPos.x, PlayerPos.y, PlayerPos.z - 0.1f), Animation::eAnimDirection::Right);
+				Player* player = dynamic_cast<Player*>(GetOwner());
+				PlayerAttackSlash* slash
+					= object::Instantiate<PlayerAttackSlash>(eLayerType::Effect, Vector3(PlayerPos.x, PlayerPos.y, PlayerPos.z - 0.1f), player);
+				Transform* SlashTr = slash->GetComponent<Transform>();
+				SlashTr->SetRotation(0.0f, 0.0f, RotateDegree(angle));
 			}
 			else
 			{
 				at->SetAnimDirection(Animation::eAnimDirection::Left);
+				Player* player = dynamic_cast<Player*>(GetOwner());
+				PlayerAttackSlash* slash
+					= object::Instantiate<PlayerAttackSlash>(eLayerType::Effect, Vector3(PlayerPos.x, PlayerPos.y, PlayerPos.z - 0.1f), player);
+				Transform* SlashTr = slash->GetComponent<Transform>();
+				SlashTr->SetRotation(0.0f, 0.0f, RotateDegree(angle - 180.0f));
 			}
 			at->PlayAnimation(L"Player_Attack", true);
 		}

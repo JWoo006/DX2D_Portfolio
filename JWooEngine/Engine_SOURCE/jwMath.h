@@ -20,6 +20,15 @@ using namespace DirectX::PackedVector;
 
 namespace jw::math
 {
+    inline float RotateDegree(float degree)
+    {
+        const float pi = 3.141592f;
+
+        float radian = (degree / 180.0f) * pi;
+
+        return radian;
+    }
+
     struct Vector2;
     struct Vector4;
     struct Matrix;
@@ -989,14 +998,7 @@ namespace jw::math
         static RECT __cdecl ComputeTitleSafeArea(UINT backBufferWidth, UINT backBufferHeight) noexcept;
     };
 
-    inline static float RotateDegree(float degree)
-    {
-        const float pi = 3.141592f;
-
-        float radian = (degree / 180.0f) * pi;
-
-        return radian;
-    }
+    
 
 #include "jwMath.inl"
 }

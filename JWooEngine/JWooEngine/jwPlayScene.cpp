@@ -40,7 +40,7 @@ namespace jw
 
 		{
 			GameObject* player
-				= object::Instantiate<GameObject>(Vector3(0.0f, 0.0f, 1.0001f), eLayerType::Player);
+				= object::Instantiate<GameObject>(eLayerType::Player, Vector3(0.0f, 0.0f, 1.0001f));
 
 			player->SetName(L"Zelda");
 

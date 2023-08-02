@@ -42,7 +42,7 @@ namespace jw
 
 		// player
 		{
-			Player* player =object::Instantiate<Player>(Vector3(0.0f, 2.0f, 1.001f), eLayerType::Player);
+			Player* player =object::Instantiate<Player>(eLayerType::Player, Vector3(0.0f, 2.0f, 1.001f));
 
 			Collider2D* cd = player->AddComponent<Collider2D>();
 			Rigidbody* rb = player->AddComponent<Rigidbody>();
@@ -67,7 +67,7 @@ namespace jw
 		// ground
 		{
 			GameObject* ground
-				= object::Instantiate<GameObject>(Vector3(0.0f, 0.0f, 1.001f), eLayerType::Ground);
+				= object::Instantiate<GameObject>(eLayerType::Ground, Vector3(0.0f, 0.0f, 1.001f));
 
 			ground->SetName(L"GroundCollider");
 

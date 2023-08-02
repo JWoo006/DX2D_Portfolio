@@ -24,6 +24,7 @@ namespace jw::enums
 		BG,
 		Ground,
 		Player,
+		Effect,
 		Monster,
 		Light,
 		UI,

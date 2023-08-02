@@ -59,6 +59,9 @@
     <ClInclude Include="jwMouseCursor.h">
       <Filter>Contents\Object\MouseCursor</Filter>
     </ClInclude>
+    <ClInclude Include="jwPlayerAttackSlash.h">
+      <Filter>Contents\Object\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="JWooEngine.cpp" />
@@ -115,6 +118,9 @@
     </ClCompile>
     <ClCompile Include="jwMouseCursor.cpp">
       <Filter>Contents\Object\MouseCursor</Filter>
+    </ClCompile>
+    <ClCompile Include="jwPlayerAttackSlash.cpp">
+      <Filter>Contents\Object\Player</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

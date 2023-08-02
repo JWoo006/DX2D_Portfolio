@@ -47,8 +47,8 @@ namespace jw
 		mFoward = Vector3::TransformNormal(Vector3::Forward, rotation);
 		mRight = Vector3::TransformNormal(Vector3::Right, rotation);
 
-		mTopLeft = Vector3::TransformNormal(Vector3::TopLeft, rotation);
-		mBottomRight = Vector3::TransformNormal(Vector3::BottomRight, rotation);
+		//mTopLeft = Vector3::TransformNormal(Vector3::TopLeft, rotation);
+		//mBottomRight = Vector3::TransformNormal(Vector3::BottomRight, rotation);
 
 		if (mParent)
 		{

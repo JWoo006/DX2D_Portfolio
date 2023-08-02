@@ -58,8 +58,6 @@ namespace jw
 		Animator* at;
 		Rigidbody* rb;
 
-		Vector3 pos;
-
 		float mJumpScale;
 		float mJumpTime;
 		bool mbFall = false;
