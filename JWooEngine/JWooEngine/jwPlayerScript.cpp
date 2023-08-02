@@ -468,7 +468,7 @@ namespace jw
 				//velocity.y = 3.0f * dir.y;
 				//rb->SetVelocity(velocity);
 				rb->SetGround(false);
-				rb->AddForce(Vector3(100.f * -dir.x, -1000.f, 0.f));
+				rb->AddForce(Vector3(100.f, -10000.f, 0.f));
 			}
 			else if (rb->GetGround() == true && mousepos.y > PlayerPos.y)
 			{
@@ -478,12 +478,12 @@ namespace jw
 				velocity.y = 5.0f * -dir.y;
 				rb->SetVelocity(velocity);*/
 				rb->SetGround(false);
-				rb->AddForce(Vector3(100.f * -dir.x, -1000.f, 0.f));
+				rb->AddForce(Vector3(100.f, -10000.f, 0.f));
 			}
 			else if (rb->GetGround() == false && mousepos.y > PlayerPos.y)
 			{
 				//rb->AddForce(Vector3(1500.f * -dir.x, 0 * -dir.y, 0.f));
-				rb->AddForce(Vector3(500.f * -dir.x, 500.f * -dir.y, 0.f));
+				rb->AddForce(Vector3(500.f * -dir.x, -20000.f, 0.f));
 				//velocity.x = 5.0f * -dir.x;
 				//velocity.y = 5.0f * -dir.y;
 				//rb->SetVelocity(velocity);
