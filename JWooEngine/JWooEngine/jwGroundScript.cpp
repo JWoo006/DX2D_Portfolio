@@ -48,11 +48,11 @@ namespace jw
 
 			playerPos2.y -= (fSize - fLen);
 			playerTr->SetPosition(playerPos2);
-			int a = 0;
 		}
 	}
 	void GroundScript::OnCollisionStay(Collider2D* other)
 	{
+		
 	}
 	void GroundScript::OnCollisionExit(Collider2D* other)
 	{

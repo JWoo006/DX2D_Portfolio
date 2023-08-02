@@ -20,6 +20,7 @@ namespace jw
 		void SetGround(bool ground) { mbGround = ground; }
 		void SetMass(float mass) { mMass = mass; }
 		bool GetGround() { return mbGround; }
+		void SetGravity(Vector3 gravity) { mGravity = gravity; }
 
 		Vector3 GetVelocity() { return mVelocity; }
 		void SetVelocity(Vector3 vel) { mVelocity = vel; }

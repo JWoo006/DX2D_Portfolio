@@ -186,6 +186,7 @@ namespace jw
 	void PlayerScript::AttackAnimComplete()
 	{
 		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+		rb->SetGravity(Vector3(0.0f, 15.0f, 0.0f));
 		Vector3 velocity = rb->GetVelocity();
 		velocity.x = 0.0f;
 		velocity.y = 0.0f;
@@ -461,24 +462,31 @@ namespace jw
 
 			if (rb->GetGround() == true && mousepos.y < PlayerPos.y)
 			{
+				//rb->AddForce(Vector3(3.f, 3.f, 0.f));
+				//rb->SetGround(false);
+				//velocity.x = 2.0f * -dir.x;
+				//velocity.y = 3.0f * dir.y;
+				//rb->SetVelocity(velocity);
 				rb->SetGround(false);
-				velocity.x = 2.0f * -dir.x;
-				velocity.y = 3.0f * dir.y;
-				rb->SetVelocity(velocity);
+				rb->AddForce(Vector3(100.f * -dir.x, -1000.f, 0.f));
 			}
 			else if (rb->GetGround() == true && mousepos.y > PlayerPos.y)
 			{
-				rb->SetGround(false);
+				/*rb->SetGround(false);
 
 				velocity.x = 5.0f * -dir.x;
 				velocity.y = 5.0f * -dir.y;
-				rb->SetVelocity(velocity);
+				rb->SetVelocity(velocity);*/
+				rb->SetGround(false);
+				rb->AddForce(Vector3(100.f * -dir.x, -1000.f, 0.f));
 			}
 			else if (rb->GetGround() == false && mousepos.y > PlayerPos.y)
 			{
-				velocity.x = 5.0f * -dir.x;
-				velocity.y = 5.0f * -dir.y;
-				rb->SetVelocity(velocity);
+				//rb->AddForce(Vector3(1500.f * -dir.x, 0 * -dir.y, 0.f));
+				rb->AddForce(Vector3(500.f * -dir.x, 500.f * -dir.y, 0.f));
+				//velocity.x = 5.0f * -dir.x;
+				//velocity.y = 5.0f * -dir.y;
+				//rb->SetVelocity(velocity);
 			}
 			else if (rb->GetGround() == false && mousepos.y < PlayerPos.y)
 			{

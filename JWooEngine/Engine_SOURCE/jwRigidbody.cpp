@@ -51,22 +51,22 @@ namespace jw
 		}
 
 		// 중력가속도 최대 속도 제한
-		/*Vector3 gravity = mGravity;
-		gravity.Normalize();
-		float dot = mVelocity.Dot(gravity);
+		/*vector3 gravity = mgravity;
+		gravity.normalize();
+		float dot = mvelocity.dot(gravity);
 		gravity = gravity * dot;
 
-		Vector3 sideVelocity = mVelocity - gravity;
-		if (mLimitedVelocity.y < gravity.Length())
+		vector3 sidevelocity = mvelocity - gravity;
+		if (mlimitedvelocity.y < gravity.length())
 		{
-			gravity.Normalize();
-			gravity *= mLimitedVelocity.y;
+			gravity.normalize();
+			gravity *= mlimitedvelocity.y;
 		}
 
-		if (mLimitedVelocity.x < sideVelocity.Length())
+		if (mlimitedvelocity.x < sidevelocity.length())
 		{
-			sideVelocity.Normalize();
-			sideVelocity *= mLimitedVelocity.x;
+			sidevelocity.normalize();
+			sidevelocity *= mlimitedvelocity.x;
 		}*/
 
 		// 물체를 속도에 맞게끔 이동
