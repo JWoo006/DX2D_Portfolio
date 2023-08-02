@@ -29,10 +29,6 @@ namespace jw
 		Rigidbody* rb = other->GetOwner()->GetComponent<Rigidbody>();
 		rb->SetGround(true);
 
-		Player* player = dynamic_cast<Player*>(other->GetOwner());
-		if (player == nullptr)
-			return;
-
 		Collider2D* playerCol = other->GetOwner()->GetComponent<Collider2D>();
 		Vector3 playerPos = other->GetOwner()->GetComponent<Transform>()->GetPosition();
 
@@ -47,11 +43,12 @@ namespace jw
 			Transform* playerTr = other->GetOwner()->GetComponent<Transform>();
 			Transform* grTr = this->GetOwner()->GetComponent<Transform>();
 
-			Vector3 playerPos = playerTr->GetPosition();
+			Vector3 playerPos2 = playerTr->GetPosition();
 			Vector3 grPos = grTr->GetPosition();
 
-			playerPos.y -= (fSize - fLen) - 1.0f;
-			playerTr->SetPosition(playerPos);
+			playerPos2.y -= (fSize - fLen);
+			playerTr->SetPosition(playerPos2);
+			int a = 0;
 		}
 	}
 	void GroundScript::OnCollisionStay(Collider2D* other)

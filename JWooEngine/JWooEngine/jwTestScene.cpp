@@ -20,6 +20,8 @@
 #include "jwGroundScript.h"
 #include "jwMouseCursor.h"
 
+
+
 namespace jw
 {
 	TestScene::TestScene()
@@ -32,7 +34,8 @@ namespace jw
 	void TestScene::Initialize()
 	{
 		SetName(L"TestScene");
-		Scene* scene = SceneManager::GetActiveScene();
+		
+		
 
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::UI, true);
 		CollisionManager::SetLayer(eLayerType::Player, eLayerType::Ground, true);
@@ -50,11 +53,6 @@ namespace jw
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteAnimaionMaterial"));
 
 			Animator* at = player->AddComponent<Animator>();
-
-			const float pi = 3.141592f;
-			float degree = pi / 8.0f;
-
-			
 			
 			player->AddComponent<PlayerScript>();
 		}

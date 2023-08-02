@@ -64,6 +64,6 @@ namespace jw
 		float mJumpTime;
 		bool mbFall = false;
 		bool mbAttack = false;
-		
+
 	};
 }

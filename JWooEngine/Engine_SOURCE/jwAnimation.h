@@ -52,6 +52,14 @@ namespace jw
 			, UINT columnLength
 			, Vector2 offset = Vector2::Zero
 			, float duration = 0.0f);
+		void Create(std::wstring name
+			, std::shared_ptr<graphics::Texture> atlas
+			, Vector2 leftTop
+			, Vector2 size
+			, UINT columnLength
+			, int divideSize
+			, Vector2 offset = Vector2::Zero
+			, float duration = 0.0f);
 
 		void Binds();
 		void Reset();

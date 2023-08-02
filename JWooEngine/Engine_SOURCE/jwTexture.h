@@ -21,12 +21,17 @@ namespace jw::graphics
 
 		bool Create(UINT width, UINT height, DXGI_FORMAT format, UINT bindFlag);
 		virtual HRESULT Load(const std::wstring& path) override;
-		void BindShader(eShaderStage stage, UINT startSlot);
+		void BindShaderResource(eShaderStage stage, UINT startSlot);
+		void BindUnorderedAccessViews(UINT slot);
+		void ClearUnorderedAccessViews(UINT slot);
 		void Clear();
-		HRESULT CreateTex(const std::wstring& path, std::shared_ptr<graphics::Texture>& atlasTexture);
+		HRESULT CreateTex(const std::wstring& path, UINT filecnt, size_t imageMaxWidth, size_t imageMaxHeight);
 
-		size_t GetWidth() { return mImage.GetMetadata().width; }
-		size_t GetHeight() { return mImage.GetMetadata().height; }
+		size_t GetMetaDataWidth() { return mImage.GetMetadata().width; }
+		size_t GetMedtaDataHeight() { return mImage.GetMetadata().height; }
+
+		size_t GetWidth() { return mWidth; }
+		size_t GetHeight() { return mHeight; }
 
 		Microsoft::WRL::ComPtr<ID3D11RenderTargetView>    GetRTV() { return  mRTV; }
 		void SetRTV(Microsoft::WRL::ComPtr<ID3D11RenderTargetView> rtv) { mRTV = rtv; }
@@ -46,6 +51,9 @@ namespace jw::graphics
 		Microsoft::WRL::ComPtr<ID3D11RenderTargetView> mRTV;
 		Microsoft::WRL::ComPtr<ID3D11DepthStencilView> mDSV;
 		Microsoft::WRL::ComPtr<ID3D11UnorderedAccessView> mUAV;
+		UINT mWidth;
+		UINT mHeight;
+
 		D3D11_TEXTURE2D_DESC mDesc;
 	};
 

@@ -51,11 +51,39 @@ namespace jw
 	}
 	void Animator::Create(const std::wstring& name
 		, std::shared_ptr<graphics::Texture> atlas
-		, Vector2 leftTop
-		, Vector2 size
+		, Vector2 leftTop, Vector2 size
 		, UINT columnLength
+		, int divideSize
 		, Vector2 offset
 		, float duration)
+	{
+		Animation* animation = FindAnimation(name);
+		if (nullptr != animation)
+			return;
+
+		animation = new Animation();
+		animation->SetKey(name);
+
+		animation->Create(name
+			, atlas
+			, leftTop
+			, size
+			, columnLength
+			, divideSize
+			, offset
+			, duration);
+
+		mAnimations.insert(std::make_pair(name, animation));
+
+		Events* events = FindEvents(name);
+		if (events != nullptr)
+			return;
+
+		events = new Events();
+		mEvents.insert(std::make_pair(name, events));
+
+	}
+	void Animator::Create(const std::wstring& name, std::shared_ptr<graphics::Texture> atlas, Vector2 leftTop, Vector2 size, UINT columnLength, Vector2 offset, float duration)
 	{
 		Animation* animation = FindAnimation(name);
 		if (nullptr != animation)
@@ -81,39 +109,51 @@ namespace jw
 		events = new Events();
 		mEvents.insert(std::make_pair(name, events));
 	}
-	void Animator::CreateAnimation(const std::wstring& name, const std::wstring& path, Vector2 leftTop, Vector2 size)
+	Animation* Animator::CreateAnimations(const std::wstring& name, const std::wstring& path, int divideSize, float duration, Vector2 offset)
 	{
-		Animation* animation = FindAnimation(name);
-		if (nullptr != animation)
-			return;
+		size_t maxwidth = 0;
+		size_t minwidth = 0;
+		size_t maxheight = 0;
+		UINT fileCount = 0;
 
-		int fileCount = 0;
-
+		std::filesystem::path fs(path);
 		std::vector<std::shared_ptr<Texture>> textures = {};
-		for (auto& p : std::filesystem::recursive_directory_iterator(path))
+		for (const auto& p : std::filesystem::recursive_directory_iterator(path))
 		{
 			std::wstring fileName = p.path().filename();
-			std::wstring fullName = path + L"\\" + fileName;
+			std::wstring fullName = p.path().wstring(); 
 
-			std::shared_ptr<Texture> texture = Resources::Load<Texture>(fileName, fullName);
+			const std::wstring ext = p.path().extension();
 
-			textures.push_back(texture);
+			std::shared_ptr<Texture> tex = Resources::Load<Texture>(fileName, fullName);
+
+			if (maxwidth < tex->GetMetaDataWidth())
+			{
+				maxwidth = tex->GetMetaDataWidth();
+			}
+
+			if (minwidth > tex->GetMetaDataWidth())
+			{
+				minwidth = tex->GetMetaDataWidth();
+			}
+
+			if (maxheight < tex->GetMedtaDataHeight())
+			{
+				maxheight = tex->GetMedtaDataHeight();
+			}
+
+			textures.push_back(tex);
 
 			fileCount++;
 		}
 
-		textures[0]->CreateTex(path, mImageAtlas);
-		Create(name, mImageAtlas, leftTop, size, fileCount, Vector2::Zero);
+		mImageAtlas = std::make_shared<graphics::Texture>();
+		mImageAtlas->CreateTex(path, fileCount, maxwidth, maxheight);
+		Create(name, mImageAtlas, Vector2(0.0), Vector2(maxwidth, maxheight), fileCount, divideSize, offset, duration);
 
-		mAnimations.insert(std::make_pair(name, animation));
-
-		Events* events = FindEvents(name);
-		if (events != nullptr)
-			return;
-
-		events = new Events();
-		mEvents.insert(std::make_pair(name, events));
+		return nullptr;
 	}
+	
 	void Animator::CreateAnimation(const std::wstring& name, const std::wstring& path, Vector2 leftTop, Vector2 size, float duration)
 	{
 		Animation* animation = FindAnimation(name);
@@ -135,7 +175,7 @@ namespace jw
 			fileCount++;
 		}
 
-		textures[0]->CreateTex(path, mImageAtlas);
+		//textures[0]->CreateTex(path, mImageAtlas);
 		Create(name, mImageAtlas, leftTop, size, fileCount, Vector2::Zero, duration);
 
 		mAnimations.insert(std::make_pair(name, animation));

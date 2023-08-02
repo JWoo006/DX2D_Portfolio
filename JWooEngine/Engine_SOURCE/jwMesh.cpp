@@ -68,4 +68,8 @@ namespace jw
 	{
 		GetDevice()->DrawIndexed(mIndexCount, 0, 0);
 	}
+	void Mesh::RenderInstanced(UINT startIndexLocation)
+	{
+		GetDevice()->DrawIndexedInstanced(mIndexCount, startIndexLocation, 0, 0, 0);
+	}
 }

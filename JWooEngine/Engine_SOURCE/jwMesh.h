@@ -17,6 +17,7 @@ namespace jw
 		 
 		void BindBuffer(); // 파이프라인에 사용할 buffer를 바인드
 		void Render();
+		void RenderInstanced(UINT startIndexLocation);
 
 		UINT GetIndexCount() { return mIndexCount; }
 

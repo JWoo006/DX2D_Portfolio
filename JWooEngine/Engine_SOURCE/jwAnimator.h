@@ -44,8 +44,15 @@ namespace jw
 			, UINT columnLength
 			, Vector2 offset = Vector2::Zero
 			, float duration = 0.1f);
+		void Create(const std::wstring& name
+			, std::shared_ptr<graphics::Texture> atlas
+			, Vector2 leftTop, Vector2 size
+			, UINT columnLength
+			, int divideSize
+			, Vector2 offset
+			, float duration);
 
-		void CreateAnimation(const std::wstring& name, const std::wstring& path, Vector2 leftTop, Vector2 size);
+		Animation* CreateAnimations(const std::wstring& name, const std::wstring& path, int divideSize, float duration, Vector2 offset = Vector2::Zero);
 		void CreateAnimation(const std::wstring& name, const std::wstring& path, Vector2 leftTop, Vector2 size, float duration);
 
 		Animation* FindAnimation(const std::wstring& name);

@@ -30,37 +30,50 @@ namespace jw
 		at = GetOwner()->GetComponent<Animator>();
 
 		rb = GetOwner()->GetComponent<Rigidbody>();
-		
+
 
 		pos = tr->GetPosition();
 
-		at->CreateAnimation(L"Player_Idle", L"..\\Resources\\Texture\\Player\\spr_idle", Vector2(0.0), Vector2(36.1f, 100.0f)); // ÇÈ¼¿ 36X35
+		at->CreateAnimations(L"Player_Idle", L"..\\Resources\\Texture\\Player\\spr_idle", 80, 0.1f);
+		//at->CreateAnimation(L"Player_Idle", L"..\\Resources\\Texture\\Player\\spr_idle", Vector2(0.0), Vector2(36.1f, 100.0f)); // ÇÈ¼¿ 36X35
 
-		at->CreateAnimation(L"Player_Idle_to_Run", L"..\\Resources\\Texture\\Player\\spr_idle_to_run", Vector2(0.0), Vector2(44.f, 80.0f), 0.05f); // pixel 44x32
-		at->CreateAnimation(L"Player_Run", L"..\\Resources\\Texture\\Player\\spr_run", Vector2(0.0), Vector2(44.f, 80.0f)); // ÇÈ¼¿ 44X32
-		at->CreateAnimation(L"Player_Run_to_Idle", L"..\\Resources\\Texture\\Player\\spr_run_to_idle", Vector2(0, 13.f), Vector2(52.f, 80.0f), 0.05f); // pixel 52x36
+		at->CreateAnimations(L"Player_Idle_to_Run", L"..\\Resources\\Texture\\Player\\spr_idle_to_run", 80, 0.05f);
+		at->CreateAnimations(L"Player_Run", L"..\\Resources\\Texture\\Player\\spr_run", 80, 0.1f);
+		at->CreateAnimations(L"Player_Run_to_Idle", L"..\\Resources\\Texture\\Player\\spr_run_to_idle", 80, 0.05f);
+		//at->CreateAnimation(L"Player_Idle_to_Run", L"..\\Resources\\Texture\\Player\\spr_idle_to_run", Vector2(0.0), Vector2(44.f, 80.0f), 0.05f); // pixel 44x32
+		//at->CreateAnimation(L"Player_Run", L"..\\Resources\\Texture\\Player\\spr_run", Vector2(0.0), Vector2(44.f, 80.0f)); // ÇÈ¼¿ 44X32
+		//at->CreateAnimation(L"Player_Run_to_Idle", L"..\\Resources\\Texture\\Player\\spr_run_to_idle", Vector2(0, 13.f), Vector2(52.f, 80.0f), 0.05f); // pixel 52x36
 
-		at->CreateAnimation(L"Player_PreCrouch", L"..\\Resources\\Texture\\Player\\spr_precrouch", Vector2(0, 10.f), Vector2(36.f, 100.0f), 0.05f); // pixel 36x40
-		at->CreateAnimation(L"Player_Crouch", L"..\\Resources\\Texture\\Player\\spr_crouch", Vector2(0, 10.f), Vector2(36.f, 100.0f)); // ÇÈ¼¿ 36x40
-		at->CreateAnimation(L"Player_PostCrouch", L"..\\Resources\\Texture\\Player\\spr_postcrouch", Vector2(0, 10.f), Vector2(36.f, 100.0f), 0.05f); // pixel 36x40
+		at->CreateAnimations(L"Player_PreCrouch", L"..\\Resources\\Texture\\Player\\spr_precrouch", 80, 0.05f);
+		at->CreateAnimations(L"Player_Crouch", L"..\\Resources\\Texture\\Player\\spr_crouch", 80, 0.1f);
+		at->CreateAnimations(L"Player_PostCrouch", L"..\\Resources\\Texture\\Player\\spr_postcrouch", 80, 0.1f);
+		//at->CreateAnimation(L"Player_PreCrouch", L"..\\Resources\\Texture\\Player\\spr_precrouch", Vector2(0, 10.f), Vector2(36.f, 100.0f), 0.05f); // pixel 36x40
+		//at->CreateAnimation(L"Player_Crouch", L"..\\Resources\\Texture\\Player\\spr_crouch", Vector2(0, 10.f), Vector2(36.f, 100.0f)); // ÇÈ¼¿ 36x40
+		//at->CreateAnimation(L"Player_PostCrouch", L"..\\Resources\\Texture\\Player\\spr_postcrouch", Vector2(0, 10.f), Vector2(36.f, 100.0f), 0.05f); // pixel 36x40
 
-		at->CreateAnimation(L"Player_Roll", L"..\\Resources\\Texture\\Player\\spr_roll", Vector2(0, -5.f), Vector2(48.f, 100.0f), 0.05f); // pixel 48x33
+		at->CreateAnimations(L"Player_Roll", L"..\\Resources\\Texture\\Player\\spr_roll", 80, 0.05f);
+		//at->CreateAnimation(L"Player_Roll", L"..\\Resources\\Texture\\Player\\spr_roll", Vector2(0, -5.f), Vector2(48.f, 100.0f), 0.05f); // pixel 48x33
 
-		at->CreateAnimation(L"Player_Attack", L"..\\Resources\\Texture\\Player\\spr_attack", Vector2(0.0), Vector2(62.f, 117.0f), 0.05f); // ÇÈ¼¿ 62X42
+		at->CreateAnimations(L"Player_Attack", L"..\\Resources\\Texture\\Player\\spr_attack", 80, 0.05f);
+		//at->CreateAnimation(L"Player_Attack", L"..\\Resources\\Texture\\Player\\spr_attack", Vector2(0.0), Vector2(62.f, 117.0f), 0.05f); // ÇÈ¼¿ 62X42
 
-		at->CreateAnimation(L"Player_Jump", L"..\\Resources\\Texture\\Player\\spr_jump", Vector2(0, 10.f), Vector2(32.f, 100.0f), 0.05f); // ÇÈ¼¿ 32X42
-		at->CreateAnimation(L"Player_Fall", L"..\\Resources\\Texture\\Player\\spr_fall", Vector2(0, 20.f), Vector2(42.f, 100.0f), 0.05f); // ÇÈ¼¿ 42x48
 
-		at->CreateAnimation(L"Player_WallGrab", L"..\\Resources\\Texture\\Player\\spr_wallgrab", Vector2(0, 10), Vector2(48.f, 100.0f)); // ÇÈ¼¿ 48x38
+		at->CreateAnimations(L"Player_Jump", L"..\\Resources\\Texture\\Player\\spr_jump", 80, 0.05f);
+		at->CreateAnimations(L"Player_Fall", L"..\\Resources\\Texture\\Player\\spr_fall", 80, 0.05f);
+		//at->CreateAnimation(L"Player_Jump", L"..\\Resources\\Texture\\Player\\spr_jump", Vector2(0, 10.f), Vector2(32.f, 100.0f), 0.05f); // ÇÈ¼¿ 32X42
+		//at->CreateAnimation(L"Player_Fall", L"..\\Resources\\Texture\\Player\\spr_fall", Vector2(0, 20.f), Vector2(42.f, 100.0f), 0.05f); // ÇÈ¼¿ 42x48
 
-		at->CreateAnimation(L"Player_Hurtfly_Begin", L"..\\Resources\\Texture\\Player\\spr_hurtfly_begin", Vector2(0, 20.f), Vector2(50.f, 80.0f)); // pixel 50x43
-		at->CreateAnimation(L"Player_Hurtfly_Loop", L"..\\Resources\\Texture\\Player\\spr_hurtfly_loop", Vector2(0, 20.f), Vector2(50.f, 80.0f)); // pixel 50x43
-		at->CreateAnimation(L"Player_Death", L"..\\Resources\\Texture\\Player\\spr_hurtground", Vector2(0, -10.f), Vector2(57.f, 80.0f)); // pixel 57x25
+		at->CreateAnimations(L"Player_WallGrab", L"..\\Resources\\Texture\\Player\\spr_wallgrab", 80, 0.1f);
+		//at->CreateAnimation(L"Player_WallGrab", L"..\\Resources\\Texture\\Player\\spr_wallgrab", Vector2(0, 10), Vector2(48.f, 100.0f)); // ÇÈ¼¿ 48x38
 
-		tr->SetScale(Vector3(2.5f, 2.5f, 1.0f));		
-		cd->SetSize(Vector2(0.1f, 0.16f));
-		cd->SetCenter(Vector2(0.f, -0.05f));
+		at->CreateAnimations(L"Player_Hurtfly_Begin", L"..\\Resources\\Texture\\Player\\spr_hurtfly_begin", 80, 0.1f);
+		at->CreateAnimations(L"Player_Hurtfly_Loop", L"..\\Resources\\Texture\\Player\\spr_hurtfly_loop", 80, 0.1f);
+		at->CreateAnimations(L"Player_Death", L"..\\Resources\\Texture\\Player\\spr_hurtground", 80, 0.1f);
+		//at->CreateAnimation(L"Player_Hurtfly_Begin", L"..\\Resources\\Texture\\Player\\spr_hurtfly_begin", Vector2(0, 20.f), Vector2(50.f, 80.0f)); // pixel 50x43
+		//at->CreateAnimation(L"Player_Hurtfly_Loop", L"..\\Resources\\Texture\\Player\\spr_hurtfly_loop", Vector2(0, 20.f), Vector2(50.f, 80.0f)); // pixel 50x43
+		//at->CreateAnimation(L"Player_Death", L"..\\Resources\\Texture\\Player\\spr_hurtground", Vector2(0, -10.f), Vector2(57.f, 80.0f)); // pixel 57x25
 
+		cd->SetSize(Vector2(0.3f, 0.4f));
 		
 		at->CompleteEvent(L"Player_Idle") = std::bind(&PlayerScript::Complete, this);
 
@@ -83,9 +96,6 @@ namespace jw
 		switch (mState)
 		{
 		case jw::PlayerScript::ePlayerState::Idle:
-			tr->SetScale(Vector3(2.5f, 2.5f, 1.0f));
-			cd->SetSize(Vector2(0.1f, 0.16f));
-			cd->SetCenter(Vector2(0.f, -0.05f));
 			idle();
 			break;
 		case jw::PlayerScript::ePlayerState::Move_L:
@@ -115,14 +125,14 @@ namespace jw
 		default:
 			break;
 		}
-		
-		
+
+
 		if (Input::GetKeyDown(eKeyCode::Z))
 		{
 			at->PlayAnimation(L"Player_Idle", true);
 			mState = ePlayerState::Idle;
 		}
-		if(Input::GetKeyDown(eKeyCode::R))
+		if (Input::GetKeyDown(eKeyCode::R))
 		{
 			Vector3 pos = tr->GetPosition();
 
@@ -130,7 +140,7 @@ namespace jw
 		}
 		if (Input::GetKey(eKeyCode::X))
 		{
-			
+
 		}
 		if (Input::GetKeyDown(eKeyCode::V))
 		{
@@ -391,7 +401,7 @@ namespace jw
 			}
 			tr->SetPosition(pos);
 		}
-	
+
 		Vector3 velocity = rb->GetVelocity();
 		velocity.Normalize();
 
@@ -456,7 +466,7 @@ namespace jw
 				velocity.y = 3.0f * dir.y;
 				rb->SetVelocity(velocity);
 			}
-			else if(rb->GetGround() == true && mousepos.y > PlayerPos.y)
+			else if (rb->GetGround() == true && mousepos.y > PlayerPos.y)
 			{
 				rb->SetGround(false);
 
@@ -477,7 +487,7 @@ namespace jw
 				rb->SetVelocity(velocity);
 			}
 
-			
+
 			if (mousepos.x > PlayerPos.x)
 			{
 				at->SetAnimDirection(Animation::eAnimDirection::Right);
@@ -487,7 +497,7 @@ namespace jw
 				at->SetAnimDirection(Animation::eAnimDirection::Left);
 			}
 			at->PlayAnimation(L"Player_Attack", true);
-		}	
+		}
 
 		if (rb->GetGround() == true)
 		{

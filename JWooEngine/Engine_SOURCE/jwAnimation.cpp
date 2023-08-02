@@ -58,6 +58,7 @@ namespace jw
 		SetKey(name);
 		mAtlas = atlas;
 
+
 		float width = (float)atlas->GetWidth();
 		float height = (float)atlas->GetHeight();
 
@@ -76,11 +77,40 @@ namespace jw
 		}
 
 	}
+	void Animation::Create(std::wstring name
+		, std::shared_ptr<graphics::Texture> atlas
+		, Vector2 leftTop
+		, Vector2 size
+		, UINT columnLength
+		, int divideSize
+		, Vector2 offset
+		, float duration)
+	{
+		SetKey(name);
+		mAtlas = atlas;
+
+		float width = (float)atlas->GetMetaDataWidth();
+		float height = (float)atlas->GetMedtaDataHeight();
+
+		for (size_t i = 0; i < columnLength; i++)
+		{
+			Sprite sprite = {};
+			sprite.leftTop.x = leftTop.x + (i * size.x) / width; // ºñÀ²ÁÂÇ¥°è
+			sprite.leftTop.y = leftTop.y / height;
+			sprite.size.x = size.x / width;
+			sprite.size.y = size.y / height;
+			sprite.offset = offset;
+			sprite.atlasSize = Vector2(divideSize / width, divideSize / height);
+			sprite.duration = duration;
+
+			mSprites.push_back(sprite);
+		}
+	}
 
 	void Animation::Binds()
 	{
 		// texture bind
-		mAtlas->BindShader(graphics::eShaderStage::PS, 12);
+		mAtlas->BindShaderResource(graphics::eShaderStage::PS, 12);
 
 		// AnimationCB
 		renderer::AnimatorCB data = {};

@@ -20,6 +20,7 @@ namespace jw
 
 		void SetMaterial(std::shared_ptr<Material> material) { mMaterial = material; }
 		std::shared_ptr<Material> GetMaterial() { return mMaterial; }
+		std::shared_ptr<Mesh> GetMesh() { return mMesh; }
 
 	private:
 		std::shared_ptr<Mesh> mMesh;
