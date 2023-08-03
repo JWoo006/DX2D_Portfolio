@@ -1,6 +1,7 @@
 #pragma once
 #include "jwMeshRenderer.h"
 #include "jwStructedBuffer.h"
+#include "jwParticleShader.h"
 
 namespace jw
 {
@@ -17,6 +18,7 @@ namespace jw
 
 	private:
 		graphics::StructedBuffer* mBuffer;
+		std::shared_ptr<ParticleShader> mCS;
 
 		UINT    mCount;
 		Vector4 mStartSize;
@@ -24,6 +26,6 @@ namespace jw
 		Vector4 mStartColor;
 		Vector4 mEndColor;
 		float   mLifeTime;
+		float	mFrequency;
 	};
 }
-

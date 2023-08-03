@@ -17,7 +17,7 @@
 #define CBSLOT_GRID				2
 #define CBSLOT_ANIMATION2D		3
 #define CBSLOT_OVERLAP			4
-
+#define CBSLOT_PARTICLE			5
 //#define CBSLOT_PARTICLE			1
 
 
@@ -41,6 +41,7 @@ namespace jw::graphics
 		Grid,
 		Animator,
 		Collider,
+		Particle,
 		End,
 	};
 
@@ -85,9 +86,11 @@ namespace jw::graphics
 		End,
 	};
 
-	enum class eSRVType
+	enum class eViewType
 	{
 		None,
+		SRV,
+		UAV,
 		End,
 	};
 

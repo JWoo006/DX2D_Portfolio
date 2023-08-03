@@ -220,6 +220,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwPaintShader.h">
       <Filter>Resource\Shader</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwParticleShader.h">
+      <Filter>Resource\Shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp">
@@ -320,6 +323,9 @@
       <Filter>GameObject\Component\ParticleSystem</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwPaintShader.cpp">
+      <Filter>Resource\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwParticleShader.cpp">
       <Filter>Resource\Shader</Filter>
     </ClCompile>
   </ItemGroup>

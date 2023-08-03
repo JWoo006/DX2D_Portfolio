@@ -29,6 +29,16 @@ cbuffer Collider : register(b4)
     bool Overlap;
 }
 
+cbuffer ParticleSystem : register(b5)
+{
+    uint elementCount;
+    float elapsedTime;
+    int padd;
+    int padd2;
+}
+
+
+
 Texture2D albedoTexture : register(t0);
 Texture2D atlasTexture : register(t12);
 
