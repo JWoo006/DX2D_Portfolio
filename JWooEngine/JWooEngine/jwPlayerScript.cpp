@@ -21,6 +21,7 @@ namespace jw
 
 	PlayerScript::PlayerScript()
 		: mJumpScale(5.0f)
+		, mAtackJumpScale(0.0f)
 	{
 	}
 	PlayerScript::~PlayerScript()
@@ -28,6 +29,10 @@ namespace jw
 	}
 	void PlayerScript::Initialize()
 	{
+		mJumpScale = 5.0f;
+		// ³ëÆ®ºÏ 100, µ¥Å¾ 1000
+		mAtackJumpScale = 100.0f;
+
 		tr = GetOwner()->GetComponent<Transform>();
 		cd = GetOwner()->GetComponent<Collider2D>();
 		at = GetOwner()->GetComponent<Animator>();
@@ -429,6 +434,7 @@ namespace jw
 	{
 
 		Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+		//rb->SetGravity(Vector3(0.0f, 0.0f, 0.0f));
 		Vector3 velocity = rb->GetVelocity();
 
 		if (!mbAttack)
@@ -467,7 +473,7 @@ namespace jw
 				//velocity.y = 3.0f * dir.y;
 				//rb->SetVelocity(velocity);
 				rb->SetGround(false);
-				rb->AddForce(Vector3(0.f, -1000.f, 0.f));
+				rb->AddForce(Vector3(0.f, -mAtackJumpScale, 0.f));
 			}
 			else if (rb->GetGround() == true && mousepos.y > PlayerPos.y)
 			{
@@ -476,21 +482,25 @@ namespace jw
 				//velocity.y = 5.0f * -dir.y;
 				//rb->SetVelocity(velocity);
 				rb->SetGround(false);
-				rb->AddForce(Vector3(0.f, -1000.f, 0.f));
+				rb->AddForce(Vector3(0.f, -mAtackJumpScale, 0.f));
 			}
 			else if (rb->GetGround() == false && mousepos.y > PlayerPos.y)
 			{
-				//rb->AddForce(Vector3(1500.f * -dir.x, 0 * -dir.y, 0.f));
+				rb->AddForce(Vector3(100.f * -dir.x, 100 * -dir.y, 0.f));
 				//rb->AddForce(Vector3(500.f * -dir.x, -20000.f, 0.f));
-				velocity.x = 5.0f * -dir.x;
-				velocity.y = 5.0f * -dir.y;
-				rb->SetVelocity(velocity);
+				//Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+				//Vector3 velocity2 = rb->GetVelocity();
+				//velocity2.x = 3.0f * -dir.x;
+				//velocity2.y = 3.0f * -dir.y;
+				//rb->SetVelocity(velocity2);
 			}
 			else if (rb->GetGround() == false && mousepos.y < PlayerPos.y)
 			{
-				velocity.x = 5.0f * -dir.x;
-				velocity.y = 0.0f * -dir.y;
-				rb->SetVelocity(velocity);
+				Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+				Vector3 velocity2 = rb->GetVelocity();
+				velocity2.x = 3.0f * -dir.x;
+				velocity2.y = 0.0f * -dir.y;
+				rb->SetVelocity(velocity2);
 			}
 
 
@@ -517,14 +527,14 @@ namespace jw
 			at->PlayAnimation(L"Player_Attack", true);
 		}
 
-		if (rb->GetGround() == true)
+		/*if (rb->GetGround() == true)
 		{
 			velocity.x = 0.0f;
 			velocity.y = 0.0f;
 			rb->SetVelocity(velocity);
 			mState = ePlayerState::Idle;
 			at->PlayAnimation(L"Player_Idle", true);
-		}
+		}*/
 	}
 	void PlayerScript::death()
 	{

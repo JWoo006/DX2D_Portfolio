@@ -36,6 +36,7 @@ namespace jw
 		Vector3 mGravity;
 		float mFriction;
 		bool mbGround;
+		bool mbAttack;
 		Rigidbody* mRigidbody;
 	};
 

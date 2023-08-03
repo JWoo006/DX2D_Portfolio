@@ -72,7 +72,7 @@ namespace jw
 		// 물체를 속도에 맞게끔 이동
 		Transform* tr = GetOwner()->GetComponent<Transform>();
 		Vector3 pos = tr->GetPosition();
-		pos = pos - mVelocity * Time::DeltaTime();
+		pos = pos - mVelocity * 1.f * Time::DeltaTime();
 		tr->SetPosition(pos);
 
 		mForce = Vector3::Zero;

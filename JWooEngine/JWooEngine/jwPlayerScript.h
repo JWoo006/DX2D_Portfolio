@@ -60,6 +60,7 @@ namespace jw
 
 		float mJumpScale;
 		float mJumpTime;
+		float mAtackJumpScale;
 		bool mbFall = false;
 		bool mbAttack = false;
 
