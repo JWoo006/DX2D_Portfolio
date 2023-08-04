@@ -1,5 +1,6 @@
 #include "jwInput.h"
 #include "jwApplication.h"
+#include "jwRenderer.h"
 
 extern jw::Application application;
 
@@ -16,9 +17,9 @@ namespace jw
 	};
 
 	std::vector<Input::Key> Input::mKeys;
-	Vector2 Input::mMousePos = Vector2::Zero;
-	Vector3 Input::mCursorWorldPos = Vector3::Zero;
-	Vector3 Input::mCursorUIPos = Vector3::Zero;
+	Vector3 Input::mMousePos = Vector3::Zero;
+	Vector3 Input::mMouseWorldPos = Vector3::Zero;
+	Vector3 Input::mMouseUIPos = Vector3::Zero;
 
 	void Input::Initialize()
 	{
@@ -62,12 +63,13 @@ namespace jw
 				}
 			}
 
-			POINT mousePos = {};
+			ConvertMousePos();
+			/*POINT mousePos = {};
 			GetCursorPos(&mousePos);
 
 			ScreenToClient(application.GetHwnd(), &mousePos);
 			mMousePos.x = mousePos.x;
-			mMousePos.y = mousePos.y;
+			mMousePos.y = mousePos.y;*/
 		}
 		else
 		{
@@ -91,5 +93,33 @@ namespace jw
 	void Input::Render(HDC hdc)
 	{
 
+	}
+	void Input::ConvertMousePos()
+	{
+		POINT ptMouse = {};
+		GetCursorPos(&ptMouse);
+		ScreenToClient(application.GetHwnd(), &ptMouse);
+
+		RECT windowRect;
+		GetClientRect(application.GetHwnd(), &windowRect);
+
+		Vector2 resolutionRatio = application.GetResolutionRatio();
+
+		Vector2 mousePos;
+		Viewport viewport;
+		viewport.width = windowRect.right;
+		viewport.height = windowRect.bottom;
+		viewport.x = 0;
+		viewport.y = 0;
+		viewport.minDepth = 0.0f;
+		viewport.maxDepth = 1.0f;
+
+		//mousePos.x = static_cast<float>(ptMouse.x - (windowRect.right - windowRect.left) * 0.5f) * resolutionRatio.x;
+		//mousePos.y = static_cast<float>((windowRect.bottom - windowRect.top) * 0.5f - ptMouse.y) * resolutionRatio.y;
+
+		mMousePos.x = ptMouse.x;
+		mMousePos.y = ptMouse.y;
+
+		mMouseWorldPos = viewport.Unproject(mMousePos, Camera::GetGpuProjectionMatrix(), Camera::GetGpuViewMatrix(), Matrix::Identity);
 	}
 }

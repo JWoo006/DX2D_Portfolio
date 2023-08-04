@@ -24,7 +24,10 @@ namespace jw
 
 		Vector3 GetVelocity() { return mVelocity; }
 		void SetVelocity(Vector3 vel) { mVelocity = vel; }
+		void AddVelocity(Vector3 vel) { mVelocity += vel; }
 		void AddForce(Vector3 force);
+
+		void SetLimitVelocity(Vector3 vel) { mLimitedVelocity = vel; }
 
 	private:
 		float mMass;

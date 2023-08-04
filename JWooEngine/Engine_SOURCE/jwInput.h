@@ -36,6 +36,7 @@ namespace jw
 		static void Initialize();
 		static void Update();
 		static void Render(HDC hdc);
+		
 
 		inline static eKeyState GetKeyState(eKeyCode keyCode)
 		{
@@ -61,24 +62,26 @@ namespace jw
 			return mKeys[static_cast<UINT>(keyCode)].state == eKeyState::Up;
 		}
 		
-		static __forceinline Vector2 GetMousePos() { return mMousePos; }
-		static __forceinline Vector3 GetWorldMousePos() { return mCursorWorldPos; }
-		static __forceinline Vector3 GetUIMousePos() { return mCursorUIPos; }
+		static __forceinline Vector3 GetMousePos() { return mMousePos; }
+		static __forceinline Vector3 GetWorldMousePos() { return mMouseWorldPos; }
+		static __forceinline Vector3 GetUIMousePos() { return mMouseUIPos; }
 
 		static __forceinline void SetWorldMousePos(Vector3 pos)
 		{
-			mCursorWorldPos = pos;
+			mMouseWorldPos = pos;
 		}
 
 		static __forceinline void SetUIMousePos(Vector3 pos)
 		{
-			mCursorUIPos = pos;
+			mMouseUIPos = pos;
 		}
+
+		static void ConvertMousePos();
 
 	private:
 		static std::vector<Key> mKeys;
-		static Vector2 mMousePos;
-		static Vector3 mCursorWorldPos;
-		static Vector3 mCursorUIPos;
+		static Vector3 mMousePos;
+		static Vector3 mMouseWorldPos;
+		static Vector3 mMouseUIPos;
 	};
 }

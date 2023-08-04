@@ -46,13 +46,33 @@ namespace jw
 			Vector3 playerPos2 = playerTr->GetPosition();
 			Vector3 grPos = grTr->GetPosition();
 
-			playerPos2.y -= (fSize - fLen);
+			playerPos2.y += (fSize - fLen);
 			playerTr->SetPosition(playerPos2);
 		}
 	}
 	void GroundScript::OnCollisionStay(Collider2D* other)
 	{
-		
+		Collider2D* playerCol = other->GetOwner()->GetComponent<Collider2D>();
+		Vector3 playerPos = other->GetOwner()->GetComponent<Transform>()->GetPosition();
+
+		Collider2D* groundCol = this->GetOwner()->GetComponent<Collider2D>();
+		Vector3 groundPos = groundCol->GetPosition();
+
+		float fLen = fabs(playerPos.y - groundPos.y);
+		float fSize = (playerCol->GetSize().y / 2.0f) + (groundCol->GetSize().y / 2.0f);
+
+		if (fLen < fSize)
+		{
+			int a = 0;
+			Transform* playerTr = other->GetOwner()->GetComponent<Transform>();
+			Transform* grTr = this->GetOwner()->GetComponent<Transform>();
+
+			Vector3 playerPos2 = playerTr->GetPosition();
+			Vector3 grPos = grTr->GetPosition();
+
+			playerPos2.y += (fSize - fLen);
+			playerTr->SetPosition(playerPos2);
+		}
 	}
 	void GroundScript::OnCollisionExit(Collider2D* other)
 	{

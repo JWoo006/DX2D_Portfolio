@@ -110,4 +110,16 @@ namespace jw
 		UpdateWindow(mHwnd);
 	}
 
+	Vector2 Application::GetResolutionRatio()
+	{
+		RECT WindowRECT;
+
+		GetClientRect(mHwnd, &WindowRECT);
+
+		float width = static_cast<float>(WindowRECT.right - WindowRECT.left);
+		float height = static_cast<float>(WindowRECT.bottom - WindowRECT.top);
+
+		return Vector2(mWidth / width, mHeight / height);
+
+	}
 }

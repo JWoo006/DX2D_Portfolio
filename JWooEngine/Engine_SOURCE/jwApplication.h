@@ -21,11 +21,12 @@ namespace jw
 		void Present();
 
 		void SetWindow(HWND hwnd, UINT width, UINT height);
+		Vector2 GetResolutionRatio();
 
 		UINT GetWidth() { return mWidth; }
 		UINT GetHeight() { return mHeight; }
 		HWND GetHwnd() { return mHwnd; }
-
+		
 		bool GetColShow() { return mbColShow; }
 
 	private:

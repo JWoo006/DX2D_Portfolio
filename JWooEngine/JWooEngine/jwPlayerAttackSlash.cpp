@@ -16,17 +16,17 @@ namespace jw
 	}
 	void PlayerAttackSlash::Initialize()
 	{
-		MeshRenderer* mr = AddComponent<MeshRenderer>();
-		mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
-		mr->SetMaterial(Resources::Find<Material>(L"SpriteAnimaionMaterial"));
+		MeshRenderer* mMeshRenderer = AddComponent<MeshRenderer>();
+		mMeshRenderer->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
+		mMeshRenderer->SetMaterial(Resources::Find<Material>(L"SpriteAnimaionMaterial"));
 
-		at = AddComponent<Animator>();
-		at->SetAnimDirection(mPlayer->GetComponent<Animator>()->GetAnimDirection());
-		at->CreateAnimations(L"Attack_Slash", L"..\\Resources\\Texture\\Player_SFX\\spr_slash", 100, 0.05f);
+		mAnimator = AddComponent<Animator>();
+		mAnimator->SetAnimDirection(mPlayer->GetComponent<Animator>()->GetAnimDirection());
+		mAnimator->CreateAnimations(L"Attack_Slash", L"..\\Resources\\Texture\\Player_SFX\\spr_slash", 100, 0.04f);
 
-		at->CompleteEvent(L"Attack_Slash") = std::bind(&PlayerAttackSlash::AnimComplete, this);
+		mAnimator->CompleteEvent(L"Attack_Slash") = std::bind(&PlayerAttackSlash::AnimComplete, this);
 
-		at->PlayAnimation(L"Attack_Slash", true);
+		mAnimator->PlayAnimation(L"Attack_Slash", true);
 
 		GameObject::Initialize();
 	}

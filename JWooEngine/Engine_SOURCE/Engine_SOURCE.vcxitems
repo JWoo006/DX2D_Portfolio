@@ -36,7 +36,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwMeshRenderer.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwMyMath.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)JWooEngine.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwPaintShader.h" />
@@ -75,7 +74,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwMeshRenderer.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwMyMath.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwPaintShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwParticleShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwParticleSystem.cpp" />

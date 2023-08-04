@@ -1002,3 +1002,18 @@ namespace jw::math
 
 #include "jwMath.inl"
 }
+
+namespace jw::math
+{
+    inline static Vector2 Rotate(Vector2 vector, float degree)
+    {
+        float radian = (degree / 180.0f) * 3.141592;
+        //float radian = (degree) * (PI / 180.0f);
+        vector.Normalize();
+
+        float x = vector.x * cosf(radian) - vector.y * sinf(radian);
+        float y = vector.x * sinf(radian) + vector.y * cos(radian);
+
+        return Vector2(x, y);
+    }
+}

@@ -208,9 +208,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwRigidbody.h">
       <Filter>GameObject\Component\RigidBody</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwMyMath.h">
-      <Filter>Common\Math</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwComputeShader.h">
       <Filter>Resource\Shader</Filter>
     </ClInclude>
@@ -312,9 +309,6 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwRigidbody.cpp">
       <Filter>GameObject\Component\RigidBody</Filter>
-    </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwMyMath.cpp">
-      <Filter>Common\Math</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwComputeShader.cpp">
       <Filter>Resource\Shader</Filter>

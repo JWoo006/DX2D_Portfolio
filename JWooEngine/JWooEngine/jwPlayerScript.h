@@ -50,19 +50,27 @@ namespace jw
 		void attack();
 		void death();
 
+		void CreateAttackSlash();
+
 	private:
 		ePlayerState mState;
 
-		Transform* tr;
-		Collider2D* cd;
-		Animator* at;
-		Rigidbody* rb;
+		Transform* mTransform;
+		Collider2D* mCollider;
+		Animator* mAnimator;
+		Rigidbody* mRigidbody;
 
 		float mJumpScale;
 		float mJumpTime;
 		float mAtackJumpScale;
 		bool mbFall = false;
-		bool mbAttack = false;
+
+		float mAttackDelay;
+		float mAttackTime;
+		bool mbFirstAttack;
+		Vector3 mAttackDirection;
+		
+
 
 	};
 }

@@ -1,4 +1,5 @@
 #include "jwComponent.h"
+#include "jwGameObject.h"
 
 namespace jw
 {
@@ -20,6 +21,16 @@ namespace jw
 	}
 	void Component::Render()
 	{
+	}
+
+	Vector3 Component::GetOwnerPos() const
+	{
+		return mOwner->GetPos();
+	}
+
+	Vector3 Component::GetOwnerWorldPos() const
+	{
+		return mOwner->GetWorldPos();
 	}
 }
 

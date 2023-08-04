@@ -19,7 +19,7 @@ namespace jw
 		void AnimComplete();
 
 	private:
-		Animator* at;
+		Animator* mAnimator;
 		Player* mPlayer;
 	};
 

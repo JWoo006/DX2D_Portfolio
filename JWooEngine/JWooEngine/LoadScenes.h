@@ -46,6 +46,6 @@ namespace jw
 		
 		SceneManager::SetActiveScene(L"PlayScene");
 
-		//SceneManager::SetActiveScene(L"TestScene");
+		SceneManager::SetActiveScene(L"TestScene");
 	}
 }

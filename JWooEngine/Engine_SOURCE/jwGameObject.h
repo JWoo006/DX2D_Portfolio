@@ -95,6 +95,14 @@ namespace jw
 		void SetState(eState state) { mState = state; }
 		eState GetState() { return mState; }
 
+		Vector3 GetScale();
+		Vector3 GetRotation();
+		Vector3 GetPos();
+		Vector3 GetWorldPos();
+
+		void SetPos(Vector3 _Value);
+		void SetRotation(Vector3 _Value);
+
 	private:
 		eState mState;
 		std::vector<Component*> mComponents;

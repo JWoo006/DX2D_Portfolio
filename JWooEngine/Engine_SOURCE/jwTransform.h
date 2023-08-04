@@ -38,6 +38,8 @@ namespace jw
 		Transform* GetParent() { return mParent; }
 		Matrix& GetMatrix() { return mWorld; }
 
+		Vector3 GetWorldPosition() const { return mWorldPosition; }
+
 	private:
 		Vector3 mPosition;
 		Vector3 mRotation;
@@ -51,6 +53,8 @@ namespace jw
 		Vector3 mBottomRight;
 
 		Matrix mWorld;
+
+		Vector3 mWorldPosition;
 
 		Transform* mParent;
 	};

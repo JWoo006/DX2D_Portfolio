@@ -11,6 +11,7 @@ namespace jw
 		, mPosition(Vector3::Zero)
 		, mRotation(Vector3::Zero)
 		, mScale(Vector3::One)
+		, mWorldPosition(Vector3::Zero)
 	{
 	}
 
@@ -43,6 +44,7 @@ namespace jw
 		position.Translation(mPosition);
 
 		mWorld = scale * rotation * position;
+		mWorldPosition = mPosition;
 		mUp = Vector3::TransformNormal(Vector3::Up, rotation);
 		mFoward = Vector3::TransformNormal(Vector3::Forward, rotation);
 		mRight = Vector3::TransformNormal(Vector3::Right, rotation);

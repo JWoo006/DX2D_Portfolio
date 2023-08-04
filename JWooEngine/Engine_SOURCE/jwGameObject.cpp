@@ -76,4 +76,38 @@ namespace jw
 			script->Render();
 		}
 	}
+
+	Vector3 GameObject::GetScale()
+	{
+		return GetComponent<Transform>()->GetScale();
+	}
+
+	Vector3 GameObject::GetRotation()
+	{
+		return GetComponent<Transform>()->GetRotation();
+	}
+
+	Vector3 GameObject::GetPos()
+	{
+		return GetComponent<Transform>()->GetPosition();
+	}
+
+	Vector3 GameObject::GetWorldPos()
+	{
+		return GetComponent<Transform>()->GetWorldPosition();
+	}
+
+	void GameObject::SetPos(Vector3 pos)
+	{
+		Transform* tr = GetComponent<Transform>();
+		tr->SetPosition(pos);
+	}
+
+	void GameObject::SetRotation(Vector3 rotate)
+	{
+		if (nullptr != GetComponent<Transform>())
+		{
+			GetComponent<Transform>()->SetRotation(rotate);
+		}
+	}
 }

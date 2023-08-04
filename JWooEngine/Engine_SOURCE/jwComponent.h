@@ -22,6 +22,9 @@ namespace jw
 		GameObject* GetOwner() { return mOwner; }
 		void SetOwner(GameObject* owner) { mOwner = owner; }
 
+		Vector3 GetOwnerPos() const;
+		Vector3 GetOwnerWorldPos() const;
+
 	private:
 		const eComponentType mType;
 		GameObject* mOwner;
