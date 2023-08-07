@@ -65,6 +65,12 @@ struct Particle
     uint active;
 };
 
+struct ParticleShared
+{
+    uint ActiveSharedCount;
+};
+
+
 StructuredBuffer<LightAttribute> lightsAttribute : register(t13);
 StructuredBuffer<Particle> particles : register(t14);
 

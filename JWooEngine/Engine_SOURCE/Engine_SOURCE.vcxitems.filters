@@ -103,6 +103,9 @@
     <Filter Include="GameObject\Component\ParticleSystem">
       <UniqueIdentifier>{233a1751-401e-40f0-b55f-88bf9739ef0a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Component\Light">
+      <UniqueIdentifier>{12312f67-0194-45a2-8c23-b5011de06bc8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEntity.h">
@@ -201,7 +204,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwAnimator.h">
       <Filter>GameObject\Component\Animator</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jwLight.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwStructedBuffer.h">
       <Filter>Graphics\StructedBuffer</Filter>
     </ClInclude>
@@ -219,6 +221,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwParticleShader.h">
       <Filter>Resource\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwLight.h">
+      <Filter>GameObject\Component\Light</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -303,7 +308,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwAnimator.cpp">
       <Filter>GameObject\Component\Animator</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jwLight.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwStructedBuffer.cpp">
       <Filter>Graphics\StructedBuffer</Filter>
     </ClCompile>
@@ -321,6 +325,9 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwParticleShader.cpp">
       <Filter>Resource\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwLight.cpp">
+      <Filter>GameObject\Component\Light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

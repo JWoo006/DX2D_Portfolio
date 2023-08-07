@@ -474,7 +474,7 @@ namespace jw
 				// 지상 수평 베기
 				if (abs(MousePos.y - PlayerPos.y) < 0.3)
 				{
-					mRigidbody->AddVelocity(Vector3(mAttackDirection.x * -3.f, -1.5f, mAttackDirection.z));
+					mRigidbody->AddVelocity(Vector3(mAttackDirection.x * -3.f, -1.f, mAttackDirection.z));
 				}
 				else if (MousePos.y > PlayerPos.y)
 				{
@@ -539,6 +539,9 @@ namespace jw
 		PlayerAttackSlash* SlashObj
 			= object::Instantiate<PlayerAttackSlash>(eLayerType::Effect, Vector3(PlayerPos.x, PlayerPos.y, PlayerPos.z - 0.1f), player);
 		Transform* SlashTr = SlashObj->GetComponent<Transform>();
+		Collider2D* SlashCd = SlashObj->AddComponent<Collider2D>();
+		SlashCd->SetSize(Vector2(1.f, 0.4f));
+
 		//SlashTr->SetRotation(0.0f, 0.0f, RotateDegree(angle));
 		Vector3 MousePos = Input::GetWorldMousePos();
 		Vector3 Direction = MousePos - GetOwnerWorldPos();

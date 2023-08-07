@@ -144,5 +144,10 @@ namespace jw::graphics
 		float speed;
 		UINT active;
 	};
+
+	struct ParticleShared
+	{
+		UINT sharedActiveCount;
+	};
 }
 
