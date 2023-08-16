@@ -29,15 +29,16 @@ namespace jw
 		for (size_t i = 0; i < 1000; i++)
 		{
 			Vector4 pos = Vector4::Zero;
-			pos.x += rand() % 20;
-			pos.y += rand() % 10;
+			//pos.x += rand() % 20;
+			//pos.y += rand() % 10;
 
-			int sign = rand() % 2;
-			if (sign == 0)
-				pos.x *= -1.0f;
-			sign = rand() % 2;
-			if (sign == 0)
-				pos.y *= -1.0f;
+			//int sign = rand() % 2;
+			//if (sign == 0)
+			//	pos.x *= -1.0f;
+			//sign = rand() % 2;
+			//if (sign == 0)
+			//	pos.y *= -1.0f;
+
 
 			particles[i].direction =
 				Vector4(cosf((float)i * (XM_2PI / (float)1000))
@@ -53,7 +54,7 @@ namespace jw
 		mBuffer->Create(sizeof(Particle), 1000, eViewType::UAV, particles);
 
 		mSharedBuffer = new graphics::StructedBuffer();
-		mSharedBuffer->Create(sizeof(Particle), 1, eViewType::UAV, nullptr, true);
+		mSharedBuffer->Create(sizeof(ParticleShared), 1, eViewType::UAV, nullptr, true);
 
 		//ParticleShared shareData = {};
 		//shareData.sharedActiveCount = 1000;
@@ -71,7 +72,7 @@ namespace jw
 	}
 	void ParticleSystem::LateUpdate()
 	{
-		float AliveTime = 1.0f / 1.0f;
+		float AliveTime = 1.0f / 2.0f; // particle spawn Time 
 		mTime += Time::DeltaTime();
 
 		if (mTime > AliveTime)

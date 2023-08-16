@@ -78,6 +78,21 @@ namespace jw
 			ground->AddComponent<GroundScript>();
 		}
 
+		{
+			GameObject* ground
+				= object::Instantiate<GameObject>(eLayerType::Ground, Vector3(0.0f, 0.0f, 1.001f));
+
+			ground->SetName(L"GroundCollider2");
+			
+
+			Collider2D* cd = ground->AddComponent<Collider2D>();
+			cd->SetSize(Vector2(8.f, 0.5f));
+			Transform* tr = ground->GetComponent<Transform>();
+			tr->SetPosition(Vector3(0.0f, -2.0f, 1.001f));
+			ground->AddComponent<GroundScript>();
+			ground->SetRotation(Vector3(0.0f, 0.0f, RotateDegree(45)));
+		}
+
 		//Light
 		{
 			GameObject* light = new GameObject();

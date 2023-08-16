@@ -18,6 +18,7 @@
 #define CBSLOT_ANIMATION2D		3
 #define CBSLOT_OVERLAP			4
 #define CBSLOT_PARTICLE			5
+#define CBSLOT_NOISE			6
 //#define CBSLOT_PARTICLE			1
 
 
@@ -42,6 +43,7 @@ namespace jw::graphics
 		Animator,
 		Collider,
 		Particle,
+		Noise,
 		End,
 	};
 

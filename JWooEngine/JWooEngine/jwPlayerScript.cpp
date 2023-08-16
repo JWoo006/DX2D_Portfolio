@@ -8,6 +8,7 @@
 #include "jwCollider2D.h"
 #include "jwRigidbody.h"
 #include "jwObject.h"
+#include "jwAnimation.h"
 
 #include "jwCamera.h"
 
@@ -17,7 +18,6 @@
 
 namespace jw
 {
-
 	PlayerScript::PlayerScript()
 		: mJumpScale(5.0f)
 		, mAtackJumpScale(0.0f)
@@ -275,14 +275,18 @@ namespace jw
 		if (Input::GetKey(eKeyCode::A))
 		{
 			Vector3 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
-
 			pos.x -= 2.0f * Time::DeltaTime();
+			//pos.x -= 2.0f * Time::DeltaTime() * std::cos(RotateDegree(45));
+			//pos.y -= 2.0f * Time::DeltaTime() * std::sin(RotateDegree(45));
+
+			//mTransform->SetRotation(Vector3(0, 0, RotateDegree(45)));
 			mTransform->SetPosition(pos);
 		}
 		else if (Input::GetKey(eKeyCode::D))
 		{
 			Vector3 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
-			pos.x += 2.0f * Time::DeltaTime();
+			pos.x += 2.0f * Time::DeltaTime() * std::cos(RotateDegree(45));
+			pos.y += 2.0f * Time::DeltaTime() * std::sin(RotateDegree(45));
 			mTransform->SetPosition(pos);
 		}
 

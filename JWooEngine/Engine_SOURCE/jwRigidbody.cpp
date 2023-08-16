@@ -50,6 +50,11 @@ namespace jw
 			mVelocity += mGravity * Time::DeltaTime();
 		}
 
+		{
+			Vector3 Dir = mVelocity;
+			Dir.Normalize();
+		}
+
 		// 중력가속도 최대 속도 제한
 		/*vector3 gravity = mgravity;
 		gravity.normalize();

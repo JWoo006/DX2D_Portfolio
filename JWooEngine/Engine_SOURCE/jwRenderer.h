@@ -50,8 +50,13 @@ namespace renderer
 	{
 		UINT elementCount;
 		float elpasedTime;
-		int padd;
+		float deltaTime;
 		int padd2;
+	};
+
+	CBUFFER(NoiseCB, CBSLOT_NOISE)
+	{
+		Vector4 size;
 	};
 
 	extern jw::graphics::ConstantBuffer* constantBuffer[(UINT)eCBType::End];
