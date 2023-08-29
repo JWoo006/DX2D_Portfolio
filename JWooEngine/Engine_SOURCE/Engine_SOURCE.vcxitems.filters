@@ -106,6 +106,15 @@
     <Filter Include="GameObject\Component\Light">
       <UniqueIdentifier>{12312f67-0194-45a2-8c23-b5011de06bc8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObject\Component\Audio">
+      <UniqueIdentifier>{152d63c1-659b-4463-ab85-6a89f8d2c4bf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Audio">
+      <UniqueIdentifier>{f323164d-0492-4a2c-a589-436581856247}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GameObject\Component\Font">
+      <UniqueIdentifier>{d32976bf-4c17-4adc-b91e-7424d5b3ce59}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEntity.h">
@@ -225,6 +234,21 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwLight.h">
       <Filter>GameObject\Component\Light</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwFmod.h">
+      <Filter>GameObject\Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwAudioClip.h">
+      <Filter>GameObject\Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwAudioListener.h">
+      <Filter>GameObject\Component\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwAudioSource.h">
+      <Filter>Resource\Audio</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwFontWrapper.h">
+      <Filter>GameObject\Component\Font</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp">
@@ -328,6 +352,21 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jwLight.cpp">
       <Filter>GameObject\Component\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwFmod.cpp">
+      <Filter>GameObject\Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwAudioClip.cpp">
+      <Filter>GameObject\Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwAudioListener.cpp">
+      <Filter>GameObject\Component\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwAudioSource.cpp">
+      <Filter>Resource\Audio</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwFontWrapper.cpp">
+      <Filter>GameObject\Component\Font</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

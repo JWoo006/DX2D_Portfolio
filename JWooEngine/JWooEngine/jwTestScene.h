@@ -19,7 +19,7 @@ namespace jw
 		virtual void OnExit() override;
 
 	private:
-
+		class Player* mplayer;
 	};
 }
 

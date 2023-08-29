@@ -6,6 +6,18 @@
 
 namespace jw
 {
+	CameraScript::CameraScript()
+		: mPlayer(nullptr)
+		, mbCameraFollowX(false)
+		, mbCameraFollowY(false)
+	{
+	}
+	CameraScript::~CameraScript()
+	{
+	}
+	void CameraScript::Initialize()
+	{
+	}
 	void CameraScript::Update()
 	{
 		Transform* tr = GetOwner()->GetComponent<Transform>();
@@ -42,5 +54,25 @@ namespace jw
 			tr->SetPosition(pos);
 		}*/
 
+		if (mPlayer)
+		{
+			//tr->SetPosition(mPlayer->GetPos());
+		}
+
+	}
+	void CameraScript::KeyBoardMove()
+	{
+	}
+	void CameraScript::TargetMove()
+	{
+	}
+	void CameraScript::OnCollisionEnter(Collider2D* other)
+	{
+	}
+	void CameraScript::OnCollisionStay(Collider2D* other)
+	{
+	}
+	void CameraScript::OnCollisionExit(Collider2D* other)
+	{
 	}
 }

@@ -6,6 +6,8 @@
 #include "jwTransform.h"
 #include "jwGameObject.h"
 
+#include <random>
+
 namespace jw
 {
 	ParticleSystem::ParticleSystem()
@@ -39,14 +41,24 @@ namespace jw
 			//if (sign == 0)
 			//	pos.y *= -1.0f;
 
+			
+			std::random_device rd; // 시드 생성기
+			std::mt19937 gen(rd()); // 메르센 트위스터 엔진을 시드로 초기화
+			std::uniform_real_distribution<double> dis(0.5, 1.0); // 0.5에서 1.0 사이의 균일한 분포
+
+			double randomValue = dis(gen); // 랜덤한 실수 값 생성
+
 
 			particles[i].direction =
 				Vector4(cosf((float)i * (XM_2PI / (float)1000))
 					, sinf((float)i * (XM_2PI / 100.f))
 					, 0.0f, 1.0f);
-
+			float a = cosf((float)i * (XM_2PI / (float)1000));
+			float b = sinf((float)i * (XM_2PI / 100.f));
+			particles[i].direction = Vector4(1.f, 1.f, 0.0f, 1.0f);
+			
 			particles[i].position = pos;
-			particles[i].speed = 1.0f;
+			particles[i].speed = randomValue;
 			particles[i].active = 0;
 		}
 
@@ -56,13 +68,11 @@ namespace jw
 		mSharedBuffer = new graphics::StructedBuffer();
 		mSharedBuffer->Create(sizeof(ParticleShared), 1, eViewType::UAV, nullptr, true);
 
-		//ParticleShared shareData = {};
-		//shareData.sharedActiveCount = 1000;
-		//mSharedBuffer->SetData(&shareData, 1);
-		//mBuffer->SetData(particles, 100);
 	}
 	ParticleSystem::~ParticleSystem()
 	{
+		delete mSharedBuffer;
+		delete mBuffer;
 	}
 	void ParticleSystem::Initialize()
 	{
@@ -72,7 +82,7 @@ namespace jw
 	}
 	void ParticleSystem::LateUpdate()
 	{
-		float AliveTime = 1.0f / 2.0f; // particle spawn Time 
+		float AliveTime = 1.0f / 12.0f; // 파티클 생성 주기
 		mTime += Time::DeltaTime();
 
 		if (mTime > AliveTime)
@@ -82,7 +92,7 @@ namespace jw
 			mTime = f - floor(f);
 
 			ParticleShared shareData = {};
-			shareData.sharedActiveCount = 2;
+			shareData.sharedActiveCount = 1;
 			mSharedBuffer->SetData(&shareData, 1);
 		}
 		else

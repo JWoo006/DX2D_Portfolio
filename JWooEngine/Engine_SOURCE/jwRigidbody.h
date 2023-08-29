@@ -24,6 +24,8 @@ namespace jw
 
 		Vector3 GetVelocity() { return mVelocity; }
 		void SetVelocity(Vector3 vel) { mVelocity = vel; }
+		void SetVelocityX(float _Value) { mVelocity.x = _Value; }
+		void SetVelocityY(float _Value) { mVelocity.y = _Value; }
 		void AddVelocity(Vector3 vel) { mVelocity += vel; }
 		void AddForce(Vector3 force);
 

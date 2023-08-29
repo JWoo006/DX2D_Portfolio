@@ -29,6 +29,20 @@ namespace jw::math
         return radian;
     }
 
+    
+
+    inline float toRadian(float _degree)
+    {
+        return _degree * XM_PI / 180.f;
+    }
+
+    inline float toDegree(float _radian)
+    {
+        return _radian * 180 / XM_PI;
+    }
+
+
+
     struct Vector2;
     struct Vector4;
     struct Matrix;
@@ -1015,5 +1029,41 @@ namespace jw::math
         float y = vector.x * sinf(radian) + vector.y * cos(radian);
 
         return Vector2(x, y);
+    }
+
+    inline Vector3 RotateZ(const Vector3& V, const float degree)
+    {
+
+        float rad = toRadian(degree); // 라디안 단위로 변환
+        float s = sin(rad);
+        float c = cos(rad);
+
+        Vector3 rotated = {};
+
+        rotated.x = V.x * c - V.y * s;
+        rotated.y = V.x * s + V.y * c;
+        rotated.z = V.z;
+
+        return rotated;
+    }
+
+    inline Vector3 ProjectOnPlane(Vector3 _Direction, Vector3 _PlaneNormal)
+    {
+        _PlaneNormal.Normalize();
+
+        // 벡터를 평면과 수직인 벡터로 분해합니다.
+        Vector3 verticalVector = _Direction.Dot(_PlaneNormal) * _PlaneNormal;
+
+        // 평면과 수직인 벡터를 빼서 벡터를 평면에 투영합니다.
+        Vector3 projectedVector = _Direction - verticalVector;
+        projectedVector.z = 0.f;
+        return projectedVector;
+    }
+
+    inline Vector3 AdjustDirectionToSlope(Vector3 _Direction, Vector3 _PlaneNormal)
+    {
+        Vector3 Result = ProjectOnPlane(_Direction, _PlaneNormal);
+        //Result.Normalize();
+        return Result;
     }
 }

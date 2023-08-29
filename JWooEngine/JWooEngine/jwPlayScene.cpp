@@ -10,6 +10,7 @@
 #include "jwRenderer.h"
 #include "jwCollider2D.h"
 
+#include "jwInput.h"
 //#include "jwPlayerScript.h"
 #include "jwCollisionManager.h"
 #include "jwAnimator.h"
@@ -17,6 +18,10 @@
 #include "jwPaintShader.h"
 
 #include "jwParticleSystem.h"
+
+#include "jwAudioListener.h"
+#include "jwAudioClip.h"
+#include "jwAudioSource.h"
 
 namespace jw
 {
@@ -71,14 +76,20 @@ namespace jw
 		}
 
 		{
+
 			GameObject* player = new GameObject();
 			player->SetName(L"Smile");
 			AddGameObject(eLayerType::Monster, player);
 			MeshRenderer* mr = player->AddComponent<MeshRenderer>();
 			mr->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 			mr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial02"));
-			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, 1.0f));
+			player->GetComponent<Transform>()->SetPosition(Vector3(0.0f, 0.0f, -9.0f));
+			//player->GetComponent<Transform>()->SetScale(Vector3(50.2f, 50.2f, 50.2f));
 			Collider2D* cd = player->AddComponent<Collider2D>();
+
+			AudioSource* as = player->AddComponent<AudioSource>();
+			as->SetClip(Resources::Load<AudioClip>(L"TestSound", L"..\\Resources\\Sound\\0.mp3"));
+			//as->Play();
 			//cd->SetSize(Vector2(1.2f, 1.2f));
 			//player->AddComponent<PlayerScript>();
 		}
@@ -92,8 +103,10 @@ namespace jw
 			lightComp->SetColor(Vector4(1.0f, 1.0f, 1.0f, 1.0f));
 		}
 
+		// particle
 		{
 			GameObject* player = new GameObject();
+
 			player->SetName(L"Particle");
 			AddGameObject(eLayerType::Monster, player);
 			ParticleSystem* mr = player->AddComponent<ParticleSystem>();
@@ -102,6 +115,7 @@ namespace jw
 			//Collider2D* cd = player->AddComponent<Collider2D>();
 			//cd->SetSize(Vector2(1.2f, 1.2f));
 			//player->AddComponent<PlayerScript>();
+			
 		}
 
 		{
@@ -136,6 +150,8 @@ namespace jw
 			camera->AddComponent<CameraScript>();
 			renderer::cameras.push_back(cameraComp);
 			renderer::mainCamera = cameraComp;
+
+			//camera->AddComponent<AudioListener>();
 		}
 
 		////UI Camera

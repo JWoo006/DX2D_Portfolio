@@ -18,6 +18,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwAnimator.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwApplication.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwAudioClip.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwAudioListener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwAudioSource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwCamera.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwCollider2D.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwCollisionManager.h" />
@@ -26,6 +29,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jwConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwEnums.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwFmod.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jwFontWrapper.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jwGraphics.h" />
@@ -58,6 +63,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwAnimator.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwApplication.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwAudioClip.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwAudioListener.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwAudioSource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwCamera.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwCollider2D.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwCollisionManager.cpp" />
@@ -65,6 +73,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jwComputeShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwEntity.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwFmod.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jwFontWrapper.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwGraphicDevice_Dx11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jwInput.cpp" />

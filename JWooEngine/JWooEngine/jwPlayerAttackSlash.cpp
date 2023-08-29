@@ -16,6 +16,8 @@ namespace jw
 	}
 	void PlayerAttackSlash::Initialize()
 	{
+		SetName(L"PlayerAttackSlash");
+
 		MeshRenderer* mMeshRenderer = AddComponent<MeshRenderer>();
 		mMeshRenderer->SetMesh(Resources::Find<Mesh>(L"RectMesh"));
 		mMeshRenderer->SetMaterial(Resources::Find<Material>(L"SpriteAnimaionMaterial"));

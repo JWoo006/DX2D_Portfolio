@@ -4,6 +4,8 @@
 #include "jwRenderer.h"
 #include "jwSceneManager.h"
 #include "jwCollisionManager.h"
+#include "jwFmod.h"
+#include "jwFontWrapper.h"
 
 namespace jw
 {
@@ -32,9 +34,10 @@ namespace jw
 	{
 		Time::Initiailize();
 		Input::Initialize();
+		Fmod::Initialize();
+		FontWrapper::Initialize();
 
 		renderer::Initialize();
-
 		SceneManager::Initialize();
 	}
 
@@ -67,10 +70,10 @@ namespace jw
 
 	void Application::Render()
 	{
-		Time::Render();
 
 		graphicDevice->ClearTarget();
 		graphicDevice->UpdateViewPort();
+		Time::Render();
 		
 		//SceneManager::Render();
 		// camera render

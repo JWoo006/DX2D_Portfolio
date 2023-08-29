@@ -16,6 +16,8 @@
 
 #include "jwPlayerAttackSlash.h"
 
+#include "jwGroundScript.h"
+
 namespace jw
 {
 	PlayerScript::PlayerScript()
@@ -25,6 +27,11 @@ namespace jw
 		, mAttackDelay(0.0f)
 		, mbFirstAttack(true)
 		, mAttackDirection(Vector3::Zero)
+		, mGroundAngle(0.0f)
+		, OnSlope(false)
+		, OnGround(false)
+		, mbOnJump(false)
+		, mbSlopeJumpInputKeyCheck(true)
 	{
 	}
 	PlayerScript::~PlayerScript()
@@ -145,7 +152,13 @@ namespace jw
 		{
 			Vector3 pos = mTransform->GetPosition();
 
-			mTransform->SetPosition(0.0f, 1.0f, pos.z);
+			mTransform->SetPosition(-3.27583289f, -1.45000005f, pos.z);
+		}
+		if (Input::GetKeyDown(eKeyCode::T))
+		{
+			Vector3 pos = mTransform->GetPosition();
+
+			mTransform->SetPosition(-3.27583289f, -1.45000005f, pos.z);
 		}
 		if (Input::GetKey(eKeyCode::X))
 		{
@@ -218,6 +231,133 @@ namespace jw
 			mAnimator->PlayAnimation(L"Player_Fall", true);
 		}
 	}
+	void PlayerScript::OnCollisionEnter(Collider2D* other)
+	{
+		std::wstring name = other->GetOwner()->GetName();
+		Rigidbody* rb = this->GetOwner()->GetComponent<Rigidbody>();
+
+		if (name == L"GroundCol_Base")
+		{
+			Vector3 GroundRotation = other->GetOwner()->GetRotation();
+			mGroundAngle = toDegree(GroundRotation.z);
+
+			rb->SetGround(true);
+		}
+		if (name == L"GroundCol_Slope")
+		{
+			if (mState == ePlayerState::Attack)
+			{
+				rb->SetVelocity(Vector3::Zero);
+			}
+
+			Vector3 GroundRotation = other->GetOwner()->GetRotation();
+			mGroundAngle = toDegree(GroundRotation.z);
+
+			rb->SetGround(true);
+		}
+		if (name == L"GroundCol_Down" )
+		{
+			Vector3 GroundRotation = other->GetOwner()->GetRotation();
+			mGroundAngle = toDegree(GroundRotation.z);
+
+			other->GetOwner()->GetScript<GroundScript>()->SetOnOffCollider(false);
+
+			Collider2D* playerCol = this->GetOwner()->GetComponent<Collider2D>();
+			Vector3 playerPos = this->GetOwner()->GetComponent<Transform>()->GetPosition();
+			Collider2D* groundCol = other->GetOwner()->GetComponent<Collider2D>();
+			Vector3 groundPos = groundCol->GetPosition();
+			if (playerPos.y >= groundPos.y)
+			{
+				Vector3 GroundRotation = other->GetOwner()->GetRotation();
+				mGroundAngle = toDegree(GroundRotation.z);
+
+				other->GetOwner()->GetScript<GroundScript>()->SetOnOffCollider(true);
+				rb->SetGround(true);
+			}
+
+		}
+		
+	}
+	void PlayerScript::OnCollisionStay(Collider2D* other)
+	{
+		std::wstring name = other->GetOwner()->GetName();
+		Rigidbody* rb = this->GetOwner()->GetComponent<Rigidbody>();
+
+		if (name == L"GroundCol_Base")
+		{
+			mbOnJump = false;
+			Vector3 GroundRotation = other->GetOwner()->GetRotation();
+			mGroundAngle = toDegree(GroundRotation.z);
+		}
+		if (name == L"GroundCol_Slope")
+		{
+
+			if (mState == ePlayerState::Attack)
+			{
+				rb->SetVelocity(Vector3::Zero);
+			}
+
+			mbOnJump = false;
+			Vector3 GroundRotation = other->GetOwner()->GetRotation();
+			mGroundAngle = toDegree(GroundRotation.z);
+
+			if (Input::GetKey(eKeyCode::W) || Input::GetKey(eKeyCode::LBUTTON))
+			{
+				if (mbSlopeJumpInputKeyCheck)
+				{
+					rb->SetGround(false);
+					mbSlopeJumpInputKeyCheck = false;
+				}
+				mbOnJump = true;
+			}
+			else if (Input::GetKeyUp(eKeyCode::W))
+			{
+				rb->SetGround(true);
+				mbSlopeJumpInputKeyCheck = true;
+			}
+			else
+			{
+				rb->SetGround(true);
+			}
+		}
+		if (name == L"GroundCol_Down")
+		{
+			mState;
+
+			if (mState == ePlayerState::Idle)
+			{
+				int a = 0;
+			}
+
+			if (Input::GetKey(eKeyCode::S))
+			{
+				other->GetOwner()->GetScript<GroundScript>()->SetOnOffCollider(false);
+				rb->SetGround(false);
+
+				if (mAnimator->GetAnimDirection() == Animation::eAnimDirection::Left)
+				{
+					mState = ePlayerState::Jump_L;
+				}
+				else
+				{
+					mState = ePlayerState::Jump_R;
+				}
+			}
+		}
+	}
+	void PlayerScript::OnCollisionExit(Collider2D* other)
+	{
+		std::wstring name = other->GetOwner()->GetName();
+		Rigidbody* rb = this->GetOwner()->GetComponent<Rigidbody>();
+
+		/*if (name == L"GroundCol_Base")
+		{
+			mbOnJump = true;
+			rb->SetGround(false);
+			Vector3 GroundRotation = other->GetOwner()->GetRotation();
+			mGroundAngle = toDegree(GroundRotation.z);
+		}*/
+	}
 	void PlayerScript::idle()
 	{
 		if (Input::GetKeyDown(eKeyCode::LBUTTON))
@@ -275,18 +415,18 @@ namespace jw
 		if (Input::GetKey(eKeyCode::A))
 		{
 			Vector3 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
-			pos.x -= 2.0f * Time::DeltaTime();
-			//pos.x -= 2.0f * Time::DeltaTime() * std::cos(RotateDegree(45));
-			//pos.y -= 2.0f * Time::DeltaTime() * std::sin(RotateDegree(45));
 
-			//mTransform->SetRotation(Vector3(0, 0, RotateDegree(45)));
+			//pos.x -= 2.0f * Time::DeltaTime();
+			pos.x -= 2.0f * Time::DeltaTime() * std::cos(RotateDegree(mGroundAngle));
+			pos.y -= 2.0f * Time::DeltaTime() * std::sin(RotateDegree(mGroundAngle));
 			mTransform->SetPosition(pos);
 		}
 		else if (Input::GetKey(eKeyCode::D))
 		{
 			Vector3 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
-			pos.x += 2.0f * Time::DeltaTime() * std::cos(RotateDegree(45));
-			pos.y += 2.0f * Time::DeltaTime() * std::sin(RotateDegree(45));
+			//pos.x -= 2.0f * Time::DeltaTime();
+			pos.x += 2.0f * Time::DeltaTime() * std::cos(RotateDegree(mGroundAngle));
+			pos.y += 2.0f * Time::DeltaTime() * std::sin(RotateDegree(mGroundAngle));
 			mTransform->SetPosition(pos);
 		}
 
@@ -356,13 +496,16 @@ namespace jw
 		if (mAnimator->GetAnimDirection() == Animation::eAnimDirection::Left)
 		{
 			Vector3 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
-			pos.x -= 4.0f * Time::DeltaTime();
+			pos.x -= 4.0f * Time::DeltaTime() * std::cos(RotateDegree(mGroundAngle));
+			pos.y -= 4.0f * Time::DeltaTime() * std::sin(RotateDegree(mGroundAngle));
+
 			mTransform->SetPosition(pos);
 		}
 		if (mAnimator->GetAnimDirection() == Animation::eAnimDirection::Right)
 		{
 			Vector3 pos = GetOwner()->GetComponent<Transform>()->GetPosition();
-			pos.x += 4.0f * Time::DeltaTime();
+			pos.x += 4.0f * Time::DeltaTime() * std::cos(RotateDegree(mGroundAngle));
+			pos.y += 4.0f * Time::DeltaTime() * std::sin(RotateDegree(mGroundAngle));
 			mTransform->SetPosition(pos);
 		}
 	}

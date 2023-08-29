@@ -38,9 +38,9 @@ namespace jw
 		void RollAnimComplete();
 		void AttackAnimComplete();
 
-		//virtual void OnCollisionEnter(Collider2D* other) override;
-		//virtual void OnCollisionStay(Collider2D* other) override;
-		//virtual void OnCollisionExit(Collider2D* other) override;
+		virtual void OnCollisionEnter(Collider2D* other) override;
+		virtual void OnCollisionStay(Collider2D* other) override;
+		virtual void OnCollisionExit(Collider2D* other) override;
 
 		void idle();
 		void move();
@@ -69,8 +69,12 @@ namespace jw
 		float mAttackTime;
 		bool mbFirstAttack;
 		Vector3 mAttackDirection;
-		
 
+		float mGroundAngle;
+		bool OnSlope;
+		bool OnGround;
 
+		bool mbOnJump;
+		bool mbSlopeJumpInputKeyCheck;
 	};
 }

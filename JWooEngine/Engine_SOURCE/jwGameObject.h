@@ -92,6 +92,20 @@ namespace jw
 			return comp;
 		}
 
+		template <typename T>
+		T* GetScript()
+		{
+			T* component;
+			for (auto* script : mScripts)
+			{
+				component = dynamic_cast<T*>(script);
+
+				if (nullptr != component)
+					return component;
+			}
+			return nullptr;
+		}
+
 		void SetState(eState state) { mState = state; }
 		eState GetState() { return mState; }
 

@@ -26,9 +26,6 @@
     <ClInclude Include="jwGridScript.h">
       <Filter>Contents\Script</Filter>
     </ClInclude>
-    <ClInclude Include="jwPlayerScript.h">
-      <Filter>Contents\Script</Filter>
-    </ClInclude>
     <ClInclude Include="jwFactoryScene_03.h">
       <Filter>Contents\Scene\01_Factory</Filter>
     </ClInclude>
@@ -62,6 +59,18 @@
     <ClInclude Include="jwPlayerAttackSlash.h">
       <Filter>Contents\Object\Player</Filter>
     </ClInclude>
+    <ClInclude Include="jwEnemy.h">
+      <Filter>Contents\Object\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="jwGrunt.h">
+      <Filter>Contents\Object\Enemy\Grunt</Filter>
+    </ClInclude>
+    <ClInclude Include="jwGruntScript.h">
+      <Filter>Contents\Object\Enemy\Grunt</Filter>
+    </ClInclude>
+    <ClInclude Include="jwPlayerScript.h">
+      <Filter>Contents\Object\Player</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="JWooEngine.cpp" />
@@ -84,9 +93,6 @@
       <Filter>Contents\Scene\01_Factory</Filter>
     </ClCompile>
     <ClCompile Include="jwGridScript.cpp">
-      <Filter>Contents\Script</Filter>
-    </ClCompile>
-    <ClCompile Include="jwPlayerScript.cpp">
       <Filter>Contents\Script</Filter>
     </ClCompile>
     <ClCompile Include="jwFactoryScene_03.cpp">
@@ -122,6 +128,18 @@
     <ClCompile Include="jwPlayerAttackSlash.cpp">
       <Filter>Contents\Object\Player</Filter>
     </ClCompile>
+    <ClCompile Include="jwEnemy.cpp">
+      <Filter>Contents\Object\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="jwGrunt.cpp">
+      <Filter>Contents\Object\Enemy\Grunt</Filter>
+    </ClCompile>
+    <ClCompile Include="jwGruntScript.cpp">
+      <Filter>Contents\Object\Enemy\Grunt</Filter>
+    </ClCompile>
+    <ClCompile Include="jwPlayerScript.cpp">
+      <Filter>Contents\Object\Player</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Contents">
@@ -153,6 +171,12 @@
     </Filter>
     <Filter Include="Contents\Object\MouseCursor">
       <UniqueIdentifier>{27026f00-b279-472f-a12b-dea07ee8793d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Enemy">
+      <UniqueIdentifier>{3f71b041-0156-4282-a7ab-5f4d911b012c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents\Object\Enemy\Grunt">
+      <UniqueIdentifier>{2e56926a-8774-487c-98a7-4d548f03ece6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

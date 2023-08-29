@@ -6,6 +6,8 @@
 #include "..\Engine_SOURCE\jwApplication.h"
 #include "..\Engine_SOURCE\jwRenderer.h"
 #include "..\Engine_SOURCE\jwResources.h"
+#include "..\Engine_SOURCE\jwFmod.h"
+#include "..\Engine_SOURCE\jwFontWrapper.h"
 #include "LoadScenes.h"
 #include "guiEditor.h"
 
@@ -87,6 +89,8 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     // 렌더러 release
     renderer::Release();
     jw::SceneManager::Release();
+    jw::Fmod::Release();
+    jw::FontWrapper::Release();
     gui::Editor::Release();
 
     return (int)msg.wParam;
